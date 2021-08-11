@@ -61,6 +61,8 @@ Plug 'szw/vim-maximizer'
 
 Plug 'gruvbox-community/gruvbox'
 
+Plug 'fladson/vim-kitty'
+
 " Telescope
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'

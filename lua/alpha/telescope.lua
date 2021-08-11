@@ -30,10 +30,9 @@ require('telescope').load_extension('fzy_native')
 local M = {}
 
 M.search_config = function()
-	require("telescope.builtin").find_files({
-		prompt_title = "< Config >",
-		cwd = "$HOME/.config/nvim",
-        file_ignore_patterns = {"undodir/*", "plugged/*"}
+	require("telescope.builtin").git_files({
+		prompt_title = "< dotfiles >",
+		cwd = "$HOME/.dotfiles",
 	})
 end
 
