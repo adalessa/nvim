@@ -15,7 +15,7 @@ nnoremap <leader>pe :lua require('alpha.telescope').buffers()<CR>
 
 nnoremap <leader>bb :lua require('telescope.builtin').file_browser()<CR>
 
-nnoremap <leader>gc :lua require('telescope.builtin').git_branches()<CR>
+nnoremap <leader>gc :lua require('alpha.telescope').branches()<CR>
 nnoremap <leader>gs :lua require('telescope.builtin').git_status()<CR>
 
 nnoremap <leader>rc :lua require('alpha.telescope').search_config()<CR>
