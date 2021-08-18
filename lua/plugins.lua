@@ -77,6 +77,7 @@ return require('packer').startup(function()
     use 'fladson/vim-kitty'
 
     use 'gruvbox-community/gruvbox'
+    use 'EdenEast/nightfox.nvim'
 
     use 'Raimondi/delimitMate'
     use 'tpope/vim-surround'

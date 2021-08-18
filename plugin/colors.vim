@@ -8,7 +8,7 @@ fun! ColorMyPencils()
     let g:gruvbox_invert_selection = '0'
 
     set background=dark
-    colorscheme gruvbox
+    colorscheme nightfox
 
     " Transparency
     "highlight Normal ctermbg=NONE guibg=NONE

@@ -12,6 +12,7 @@ nnoremap <leader>po :lua require('telescope.builtin').find_files()<CR>
 nnoremap <leader>pv :lua require('telescope.builtin').lsp_workspace_symbols({ query = vim.fn.input("Symbols > ")})<CR>
 
 nnoremap <leader>pe :lua require('alpha.telescope').buffers()<CR>
+nnoremap <leader>pr :lua require('telescope.builtin').treesitter()<CR>
 
 nnoremap <leader>bb :lua require('telescope.builtin').file_browser()<CR>
 
