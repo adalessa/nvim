@@ -11,8 +11,8 @@ fun! ColorMyPencils()
     colorscheme gruvbox
 
     " Transparency
-    highlight Normal ctermbg=NONE guibg=NONE
-    highlight EndOfBuffer ctermbg=NONE guibg=NONE
+    "highlight Normal ctermbg=NONE guibg=NONE
+    "highlight EndOfBuffer ctermbg=NONE guibg=NONE
 
     highlight ColorColumn ctermbg=0 guibg=grey
     " highlight Normal guibg=none
