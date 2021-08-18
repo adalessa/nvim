@@ -1,6 +1,8 @@
 vim.cmd [[packadd packer.nvim]]
 
 return require('packer').startup(function()
+    use 'wbthomason/packer.nvim'
+
     use {
         'ThePrimeagen/refactoring.nvim',
         requires = {
@@ -12,6 +14,19 @@ return require('packer').startup(function()
 
     use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
     use { 'nvim-treesitter/playground' }
+    use { 'nvim-treesitter/nvim-treesitter-refactor' }
+    use { 'nvim-treesitter/nvim-treesitter-textobjects' }
+
+    use {
+        "folke/twilight.nvim",
+        config = function()
+            require("twilight").setup {
+                -- your configuration comes here
+                -- or leave it empty to use the default settings
+                -- refer to the configuration section below
+            }
+        end
+    }
 
     use { 'tpope/vim-dispatch', opt = true, cmd = {'Dispatch', 'Make', 'Focus', 'Start'}}
 
@@ -21,7 +36,7 @@ return require('packer').startup(function()
         'neovim/nvim-lspconfig',
         requires = {
             { 'hrsh7th/nvim-compe' },
-            { 'anott03/nvim-lspinstall' }
+            { 'kabouzeid/nvim-lspinstall' }
         }
     }
 

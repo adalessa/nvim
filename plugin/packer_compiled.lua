@@ -109,9 +109,17 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/alpha/.local/share/nvim/site/pack/packer/start/nvim-treesitter"
   },
+  ["nvim-treesitter-refactor"] = {
+    loaded = true,
+    path = "/home/alpha/.local/share/nvim/site/pack/packer/start/nvim-treesitter-refactor"
+  },
   ["nvim-web-devicons"] = {
     loaded = true,
     path = "/home/alpha/.local/share/nvim/site/pack/packer/start/nvim-web-devicons"
+  },
+  ["packer.nvim"] = {
+    loaded = true,
+    path = "/home/alpha/.local/share/nvim/site/pack/packer/start/packer.nvim"
   },
   playground = {
     loaded = true,
@@ -178,7 +186,7 @@ _G.packer_plugins = {
   ["vim-http"] = {
     commands = { "Http" },
     loaded = false,
-    needs_bufread = false,
+    needs_bufread = true,
     path = "/home/alpha/.local/share/nvim/site/pack/packer/opt/vim-http"
   },
   ["vim-kitty"] = {
@@ -232,7 +240,7 @@ _G.packer_plugins = {
   vimwiki = {
     commands = { "VimwikiIndex" },
     loaded = false,
-    needs_bufread = false,
+    needs_bufread = true,
     path = "/home/alpha/.local/share/nvim/site/pack/packer/opt/vimwiki"
   }
 }
