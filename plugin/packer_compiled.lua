@@ -69,6 +69,10 @@ end
 time([[try_loadstring definition]], false)
 time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
+  LuaSnip = {
+    loaded = true,
+    path = "/home/alpha/.local/share/nvim/site/pack/packer/start/LuaSnip"
+  },
   delimitMate = {
     loaded = true,
     path = "/home/alpha/.local/share/nvim/site/pack/packer/start/delimitMate"
@@ -89,7 +93,12 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/alpha/.local/share/nvim/site/pack/packer/start/neoformat"
   },
+  ["nightfox.nvim"] = {
+    loaded = true,
+    path = "/home/alpha/.local/share/nvim/site/pack/packer/start/nightfox.nvim"
+  },
   ["nvim-compe"] = {
+    config = { "\27LJ\1\2µ\2\0\0\3\0\6\0\t4\0\0\0%\1\1\0>\0\2\0027\0\2\0003\1\3\0003\2\4\0:\2\5\1>\0\2\1G\0\1\0\vsource\1\0\b\14ultisnips\1\rnvim_lua\2\rnvim_lsp\2\vbuffer\2\nvsnip\1\tcalc\2\fluasnip\2\tpath\2\1\0\v\20resolve_timeout\3†\6\19source_timeout\3»\1\14preselect\venable\ndebug\1\17autocomplete\2\19max_abbr_width\3d\21incomplete_delay\3ê\3\19max_kind_width\3d\18throttle_time\3P\15min_lenght\3\1\venable\2\nsetup\ncompe\frequire\0" },
     loaded = true,
     path = "/home/alpha/.local/share/nvim/site/pack/packer/start/nvim-compe"
   },
@@ -112,6 +121,10 @@ _G.packer_plugins = {
   ["nvim-treesitter-refactor"] = {
     loaded = true,
     path = "/home/alpha/.local/share/nvim/site/pack/packer/start/nvim-treesitter-refactor"
+  },
+  ["nvim-treesitter-textobjects"] = {
+    loaded = true,
+    path = "/home/alpha/.local/share/nvim/site/pack/packer/start/nvim-treesitter-textobjects"
   },
   ["nvim-web-devicons"] = {
     loaded = true,
@@ -144,6 +157,11 @@ _G.packer_plugins = {
   ["telescope.nvim"] = {
     loaded = true,
     path = "/home/alpha/.local/share/nvim/site/pack/packer/start/telescope.nvim"
+  },
+  ["twilight.nvim"] = {
+    config = { "\27LJ\1\2:\0\0\2\0\3\0\a4\0\0\0%\1\1\0>\0\2\0027\0\2\0002\1\0\0>\0\2\1G\0\1\0\nsetup\rtwilight\frequire\0" },
+    loaded = true,
+    path = "/home/alpha/.local/share/nvim/site/pack/packer/start/twilight.nvim"
   },
   ["vim-blade"] = {
     loaded = true,
@@ -246,6 +264,14 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
+-- Config for: twilight.nvim
+time([[Config for twilight.nvim]], true)
+try_loadstring("\27LJ\1\2:\0\0\2\0\3\0\a4\0\0\0%\1\1\0>\0\2\0027\0\2\0002\1\0\0>\0\2\1G\0\1\0\nsetup\rtwilight\frequire\0", "config", "twilight.nvim")
+time([[Config for twilight.nvim]], false)
+-- Config for: nvim-compe
+time([[Config for nvim-compe]], true)
+try_loadstring("\27LJ\1\2µ\2\0\0\3\0\6\0\t4\0\0\0%\1\1\0>\0\2\0027\0\2\0003\1\3\0003\2\4\0:\2\5\1>\0\2\1G\0\1\0\vsource\1\0\b\14ultisnips\1\rnvim_lua\2\rnvim_lsp\2\vbuffer\2\nvsnip\1\tcalc\2\fluasnip\2\tpath\2\1\0\v\20resolve_timeout\3†\6\19source_timeout\3»\1\14preselect\venable\ndebug\1\17autocomplete\2\19max_abbr_width\3d\21incomplete_delay\3ê\3\19max_kind_width\3d\18throttle_time\3P\15min_lenght\3\1\venable\2\nsetup\ncompe\frequire\0", "config", "nvim-compe")
+time([[Config for nvim-compe]], false)
 
 -- Command lazy-loads
 time([[Defining lazy-load commands]], true)

@@ -35,10 +35,40 @@ return require('packer').startup(function()
     use {
         'neovim/nvim-lspconfig',
         requires = {
-            { 'hrsh7th/nvim-compe' },
+            {
+                'hrsh7th/nvim-compe',
+                config = function()
+                    require'compe'.setup {
+                        enable = true;
+                        autocomplete = true;
+                        debug = false;
+                        min_lenght = 1;
+                        preselect = 'enable';
+                        throttle_time = 80;
+                        source_timeout = 200;
+                        resolve_timeout = 800;
+                        incomplete_delay = 400;
+                        max_abbr_width = 100;
+                        max_kind_width = 100;
+
+                        source = {
+                            path = true;
+                            buffer = true;
+                            calc = true;
+                            nvim_lsp = true;
+                            nvim_lua = true;
+                            vsnip = false;
+                            ultisnips = false;
+                            luasnip = true;
+                        };
+                    }
+                end
+            },
             { 'kabouzeid/nvim-lspinstall' }
         }
     }
+
+    use 'L3MON4D3/LuaSnip'
 
     use {
         'nvim-telescope/telescope.nvim',
