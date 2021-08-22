@@ -1,4 +1,5 @@
 local actions = require('telescope.actions')
+
 require('telescope').setup {
     defaults = {
         file_sorter = require('telescope.sorters').get_fzy_sorter,
@@ -47,5 +48,15 @@ M.branches = function()
       return true
     end})
 end
+
+-- just a test base on a relative path
+M.laravel_controllers = function()
+    require("telescope.builtin").find_files({
+        prompt_title = "< Controllers >",
+        cwd = "app/Http/Controllers",
+    })
+end
+
+M.laravel_artisan = require('alpha.telescope_laravel').artisan
 
 return M
