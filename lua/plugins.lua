@@ -1,6 +1,7 @@
 vim.cmd [[packadd packer.nvim]]
+vim.cmd([[autocmd BufWritePost plugins.lua source <afile> | PackerCompile]])
 
-return require('packer').startup(function()
+return require('packer').startup(function(use)
     use 'wbthomason/packer.nvim'
 
     use {
@@ -21,9 +22,17 @@ return require('packer').startup(function()
         "folke/twilight.nvim",
         config = function()
             require("twilight").setup {
+                context = 3,
                 -- your configuration comes here
                 -- or leave it empty to use the default settings
                 -- refer to the configuration section below
+                expand = { -- for treesitter, we we always try to expand to the top-most ancestor with these types
+                    "function",
+                    "method_declaration",
+                    "method",
+                    "table",
+                    "if_statement",
+                },
             }
         end
     }
