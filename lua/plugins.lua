@@ -27,11 +27,13 @@ return require('packer').startup(function(use)
                 -- or leave it empty to use the default settings
                 -- refer to the configuration section below
                 expand = { -- for treesitter, we we always try to expand to the top-most ancestor with these types
+                    "function_declaration",
                     "function",
                     "method_declaration",
                     "method",
                     "table",
                     "if_statement",
+                    "type_declaration",
                 },
             }
         end
