@@ -159,7 +159,7 @@ _G.packer_plugins = {
     path = "/home/alpha/.local/share/nvim/site/pack/packer/start/telescope.nvim"
   },
   ["twilight.nvim"] = {
-    config = { "\27LJ\1\2¶\1\0\0\3\0\6\0\t4\0\0\0%\1\1\0>\0\2\0027\0\2\0003\1\3\0003\2\4\0:\2\5\1>\0\2\1G\0\1\0\vexpand\1\b\0\0\25function_declaration\rfunction\23method_declaration\vmethod\ntable\17if_statement\21type_declaration\1\0\1\fcontext\3\3\nsetup\rtwilight\frequire\0" },
+    config = { "\27LJ\1\2ø\1\0\0\3\0\6\0\t4\0\0\0%\1\1\0>\0\2\0027\0\2\0003\1\3\0003\2\4\0:\2\5\1>\0\2\1G\0\1\0\vexpand\1\v\0\0\25function_declaration\29function_call_expression\25expression_statement\rfunction\24function_definition\23method_declaration\vmethod\ntable\17if_statement\21type_declaration\1\0\1\fcontext\3\3\nsetup\rtwilight\frequire\0" },
     loaded = true,
     path = "/home/alpha/.local/share/nvim/site/pack/packer/start/twilight.nvim"
   },
@@ -266,7 +266,7 @@ _G.packer_plugins = {
 time([[Defining packer_plugins]], false)
 -- Config for: twilight.nvim
 time([[Config for twilight.nvim]], true)
-try_loadstring("\27LJ\1\2¶\1\0\0\3\0\6\0\t4\0\0\0%\1\1\0>\0\2\0027\0\2\0003\1\3\0003\2\4\0:\2\5\1>\0\2\1G\0\1\0\vexpand\1\b\0\0\25function_declaration\rfunction\23method_declaration\vmethod\ntable\17if_statement\21type_declaration\1\0\1\fcontext\3\3\nsetup\rtwilight\frequire\0", "config", "twilight.nvim")
+try_loadstring("\27LJ\1\2ø\1\0\0\3\0\6\0\t4\0\0\0%\1\1\0>\0\2\0027\0\2\0003\1\3\0003\2\4\0:\2\5\1>\0\2\1G\0\1\0\vexpand\1\v\0\0\25function_declaration\29function_call_expression\25expression_statement\rfunction\24function_definition\23method_declaration\vmethod\ntable\17if_statement\21type_declaration\1\0\1\fcontext\3\3\nsetup\rtwilight\frequire\0", "config", "twilight.nvim")
 time([[Config for twilight.nvim]], false)
 -- Config for: nvim-compe
 time([[Config for nvim-compe]], true)

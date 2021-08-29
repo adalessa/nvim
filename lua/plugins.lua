@@ -28,7 +28,10 @@ return require('packer').startup(function(use)
                 -- refer to the configuration section below
                 expand = { -- for treesitter, we we always try to expand to the top-most ancestor with these types
                     "function_declaration",
+                    "function_call_expression",
+                    "expression_statement",
                     "function",
+                    "function_definition",
                     "method_declaration",
                     "method",
                     "table",
