@@ -85,6 +85,10 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/alpha/.local/share/nvim/site/pack/packer/start/gruvbox"
   },
+  harpoon = {
+    loaded = true,
+    path = "/home/alpha/.local/share/nvim/site/pack/packer/start/harpoon"
+  },
   ["lualine.nvim"] = {
     loaded = true,
     path = "/home/alpha/.local/share/nvim/site/pack/packer/start/lualine.nvim"

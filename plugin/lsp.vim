@@ -42,6 +42,7 @@ nnoremap <leader>vh :lua vim.lsp.buf.hover()<CR>
 
 " to test
 nnoremap <leader>vi :lua vim.lsp.buf.implementation()<CR>
+nnoremap <leader>vf :lua vim.lsp.buf.formatting()<CR>
 nnoremap <leader>vrn :lua vim.lsp.buf.rename()<CR>
 nnoremap <leader>vca :lua vim.lsp.buf.code_action()<CR>
 nnoremap <leader>vsd :lua vim.lsp.util.show_line_diagnostics(); vim.lsp.util.show_line_diagnostics()<CR>
@@ -65,7 +66,20 @@ local function setup_servers()
     require'lspinstall'.setup()
     local servers = require'lspinstall'.installed_servers()
     for _, server in pairs(servers) do
-        require'lspconfig'[server].setup{ on_attach=on_attach}
+        if server == 'lua' then
+            require'lspconfig'.lua.setup {
+                on_attach=on_attach,
+                settings = {
+                    Lua = {
+                        diagnostics = {
+                            globals = { 'vim' }
+                        }
+                    }
+                },
+            }
+        else
+            require'lspconfig'[server].setup{ on_attach=on_attach }
+        end
     end
 end
 
