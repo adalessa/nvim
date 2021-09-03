@@ -4,8 +4,8 @@ nnoremap <leader>k :wincmd k<CR>
 nnoremap <leader>l :wincmd l<CR>
 nnoremap <leader>q :wincmd q<CR>
 
-nnoremap <leader>vsp :vsp<CR>
-nnoremap <leader>sp :sp<CR>
+nnoremap <leader>wv :vsp<CR>
+nnoremap <leader>wh :sp<CR>
 
 nnoremap <C-j> :cnext<CR>
 nnoremap <C-k> :cprev<CR>
