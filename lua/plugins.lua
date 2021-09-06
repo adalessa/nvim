@@ -108,7 +108,8 @@ return require('packer').startup(function(use)
         'puremourning/vimspector',
         requires = {
             { 'mfussenegger/nvim-dap' }
-        }
+        },
+        fn = "vimspector#Launch",
     }
 
     use 'szw/vim-maximizer'
