@@ -43,7 +43,7 @@ M.setter_getter = function()
     -- visibility modifier
     -- type_list (optional) could have a  ?  to be nullable or could have a list
     -- property_element
-    print(vim.inspect(p))
+    -- print(vim.inspect(p))
 
     local comment = ''
 
@@ -51,21 +51,56 @@ M.setter_getter = function()
         local prev = ts_utils.get_previous_node(node, false, false)
         if (node.type(prev) == 'comment') then
             comment = ts_utils.get_node_text(prev)[1]
+            comment = string.match(comment, '@var (.*) ')
         end
         -- print(vim.inspect(node.type(prev)))
         -- print(vim.inspect(ts_utils.get_node_text(prev)))
     end
 
-    print(vim.inspect(comment))
+    -- print(vim.inspect(comment))
     -- if  type_list is not present could go up and read the comment
     -- and base on a regular expression, and  get  the type
     -- if the type is array want to also read to see if is a typed array
     --
-    local classNode = node.parent()
+    local classNode = node:parent()
+    local classEnd = classNode:end_()
 
+    local variable = string.sub(p.property_element, 2)
 
+    local function firstToUpper(str)
+        return (str:gsub("^%l", string.upper))
+    end
 
-    vim.api.nvim_buf_set_lines(bufnr, )
+    local varType = p.type_list
+
+    local insert = {}
+    table.insert(insert, "")
+    if (comment ~= nil) then
+        table.insert(insert, "    /**")
+        table.insert(insert, string.format("\t * @return %s", comment))
+        table.insert(insert, "     */")
+    end
+    table.insert(insert, string.format("\tpublic function get%s(): %s", firstToUpper(variable), varType))
+    table.insert(insert, "    {")
+    table.insert(insert, string.format("\t\treturn $this->%s;", variable))
+    table.insert(insert, "    }")
+    table.insert(insert, "")
+
+    if (comment ~= nil) then
+        table.insert(insert, "    /**")
+        table.insert(insert, string.format("\t * @param %s %s", comment, p.property_element))
+        table.insert(insert, "     *")
+        table.insert(insert, "     * @return self")
+        table.insert(insert, "     */")
+    end
+    table.insert(insert, string.format("\tpublic function set%s(%s %s): self", firstToUpper(variable), varType, p.property_element))
+    table.insert(insert, "    {")
+    table.insert(insert, string.format("\t\t$this->%s = %s;", variable, p.property_element))
+    table.insert(insert, "")
+    table.insert(insert, string.format("\t\treturn $this;"))
+    table.insert(insert, "    }")
+
+    vim.api.nvim_buf_set_lines(bufnr, classEnd, classEnd, false, insert)
 
 end
 
