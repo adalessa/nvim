@@ -28,5 +28,9 @@ augroup fmtphp
   autocmd BufWritePre *.php undojoin | Neoformat
 augroup END
 
+filetype plugin indent on
+autocmd FileType yaml setl indentkeys-=<:>
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+
 " Has to be the last line for the .nvimrc per project
 set secure

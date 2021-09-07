@@ -9,10 +9,8 @@ local d = ls.dynamic_node
 
 ls.snippets = {
     php = {
-        s("getter", {
-            t("/**"),
-            t(" *"),
-            t(" *"),
+        s("$", {
+            t("$this->"),
         })
     }
 }
