@@ -10,3 +10,5 @@ nmap <Leader>gdl :diffget //3<CR>
 
 nnoremap <leader>ga :Git fetch --all -p<CR>
 nnoremap <leader>gl :Git pull<CR>
+nnoremap <leader>gp :Git push<CR>
+nnoremap <leader>gpo :Git push -u origin HEAD<CR>
