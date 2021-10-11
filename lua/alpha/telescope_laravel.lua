@@ -28,15 +28,15 @@ local mt_string_entry = {
     end,
 }
 
-laravel.artisan = function(opts)
+laravel.artisan = function()
 
     local results = utils.get_os_command_output({
         "php",
         "artisan",
         "--raw",
-    }, opts.cwd)
+    })
 
-    pickers.new(opts, {
+    pickers.new({}, {
         prompt_title = "Artisan commands",
         finder = finders.new_table {
             results = results,
@@ -62,12 +62,12 @@ laravel.artisan = function(opts)
                 })
             end,
         },
-        sorter = conf.file_sorter(opts),
+        sorter = conf.file_sorter(),
         attach_mappings = function (_, map)
             map('i', '<cr>', function(prompt_bufnr)
                 local entry = action_state.get_selected_entry()
                 actions.close(prompt_bufnr)
-                vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(":Artisan " .. entry.value, true, false, true), "t", true)
+                vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(":Artisan " .. entry.value .. " ", true, false, true), "t", true)
             end)
             return true
         end
