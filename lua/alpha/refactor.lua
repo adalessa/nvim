@@ -50,8 +50,9 @@ M.setter_getter = function()
     if (p.type_list == 'array' or p.type_list == nil) then
         local prev = ts_utils.get_previous_node(node, false, false)
         if (node.type(prev) == 'comment') then
-            comment = ts_utils.get_node_text(prev)[1]
-            comment = string.match(comment, '@var (.*) ')
+            comment = ts_utils.get_node_text(prev)[2]
+            -- print(vim.inspect(comment))
+            comment = string.match(comment, '@var (.*)')
         end
         -- print(vim.inspect(node.type(prev)))
         -- print(vim.inspect(ts_utils.get_node_text(prev)))
@@ -71,7 +72,47 @@ M.setter_getter = function()
         return (str:gsub("^%l", string.upper))
     end
 
+    local function mysplit (inputstr, sep)
+        if sep == nil then
+            sep = "%s"
+        end
+        local t={}
+        for str in string.gmatch(inputstr, "([^"..sep.."]+)") do
+            table.insert(t, str)
+        end
+        return t
+    end
+
+    local function implode(delimiter, list)
+        local len = #list
+        if len == 0 then
+            return ""
+        end
+        local string = list[1]
+        for i = 2, len do
+            string = string .. delimiter .. list[i]
+        end
+        return string
+    end
+
     local varType = p.type_list
+    if (varType == nil) then
+        local isNullable = false
+        local types = {}
+        local commentTypes = mysplit(comment, "|")
+        for _, v in ipairs(commentTypes) do
+            if (v == "null") then
+                isNullable = true
+            else
+                table.insert(types, v)
+            end
+        end
+        varType = implode("|", types)
+        if (isNullable) then
+            varType = "?" .. varType
+        end
+
+    end
 
     local insert = {}
     table.insert(insert, "")

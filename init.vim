@@ -25,12 +25,13 @@ autocmd BufWritePre * %s/\s\+$//e
 
 augroup fmtphp
   autocmd!
-  autocmd BufWritePre *.php undojoin | lua vim.lsp.buf.formatting()
+  autocmd BufWritePre *.php undojoin
 augroup END
 
 filetype plugin indent on
 autocmd FileType yaml setl indentkeys-=<:>
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+autocmd FileType cucumber setlocal ts=2 sts=2 sw=2 expandtab
 
 nnoremap Y y$
 
