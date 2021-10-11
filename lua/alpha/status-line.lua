@@ -1,10 +1,11 @@
 require('lualine').setup{
     options = {
-      theme = 'nightfox',
+      theme = 'horizon',
       section_separators = { '', '' },
       component_separators = { '', '' },
       icons_enabled = true,
     },
+    extensions = {'quickfix'},
     sections = {
       lualine_a = { { 'mode', upper = true } },
       lualine_b = { { 'branch', icon = '' } },
