@@ -9,6 +9,7 @@ nnoremap <leader>pw :lua require('telescope.builtin').grep_string({ search = vim
 nnoremap <leader>pp :lua require('telescope.builtin').git_files()<CR>
 nnoremap <leader>po :lua require('telescope.builtin').find_files()<CR>
 
+
 nnoremap <leader>pv :lua require('telescope.builtin').lsp_workspace_symbols({ query = vim.fn.input("Symbols > ")})<CR>
 
 nnoremap <leader>pe :lua require('alpha.telescope').buffers()<CR>
