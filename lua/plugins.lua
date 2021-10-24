@@ -52,38 +52,19 @@ return require('packer').startup(function(use)
 
     use { 'tpope/vim-dispatch', opt = true, cmd = {'Dispatch', 'Make', 'Focus', 'Start'}}
 
+    use "hrsh7th/nvim-cmp"
+    use "hrsh7th/cmp-buffer"
+    use "hrsh7th/cmp-path"
+    use "hrsh7th/cmp-nvim-lua"
+    use "hrsh7th/cmp-nvim-lsp"
+    use "saadparwaiz1/cmp_luasnip"
+    use "onsails/lspkind-nvim"
+
+    use "tjdevries/colorbuddy.nvim"
+
     use {
         'neovim/nvim-lspconfig',
         requires = {
-            {
-                'hrsh7th/nvim-compe',
-                config = function()
-                    require'compe'.setup {
-                        enable = true;
-                        autocomplete = true;
-                        debug = false;
-                        min_lenght = 1;
-                        preselect = 'enable';
-                        throttle_time = 80;
-                        source_timeout = 200;
-                        resolve_timeout = 800;
-                        incomplete_delay = 400;
-                        max_abbr_width = 100;
-                        max_kind_width = 100;
-
-                        source = {
-                            path = true;
-                            buffer = true;
-                            calc = true;
-                            nvim_lsp = true;
-                            nvim_lua = true;
-                            vsnip = false;
-                            ultisnips = false;
-                            luasnip = true;
-                        };
-                    }
-                end
-            },
             { 'kabouzeid/nvim-lspinstall' }
         }
     }

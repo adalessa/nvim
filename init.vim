@@ -25,7 +25,7 @@ autocmd BufWritePre * %s/\s\+$//e
 
 augroup fmtphp
   autocmd!
-  autocmd BufWritePre *.php undojoin | lua vim.lsp.buf.formatting()
+  autocmd BufWritePre filetype php undojoin | lua vim.lsp.buf.formatting()
 augroup END
 
 filetype plugin indent on
