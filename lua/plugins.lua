@@ -110,6 +110,10 @@ return require('packer').startup(function(use)
 
     use 'gruvbox-community/gruvbox'
     use 'EdenEast/nightfox.nvim'
+    use {
+        'frenzyexists/aquarium-vim', branch = 'develop'
+    }
+
 
     use 'Raimondi/delimitMate'
     use 'tpope/vim-surround'
