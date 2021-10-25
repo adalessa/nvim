@@ -23,14 +23,15 @@ vnoremap <leader>p "_dP
 " remove whitespaces
 autocmd BufWritePre * %s/\s\+$//e
 
-augroup fmtphp
-  autocmd!
-  autocmd BufWritePre filetype php undojoin | lua vim.lsp.buf.formatting()
-augroup END
+" augroup fmtphp
+"   autocmd!
+"   autocmd BufWritePre filetype php undojoin | lua vim.lsp.buf.formatting()
+" augroup END
 
 filetype plugin indent on
 autocmd FileType yaml setl indentkeys-=<:>
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+autocmd FileType cucumber setl indentkeys-=<:>
 autocmd FileType cucumber setlocal ts=2 sts=2 sw=2 expandtab
 
 nnoremap Y y$
@@ -45,6 +46,8 @@ inoremap ! !<c-g>u
 inoremap ? ?<c-g>u
 inoremap $ $<c-g>u
 inoremap > ><c-g>u
+
+lua require("alpha")
 
 " Has to be the last line for the .nvimrc per project
 set secure
