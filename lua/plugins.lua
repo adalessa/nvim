@@ -64,9 +64,7 @@ return require('packer').startup(function(use)
 
     use {
         'neovim/nvim-lspconfig',
-        requires = {
-            { 'kabouzeid/nvim-lspinstall' }
-        }
+        'williamboman/nvim-lsp-installer',
     }
 
     use 'L3MON4D3/LuaSnip'
