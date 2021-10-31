@@ -125,7 +125,6 @@ return require('packer').startup(function(use)
     use 'tpope/vim-dadbod'
     use 'airblade/vim-gitgutter'
     use 'hashivim/vim-terraform'
-    use 'mattn/emmet-vim'
 
     use { 'nicwest/vim-http', opt = true, cmd = {'Http'}}
 
