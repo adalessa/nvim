@@ -79,7 +79,10 @@ return require('packer').startup(function(use)
         }
     }
 
-    use 'hoob3rt/lualine.nvim'
+    use {
+        'nvim-lualine/lualine.nvim',
+        requires = {'kyazdani42/nvim-web-devicons', opt = true}
+    }
 
     use {
         'puremourning/vimspector',
@@ -104,14 +107,8 @@ return require('packer').startup(function(use)
     }
 
     use 'jwalton512/vim-blade'
-    use 'fladson/vim-kitty'
 
-    use 'gruvbox-community/gruvbox'
-    use 'EdenEast/nightfox.nvim'
-    use {
-        'frenzyexists/aquarium-vim', branch = 'develop'
-    }
-
+    use 'dracula/vim'
 
     use 'Raimondi/delimitMate'
     use 'tpope/vim-surround'
@@ -124,10 +121,8 @@ return require('packer').startup(function(use)
     use 'tpope/vim-tbone'
     use 'tpope/vim-dadbod'
     use 'airblade/vim-gitgutter'
-    use 'hashivim/vim-terraform'
 
     use { 'nicwest/vim-http', opt = true, cmd = {'Http'}}
-
     use { 'vimwiki/vimwiki', opt = true, cmd = {'VimwikiIndex'}}
 
 end)

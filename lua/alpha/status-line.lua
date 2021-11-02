@@ -1,11 +1,9 @@
 require('lualine').setup{
     options = {
-      theme = 'aquarium',
-      section_separators = { '', '' },
-      component_separators = { '', '' },
+      theme = 'dracula',
       icons_enabled = true,
     },
-    extensions = {'quickfix'},
+    extensions = {'quickfix', 'fugitive'},
     sections = {
       lualine_a = { { 'mode', upper = true } },
       lualine_b = { { 'branch', icon = '' } },
