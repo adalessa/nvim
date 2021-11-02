@@ -13,7 +13,8 @@ set undodir=~/.config/nvim/undodir
 set nohlsearch
 set incsearch
 set termguicolors
-set scrolloff=4
+set scrolloff=8
+set sidescrolloff=8
 set noshowmode
 set clipboard+=unnamedplus
 set completeopt=menuone,noinsert,noselect
@@ -22,6 +23,8 @@ set colorcolumn=80
 set splitbelow
 set splitright
 set autowrite
+set list
+set listchars=tab:\ ,trail:-
 
 set cmdheight=2
 
