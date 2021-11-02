@@ -1,13 +1,23 @@
 local lspkind = require "lspkind"
 lspkind.init()
 
+local luasnip = require("luasnip")
 local cmp = require "cmp"
 
 cmp.setup {
     mapping = {
         ["<C-d>"] = cmp.mapping.scroll_docs(-4),
         ["<C-f>"] = cmp.mapping.scroll_docs(4),
-        ["<C-e>"] = cmp.mapping.close(),
+        -- ["<C-e>"] = cmp.mapping.close(),
+        ["<C-e>"] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+                cmp.close()
+            elseif luasnip.expand_or_jumpable() then
+                luasnip.expand_or_jump()
+            else
+                fallback()
+            end
+        end, { "i", "s" }),
         ["<C-y>"] = cmp.mapping.confirm {
             behavior = cmp.ConfirmBehavior.Insert,
             select = true,
