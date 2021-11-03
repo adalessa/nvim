@@ -25,3 +25,5 @@ nnoremap <leader>vrr :lua require('telescope.builtin').lsp_references()<CR>
 
 nnoremap <leader>vs :lua require('telescope.builtin').lsp_document_symbols()<CR>
 nnoremap <leader>ve :lua require('telescope.builtin').lsp_document_diagnostics()<CR>
+
+nnoremap <leader>fp :lua require('alpha.telescope').project_find()<CR>
