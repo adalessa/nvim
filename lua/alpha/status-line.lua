@@ -6,7 +6,7 @@ require('lualine').setup{
     extensions = {'quickfix', 'fugitive'},
     sections = {
       lualine_a = { { 'mode', upper = true } },
-      lualine_b = { { 'branch', icon = '' } },
+      lualine_b = { { 'branch', icon = '' }, 'diff' },
       lualine_c = { { 'filename', file_status = true, path = 1 } },
       lualine_x = { { 'diagnostics', sources = { 'nvim_lsp' } },'encoding', 'fileformat', 'filetype' },
       lualine_y = { 'progress' },
@@ -20,4 +20,12 @@ require('lualine').setup{
       lualine_y = {  },
       lualine_z = {  },
     },
+    -- tabline = {
+    --   lualine_a = {'buffers'},
+    --   lualine_b = {},
+    --   lualine_c = {},
+    --   lualine_x = {},
+    --   lualine_y = {},
+    --   lualine_z = {'tabs'}
+    -- }
     }
