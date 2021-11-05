@@ -112,6 +112,7 @@ return require('packer').startup(function(use)
 
     use 'Raimondi/delimitMate'
     use 'tpope/vim-surround'
+    use 'tpope/vim-dotenv'
     use 'tpope/vim-fugitive'
     use 'tpope/vim-repeat'
     use 'tpope/vim-obsession'

@@ -28,13 +28,21 @@ local mt_string_entry = {
     end,
 }
 
+function getArtisanCommand(args)
+    local artCmdStr = vim.g.laravel_artisan
+    if artCmdStr == nil then
+        artCmdStr = "php artisan"
+    end
+    if type(args) ~= "table" then
+        return Split(artCmdStr .. ' ' .. args, " ")
+    end
+
+    return {unpack(Split(artCmdStr, ' ')), unpack(args)}
+end
+
 laravel.artisan = function()
 
-    local results = utils.get_os_command_output({
-        "php",
-        "artisan",
-        "--raw",
-    })
+    local results = utils.get_os_command_output(getArtisanCommand('--raw'))
 
     pickers.new({}, {
         prompt_title = "Artisan commands",
@@ -54,7 +62,7 @@ laravel.artisan = function()
 
             define_preview = function(self, entry)
 
-                local cmd = { "php", "artisan", entry.value, "-h" }
+                local cmd = getArtisanCommand({entry.value, '-h'})
 
                 putils.job_maker(cmd, self.state.bufnr, {
                     value = entry.value,
