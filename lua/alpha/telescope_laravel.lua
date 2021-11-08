@@ -36,8 +36,12 @@ function getArtisanCommand(args)
     if type(args) ~= "table" then
         return Split(artCmdStr .. ' ' .. args, " ")
     end
+    local cmd = Split(artCmdStr, ' ')
+    for _, value in ipairs(args) do
+        table.insert(cmd, value)
+    end
 
-    return {unpack(Split(artCmdStr, ' ')), unpack(args)}
+    return cmd
 end
 
 laravel.artisan = function()

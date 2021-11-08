@@ -123,6 +123,8 @@ return require('packer').startup(function(use)
     use 'tpope/vim-dadbod'
     use 'airblade/vim-gitgutter'
 
+    use 'kristijanhusak/vim-dadbod-ui'
+
     use { 'nicwest/vim-http', opt = true, cmd = {'Http'}}
     use { 'vimwiki/vimwiki', opt = true, cmd = {'VimwikiIndex'}}
 
