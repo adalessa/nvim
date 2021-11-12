@@ -118,18 +118,18 @@ M.setter_getter = function()
     table.insert(insert, "")
     if (comment ~= nil) then
         table.insert(insert, "    /**")
-        table.insert(insert, string.format("\t * @return %s", comment))
+        table.insert(insert, string.format("     * @return %s", comment))
         table.insert(insert, "     */")
     end
-    table.insert(insert, string.format("\tpublic function get%s(): %s", firstToUpper(variable), varType))
+    table.insert(insert, string.format("    public function get%s(): %s", firstToUpper(variable), varType))
     table.insert(insert, "    {")
-    table.insert(insert, string.format("\t\treturn $this->%s;", variable))
+    table.insert(insert, string.format("        return $this->%s;", variable))
     table.insert(insert, "    }")
     table.insert(insert, "")
 
     if (comment ~= nil) then
         table.insert(insert, "    /**")
-        table.insert(insert, string.format("\t * @param %s %s", comment, p.property_element))
+        table.insert(insert, string.format("     * @param %s %s", comment, p.property_element))
         table.insert(insert, "     *")
         table.insert(insert, "     * @return self")
         table.insert(insert, "     */")
