@@ -128,4 +128,6 @@ return require('packer').startup(function(use)
     use { 'nicwest/vim-http', opt = true, cmd = {'Http'}}
     use { 'vimwiki/vimwiki', opt = true, cmd = {'VimwikiIndex'}}
 
+    use 'ggandor/lightspeed.nvim'
+
 end)
