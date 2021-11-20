@@ -1,15 +1,17 @@
+local telescope = require('telescope')
 local actions = require('telescope.actions')
+local previewers = require('telescope.previewers')
 
-require('telescope').setup {
+telescope.setup {
     defaults = {
         file_sorter = require('telescope.sorters').get_fzy_sorter,
         prompt_prefix = ' >',
         use_less = false,
         set_env = { ['COLORTERM'] = 'truecolor' },
 
-        file_previewer   = require('telescope.previewers').vim_buffer_cat.new,
-        grep_previewer   = require('telescope.previewers').vim_buffer_vimgrep.new,
-        qflist_previewer = require('telescope.previewers').vim_buffer_qflist.new,
+        file_previewer   = previewers.vim_buffer_cat.new,
+        grep_previewer   = previewers.vim_buffer_vimgrep.new,
+        qflist_previewer = previewers.vim_buffer_qflist.new,
 
         mappings = {
             i = {
@@ -26,7 +28,7 @@ require('telescope').setup {
     }
 }
 
-require('telescope').load_extension('fzy_native')
+telescope.load_extension('fzy_native')
 
 local M = {}
 
@@ -37,8 +39,10 @@ M.search_config = function()
 	})
 end
 
-M.buffers = function()
-    require("telescope.builtin").buffers()
+M.project_files = function()
+  local opts = {} -- define here if you want to define something
+  local ok = pcall(require'telescope.builtin'.git_files, opts)
+  if not ok then require'telescope.builtin'.find_files(opts) end
 end
 
 M.branches = function()
@@ -49,16 +53,7 @@ M.branches = function()
     end})
 end
 
--- just a test base on a relative path
-M.laravel_controllers = function()
-    require("telescope.builtin").find_files({
-        prompt_title = "< Controllers >",
-        cwd = "app/Http/Controllers",
-    })
-end
-
 M.laravel_artisan = require('alpha.telescope_laravel').artisan
-
 M.project_find = require('alpha.telescope_projectionist').find
 
 return M

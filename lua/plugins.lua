@@ -22,35 +22,10 @@ return require('packer').startup(function(use)
         requires = {
             'nvim-lua/plenary.nvim',
             'nvim-lua/popup.nvim',
-            'ThePrimeagen/harpoon',
         },
     }
 
-    use {
-        "folke/twilight.nvim",
-        config = function()
-            require("twilight").setup {
-                context = 3,
-                -- your configuration comes here
-                -- or leave it empty to use the default settings
-                -- refer to the configuration section below
-                expand = { -- for treesitter, we we always try to expand to the top-most ancestor with these types
-                    "function_declaration",
-                    "function_call_expression",
-                    "expression_statement",
-                    "function",
-                    "function_definition",
-                    "method_declaration",
-                    "method",
-                    "table",
-                    "if_statement",
-                    "type_declaration",
-                },
-            }
-        end
-    }
-
-    use { 'tpope/vim-dispatch', opt = true, cmd = {'Dispatch', 'Make', 'Focus', 'Start'}}
+    use 'tpope/vim-dispatch'
 
     use "hrsh7th/nvim-cmp"
     use "hrsh7th/cmp-buffer"
@@ -59,6 +34,8 @@ return require('packer').startup(function(use)
     use "hrsh7th/cmp-nvim-lsp"
     use "saadparwaiz1/cmp_luasnip"
     use "onsails/lspkind-nvim"
+
+    use "ray-x/lsp_signature.nvim"
 
     use "tjdevries/colorbuddy.nvim"
 
@@ -119,10 +96,11 @@ return require('packer').startup(function(use)
     use 'tpope/vim-vinegar'
     use 'tpope/vim-eunuch'
     use 'tpope/vim-commentary'
-    use 'tpope/vim-tbone'
-    use 'tpope/vim-dadbod'
     use 'airblade/vim-gitgutter'
 
+    use 'tpope/vim-tbone'
+
+    use 'tpope/vim-dadbod'
     use 'kristijanhusak/vim-dadbod-ui'
 
     use { 'nicwest/vim-http', opt = true, cmd = {'Http'}}

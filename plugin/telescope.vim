@@ -4,13 +4,15 @@ let g:telescope_prime_fuzzy_find  = 1
 nnoremap <leader>ps :lua require('telescope.builtin').grep_string({ search = vim.fn.input("Grep For > ")})<CR>
 nnoremap <leader>pw :lua require('telescope.builtin').grep_string({ search = vim.fn.expand("<cword>")})<CR>
 
-nnoremap <leader>pp :lua require('telescope.builtin').git_files()<CR>
+nnoremap <leader>pp :lua require('alpha.telescope').project_files()<CR>
 nnoremap <leader>po :lua require('telescope.builtin').find_files()<CR>
 
+nnoremap <leader>ph :lua require('telescope.builtin').help_tags()<CR>
+nnoremap <leader>pk :lua require('telescope.builtin').man_pages()<CR>
 
 nnoremap <leader>pv :lua require('telescope.builtin').lsp_workspace_symbols({ query = vim.fn.input("Symbols > ")})<CR>
 
-nnoremap <leader>pe :lua require('alpha.telescope').buffers()<CR>
+nnoremap <leader>pe :lua require('telescope.builtin').buffers()<CR>
 nnoremap <leader>pa :lua require('alpha.telescope').laravel_artisan()<CR>
 nnoremap <leader>pr :lua require('telescope.builtin').treesitter()<CR>
 

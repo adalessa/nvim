@@ -34,6 +34,8 @@ autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 autocmd FileType cucumber setl indentkeys-=<:>
 autocmd FileType cucumber setlocal ts=2 sts=2 sw=2 expandtab
 
+autocmd BufWritePost */alpha/**.lua lua require('plenary.reload').reload_module('alpha')
+
 nnoremap Y y$
 
 nnoremap n nzzzv

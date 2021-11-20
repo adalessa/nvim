@@ -1,5 +1,5 @@
 local refactor = require("refactoring")
-refactor.setup()
+refactor.setup({})
 
 -- telescope refactoring helper
 local function refactor(prompt_bufnr)
@@ -16,12 +16,13 @@ end
 -- in the mappings below
 M = {}
 M.refactors = function()
-    require("telescope.pickers").new({}, {
+    local opts = require("telescope.themes").get_cursor() -- set personal telescope options
+    require("telescope.pickers").new(opts, {
         prompt_title = "refactors",
         finder = require("telescope.finders").new_table({
             results = require("refactoring").get_refactors(),
         }),
-        sorter = require("telescope.config").values.generic_sorter({}),
+        sorter = require("telescope.config").values.generic_sorter(opts),
         attach_mappings = function(_, map)
             map("i", "<CR>", refactor)
             map("n", "<CR>", refactor)
@@ -30,6 +31,6 @@ M.refactors = function()
     }):find()
 end
 
-vim.api.nvim_set_keymap("v", "<Leader>re", [[ <Cmd>lua require('refactoring').refactor('Extract Function')<CR>]], {noremap = true, silent = true, expr = false})
-vim.api.nvim_set_keymap("v", "<Leader>rf", [[ <Cmd>lua require('refactoring').refactor('Extract Function To File')<CR>]], {noremap = true, silent = true, expr = false})
-vim.api.nvim_set_keymap("v", "<Leader>rt", [[ <Cmd>lua M.refactors()<CR>]], {noremap = true, silent = true, expr = false})
+vim.api.nvim_set_keymap("v", "<Leader>re", [[ <Esc><Cmd>lua require('refactoring').refactor('Extract Function')<CR>]], {noremap = true, silent = true, expr = false})
+vim.api.nvim_set_keymap("v", "<Leader>rf", [[ <Esc><Cmd>lua require('refactoring').refactor('Extract Function To File')<CR>]], {noremap = true, silent = true, expr = false})
+vim.api.nvim_set_keymap("v", "<Leader>rt", [[ <Esc><Cmd>lua M.refactors()<CR>]], {noremap = true, silent = true, expr = false})

@@ -1,12 +1,3 @@
-fun! LspLocationList()
-    lua vim.lsp.diagnostic.set_loclist({open_loclist = false})
-endfun
-
-augroup alpha_lsp
-    autocmd!
-    autocmd! BufWrite,BufEnter,InsertLeave * :call LspLocationList()
-augroup END
-
 nnoremap <leader>vd :lua vim.lsp.buf.definition()<CR>
 nnoremap <leader>vsh :lua vim.lsp.buf.signature_help()<CR>
 nnoremap <leader>vh :lua vim.lsp.buf.hover()<CR>
@@ -31,6 +22,8 @@ lua << EOF
 
 local function on_attach()
     vim.api.nvim_set_keymap('n', 'K', ':lua vim.lsp.buf.hover()<cr>', {noremap = true})
+
+    require "lsp_signature".on_attach()
 end
 
 local lsp_installer = require("nvim-lsp-installer")

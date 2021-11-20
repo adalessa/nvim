@@ -26,7 +26,7 @@ set autowrite
 set list
 set listchars=tab:\ ,trail:-
 
-set cmdheight=2
+set cmdheight=1
 
 " improve user experience updating more frequently
 set updatetime=50
