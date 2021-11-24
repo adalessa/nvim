@@ -27,6 +27,7 @@ return require('packer').startup(function(use)
 
     use 'tpope/vim-dispatch'
 
+    -- Completition
     use "hrsh7th/nvim-cmp"
     use "hrsh7th/cmp-buffer"
     use "hrsh7th/cmp-path"
@@ -34,6 +35,9 @@ return require('packer').startup(function(use)
     use "hrsh7th/cmp-nvim-lsp"
     use "saadparwaiz1/cmp_luasnip"
     use "onsails/lspkind-nvim"
+    use "hrsh7th/cmp-nvim-lsp-signature-help"
+    use "windwp/nvim-autopairs"
+
 
     use "ray-x/lsp_signature.nvim"
 

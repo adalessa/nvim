@@ -52,6 +52,7 @@ inoremap > ><c-g>u
 vnoremap < <gv
 vnoremap > >gv
 
+lua require('plugins')
 lua require("alpha")
 
 " Has to be the last line for the .nvimrc per project

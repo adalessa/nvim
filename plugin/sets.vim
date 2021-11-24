@@ -12,6 +12,8 @@ set undofile
 set undodir=~/.config/nvim/undodir
 set nohlsearch
 set incsearch
+set ignorecase
+set smartcase
 set termguicolors
 set scrolloff=8
 set sidescrolloff=8
