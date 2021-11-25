@@ -105,16 +105,16 @@ ls.snippets = {
             t("', "),
             c(3, {
                 sn(nil, {
-                    t({'function () {', '    '}),
+                    t({'function () {', '\t'}),
                     i(1, ''),
                     t({'', '});'}),
                 }),
                 sn(nil, {
                     t('['),
                     i(1, 'Controller'),
-                    t('::class, \''),
+                    t("::class, '"),
                     i(2, 'method'),
-                    t('\']);'),
+                    t("']);"),
                 })
             }),
         }),
