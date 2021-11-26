@@ -5,6 +5,8 @@ local t = ls.text_node
 local i = ls.insert_node
 local c = ls.choice_node
 local d = ls.dynamic_node
+local f = ls.function_node
+local l = require("luasnip.extras").lambda
 
 -- visibility allows to reuse it pasing the first option to show for the
 -- snippet
@@ -22,6 +24,19 @@ visibility = function (_, _, _, initial_text)
     end
 
     return sn(nil, { c(1, options) })
+end
+
+local releation
+releation = function (_, snip,_, type)
+    local relationType = type
+    local relationName = snip.captures[1]
+
+    return sn(nil, {
+        -- I would like t o auto import the relation but for now just ommit it
+        -- t({"public function ".. relationName:gsub("^%u", string.lower) .. "(): " .. relationType:gsub("^%l", string.upper) , "{", ""}),
+        t({"public function ".. relationName:gsub("^%u", string.lower) .. "()" , "{", ""}),
+        t({"\treturn $this->".. relationType .. "(".. relationName .. "::class);", "}"}),
+    })
 end
 
 local promo_property
@@ -120,3 +135,15 @@ ls.snippets = {
         }),
     }
 }
+
+local relationTypes = {"hasOne", "belongsTo", "hasMany", "belongsToMany"}
+for _, type in pairs(relationTypes) do
+    table.insert(ls.snippets.php,
+        s(
+            { trig= type .. "(.*)", regTrig=true },
+            {
+                d(1, releation, {}, type),
+            }
+        )
+     )
+end

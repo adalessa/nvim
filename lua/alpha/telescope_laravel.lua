@@ -28,7 +28,7 @@ local mt_string_entry = {
     end,
 }
 
-function getArtisanCommand(args)
+local function getArtisanCommand(args)
     local artCmdStr = vim.g.laravel_artisan
     if artCmdStr == nil then
         artCmdStr = "php artisan"
