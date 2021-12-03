@@ -5,8 +5,8 @@ local t = ls.text_node
 local i = ls.insert_node
 local c = ls.choice_node
 local d = ls.dynamic_node
-local f = ls.function_node
-local l = require("luasnip.extras").lambda
+-- local f = ls.function_node
+-- local l = require("luasnip.extras").lambda
 
 -- visibility allows to reuse it pasing the first option to show for the
 -- snippet
@@ -70,7 +70,7 @@ ls.snippets = {
 
         -- __construct
         s("_c", {
-            d(1, visibility, {}),
+            d(1, visibility, {}, "public"),
             t('function __construct('),
             c(2, {
                 sn(nil, {
