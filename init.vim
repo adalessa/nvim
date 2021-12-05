@@ -52,6 +52,9 @@ inoremap > ><c-g>u
 vnoremap < <gv
 vnoremap > >gv
 
+" disable vim-go K binding
+let g:go_doc_keywordprg_enabled = 0
+
 lua require('plugins')
 lua require("alpha")
 

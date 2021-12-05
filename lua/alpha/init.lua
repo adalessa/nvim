@@ -1,4 +1,5 @@
 require("alpha.global")
+require("alpha.colors")
 require("alpha.telescope")
 require("alpha.refactoring")
 require("alpha.snippets")
