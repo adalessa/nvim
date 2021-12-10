@@ -56,4 +56,13 @@ end
 M.laravel_artisan = require('alpha.telescope_laravel').artisan
 M.project_find = require('alpha.telescope_projectionist').find
 
+M.grep_string = function ()
+    vim.ui.input("Grep for > ", function (input)
+        if input == nil then
+            return
+        end
+        require('telescope.builtin').grep_string({ search = input})
+    end)
+end
+
 return M
