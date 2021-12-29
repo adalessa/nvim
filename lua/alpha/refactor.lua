@@ -17,6 +17,20 @@ local get_master_node = function()
         parent = node:parent()
     end
 
+    return node
+end
+
+local function get_root_node()
+    local node = ts_utils.get_node_at_cursor()
+    if node == nil then
+        error("No treesitter parser found.")
+    end
+
+    local parent = node:parent()
+    while (parent ~= nil) do
+        node = parent
+        parent = node:parent()
+    end
 
     return node
 end
@@ -116,7 +130,7 @@ M.setter_getter = function()
 
     local insert = {}
     table.insert(insert, "")
-    if (comment ~= nil) then
+    if (comment ~= nil and comment ~= "") then
         table.insert(insert, "    /**")
         table.insert(insert, string.format("     * @return %s", comment))
         table.insert(insert, "     */")
@@ -127,7 +141,7 @@ M.setter_getter = function()
     table.insert(insert, "    }")
     table.insert(insert, "")
 
-    if (comment ~= nil) then
+    if (comment ~= nil and comment ~= "") then
         table.insert(insert, "    /**")
         table.insert(insert, string.format("     * @param %s %s", comment, p.property_element))
         table.insert(insert, "     *")
@@ -143,6 +157,90 @@ M.setter_getter = function()
 
     vim.api.nvim_buf_set_lines(bufnr, classEnd, classEnd, false, insert)
 
+end
+
+-- New function the idea is to create properties quick.
+-- Ask for property name
+-- Don't ask visibility, just set a default, in my case private
+-- Ask for type - Can I merge type for nullable, option 1 "string|nullable" "?string" "int|string" and split by the `|`
+-- Ask for nullable
+-- Dont Ask for comment generation - Create a new function for variable comment generation
+-- Dont Ask for setter, getter generation - Just call the setter and the getter
+-- To much questions is bad
+--
+--
+-- Comment generation - variable - functions
+--
+-- Important is the difference between the the snippets and the shurtchut
+-- Want open a class, don't want to look for the place, just add it
+--
+local function allowedPreviousNodes(node)
+    return node:type() == "use_declaration" or node:type() == "property_declaration"
+end
+
+M.new_property = function ()
+    local visibility = "private"
+    -- TODO un comment
+    local name = vim.fn.input("Property name: ")
+    if name == nil then
+        return
+    end
+    local type = vim.fn.input("Property type: ")
+    if type == nil then
+        type = ""
+    end
+    -- local name = "mother"
+    -- local type = "string"
+
+    local rootNode = get_root_node()
+    local classNode = rootNode:child(rootNode:child_count() - 1)
+    local bodyNode = classNode:child(classNode:child_count() - 1)
+
+    local bufnr = vim.api.nvim_get_current_buf()
+
+    local endLine = 0
+    local addEmptyLineBefore = false
+    local addEmptyLineAfter = false
+    if bodyNode:named_child_count() == 0 then
+        endLine = bodyNode:end_()
+    else
+        local node = bodyNode:child(1)
+        local sibling = node
+
+        if allowedPreviousNodes(node) == false then
+            endLine = node:start()
+            addEmptyLineAfter = true
+        else
+            addEmptyLineBefore = true
+            while (sibling ~= nil) do
+                if sibling:type() ~= "use_declaration" and sibling:type() ~= "property_declaration" then
+                    endLine = node:end_() + 1
+                    break
+                end
+                node = sibling
+                sibling = node:next_sibling()
+            end
+        end
+    end
+
+    if endLine == 0 then
+        return
+    end
+
+    local row = endLine + 1
+    local insert = {}
+    if addEmptyLineBefore then
+        table.insert(insert, "")
+        row = row + 1
+    end
+    local lineContent =  string.format("    %s %s $%s;", visibility, type, name)
+    table.insert(insert, lineContent)
+    if addEmptyLineAfter then
+        table.insert(insert, "")
+    end
+    local column = string.len(lineContent) - string.len(name) - 1
+    vim.api.nvim_buf_set_lines(bufnr, endLine, endLine, false, insert)
+    vim.api.nvim_win_set_cursor(0, {row, column})
 end
 
 return M
