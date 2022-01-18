@@ -59,6 +59,7 @@ return require('packer').startup(function(use)
             { 'kyazdani42/nvim-web-devicons' }
         }
     }
+    use "nvim-telescope/telescope-file-browser.nvim"
 
     use {
         'nvim-lualine/lualine.nvim',

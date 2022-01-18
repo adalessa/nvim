@@ -16,7 +16,7 @@ nnoremap <leader>pe :lua require('telescope.builtin').buffers()<CR>
 nnoremap <leader>pa :lua require('alpha.telescope').laravel_artisan()<CR>
 nnoremap <leader>pr :lua require('telescope.builtin').treesitter()<CR>
 
-nnoremap <leader>bb :lua require('telescope.builtin').file_browser()<CR>
+nnoremap <leader>bb :lua require "telescope".extensions.file_browser.file_browser()<CR>
 
 nnoremap <leader>gc :lua require('alpha.telescope').branches()<CR>
 nnoremap <leader>gs :lua require('telescope.builtin').git_status()<CR>
