@@ -7,6 +7,7 @@ local c = ls.choice_node
 local d = ls.dynamic_node
 -- local f = ls.function_node
 -- local l = require("luasnip.extras").lambda
+local conds = require("luasnip.extras.expand_conditions")
 
 -- visibility allows to reuse it pasing the first option to show for the
 -- snippet

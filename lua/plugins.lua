@@ -38,7 +38,6 @@ return require('packer').startup(function(use)
     use "hrsh7th/cmp-nvim-lsp-signature-help"
     use "windwp/nvim-autopairs"
 
-
     use "ray-x/lsp_signature.nvim"
 
     use "tjdevries/colorbuddy.nvim"
@@ -71,7 +70,6 @@ return require('packer').startup(function(use)
         requires = {
             { 'mfussenegger/nvim-dap' }
         },
-        fn = "vimspector#Launch",
     }
 
     use 'szw/vim-maximizer'
