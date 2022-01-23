@@ -21,7 +21,7 @@ nnoremap # ?\<<C-R>=expand('<cword>')<CR>\><CR>
 vnoremap <leader>p "_dP
 
 " remove whitespaces
-autocmd BufWritePre * %s/\s\+$//e
+autocmd BufWritePre * :%s/\s\+$//e
 
 " augroup fmtphp
 "   autocmd!
@@ -57,6 +57,9 @@ let g:go_doc_keywordprg_enabled = 0
 
 lua require('plugins')
 lua require("alpha")
+
+" quick duplication of files
+nnoremap <expr> <leader>dp ":saveas " .  expand('%')
 
 " Has to be the last line for the .nvimrc per project
 set secure
