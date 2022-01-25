@@ -23,6 +23,9 @@ vnoremap <leader>p "_dP
 " remove whitespaces
 autocmd BufWritePre * :%s/\s\+$//e
 
+" format json files
+autocmd BufWritePre *.json :%!jq
+
 " augroup fmtphp
 "   autocmd!
 "   autocmd BufWritePre filetype php undojoin | lua vim.lsp.buf.formatting()
