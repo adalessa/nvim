@@ -5,7 +5,7 @@ local dap = require('dap')
 dap.adapters.php = {
   type = 'executable',
   command = 'node',
-  args = { '/home/alpha/repos/vscode-php-debug/out/phpDebug.js' }
+  args = { os.getenv('HOME') .. '/repos/vscode-php-debug/out/phpDebug.js' }
 }
 
 -- TODO make 'mapping' configurateble
@@ -16,7 +16,8 @@ dap.configurations.php = {
     name = 'Listen for Xdebug',
     port = 9003,
     pathMappings = {
-        ['/var/www/html'] = vim.fn.getcwd()
+        ['/var/www/html'] = vim.fn.getcwd(),
+        ['/app'] = vim.fn.getcwd(),
     }
   }
 }
