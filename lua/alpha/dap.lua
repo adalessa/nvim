@@ -75,6 +75,9 @@ dap.listeners.after['event_stopped']['alpha'] = function(session, body)
     if body.reason ~= 'breakpoint' then
         return
     end
+    if not session.current_frame then
+        return
+    end
     local path = session.current_frame.source.path
     local line = session.current_frame.line
     local column = session.current_frame.column
@@ -91,6 +94,7 @@ vim.api.nvim_set_keymap('n', '<leader>dj', ':lua require\'dap\'.step_over()<cr>'
 vim.api.nvim_set_keymap('n', '<leader>dk', ':lua require\'dap\'.step_out()<cr>', {noremap = true})
 vim.api.nvim_set_keymap('n', '<leader>dt', ':lua require\'dap\'.repl.toggle()<cr>', {noremap = true})
 vim.api.nvim_set_keymap('n', '<leader>ds', ':lua require\'alpha.dap-fn\'.scopes()<cr>', {noremap = true})
+vim.api.nvim_set_keymap('n', '<leader>da', ':lua require\'alpha.dap-fn\'.fullscopes()<cr>', {noremap = true})
 vim.api.nvim_set_keymap('n', '<leader>dbl', ':lua require\'dap\'.list_breakpoints()<cr>', {noremap = true})
 vim.api.nvim_set_keymap('n', '<leader>dbc', ':lua require\'dap\'.clear_breakpoints()<cr>', {noremap = true})
 vim.api.nvim_set_keymap('n', '<leader>dc', ':lua require\'dap\'.run_to_cursor()<cr>', {noremap = true})

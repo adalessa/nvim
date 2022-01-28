@@ -69,4 +69,11 @@ M.scopes = function ()
   vim.api.nvim_win_set_cursor(a.win, {1, 0})
 end
 
+M.fullscopes = function ()
+  local a = widgets.centered_float(widgets.scopes)
+  -- set cursor at top to make it easier to read
+  vim.api.nvim_win_set_cursor(a.win, {1, 0})
+end
+
+
 return M
