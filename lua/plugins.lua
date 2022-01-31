@@ -94,7 +94,16 @@ return require('packer').startup(function(use)
     use 'tpope/vim-vinegar'
     use 'tpope/vim-eunuch'
     use 'tpope/vim-commentary'
-    use 'airblade/vim-gitgutter'
+
+    use {
+        'lewis6991/gitsigns.nvim',
+        requires = {
+            'nvim-lua/plenary.nvim'
+        },
+        config = function()
+            require('gitsigns').setup()
+        end
+    }
 
     use 'tpope/vim-tbone'
 
