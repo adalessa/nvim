@@ -24,7 +24,7 @@ vnoremap <leader>p "_dP
 autocmd BufWritePre * :%s/\s\+$//e
 
 " format json files
-autocmd BufWritePre *.json :%!jq
+autocmd BufWritePre *stubs/**/*.json :%!jq
 
 " augroup fmtphp
 "   autocmd!
@@ -63,6 +63,9 @@ lua require("alpha")
 
 " quick duplication of files
 nnoremap <expr> <leader>dp ":saveas " .  expand('%')
+
+let g:laravel_artisan = 'sail artisan'
+let test#php#pest#executable = 'sail debug test'
 
 " Has to be the last line for the .nvimrc per project
 set secure

@@ -65,7 +65,9 @@ return require('packer').startup(function(use)
         requires = {'kyazdani42/nvim-web-devicons', opt = true}
     }
 
+    use 'rcarriga/nvim-dap-ui'
     use 'mfussenegger/nvim-dap'
+    use "Pocco81/DAPInstall.nvim"
 
     use 'szw/vim-maximizer'
 

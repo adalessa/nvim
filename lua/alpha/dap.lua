@@ -1,31 +1,30 @@
-local dap = require('dap')
+local dap, dapui, dap_install = require("dap"), require("dapui"), require("dap-install")
 local api = vim.api
 
-dap.adapters.php = {
-  type = 'executable',
-  command = 'node',
-  args = { os.getenv('HOME') .. '/repos/vscode-php-debug/out/phpDebug.js' }
-}
+dapui.setup()
 
-dap.configurations.php = {
-  {
-    type = 'php',
-    request = 'launch',
-    name = 'Listen for Xdebug',
-    port = 9003,
-    pathMappings = {
-        ['/var/www/html'] = vim.fn.getcwd(),
-        ['/app'] = vim.fn.getcwd(),
+dap_install.config("php", {
+    configurations = {
+    {
+            type = 'php',
+            request = 'launch',
+            name = 'Listen for Xdebug',
+            port = 9003,
+            pathMappings = function ()
+                local sail = vim.call('composer#query', 'require-dev.laravel/sail')
+                if sail == nil then
+                    return {['/app'] = vim.fn.getcwd()}
+                end
+                return {['/var/www/html'] = vim.fn.getcwd()}
+            end
+        }
     }
-  }
-}
-
+})
 
 -- Events Listeners
-dap.listeners.before['event_terminated']['alpha'] = function(session, body)
-    print('Session terminated', vim.inspect(session), vim.inspect(body))
+dap.listeners.after.event_initialized["dapui_config"] = function()
+  dapui.open()
 end
-
 
 local function with_win(win, fn, ...)
   local cur_win = api.nvim_get_current_win()
@@ -71,7 +70,6 @@ end
 
 
 dap.listeners.after['event_stopped']['alpha'] = function(session, body)
-    P(body.reason)
     if body.reason ~= 'breakpoint' then
         return
     end
@@ -89,6 +87,7 @@ end
 
 vim.api.nvim_set_keymap('n', '<leader>dbp', ':lua require\'dap\'.toggle_breakpoint()<cr>', {noremap = true})
 vim.api.nvim_set_keymap('n', '<leader>dd', ':lua require\'dap\'.continue()<cr>', {noremap = true})
+vim.api.nvim_set_keymap('n', '<leader>de', ':lua require\'alpha.dap-fn\'.stop()<cr>', {noremap = true})
 vim.api.nvim_set_keymap('n', '<leader>dl', ':lua require\'dap\'.step_into()<cr>', {noremap = true})
 vim.api.nvim_set_keymap('n', '<leader>dj', ':lua require\'dap\'.step_over()<cr>', {noremap = true})
 vim.api.nvim_set_keymap('n', '<leader>dk', ':lua require\'dap\'.step_out()<cr>', {noremap = true})

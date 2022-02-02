@@ -1,3 +1,5 @@
+local dap = require("dap")
+local dapui = require("dapui")
 local widgets = require('dap.ui.widgets')
 local ui = require('dap.ui')
 local api = vim.api
@@ -75,5 +77,10 @@ M.fullscopes = function ()
   vim.api.nvim_win_set_cursor(a.win, {1, 0})
 end
 
+M.stop = function ()
+    dap.terminate()
+    dapui.close()
+    dap.clear_breakpoints()
+end
 
 return M
