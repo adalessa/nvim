@@ -2,6 +2,7 @@ local dap, dapui, dap_install = require("dap"), require("dapui"), require("dap-i
 local api = vim.api
 
 dapui.setup()
+require('dap-go').setup()
 
 dap_install.config("php", {
     configurations = {
@@ -97,3 +98,5 @@ vim.api.nvim_set_keymap('n', '<leader>da', ':lua require\'alpha.dap-fn\'.fullsco
 vim.api.nvim_set_keymap('n', '<leader>dbl', ':lua require\'dap\'.list_breakpoints()<cr>', {noremap = true})
 vim.api.nvim_set_keymap('n', '<leader>dbc', ':lua require\'dap\'.clear_breakpoints()<cr>', {noremap = true})
 vim.api.nvim_set_keymap('n', '<leader>dc', ':lua require\'dap\'.run_to_cursor()<cr>', {noremap = true})
+-- can be skipped since I can do it running the continue and promt to use the "Debug test"
+vim.api.nvim_set_keymap('n', '<leader>dtt', ':lua require\'dap-go\'.debug_test()<cr>', {noremap = true})

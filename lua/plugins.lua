@@ -68,6 +68,7 @@ return require('packer').startup(function(use)
     use 'rcarriga/nvim-dap-ui'
     use 'mfussenegger/nvim-dap'
     use "Pocco81/DAPInstall.nvim"
+    use 'leoluz/nvim-dap-go'
 
     use 'szw/vim-maximizer'
 
