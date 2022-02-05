@@ -1,5 +1,4 @@
 local lspkind = require "lspkind"
-lspkind.init()
 
 local luasnip = require("luasnip")
 local cmp = require "cmp"
