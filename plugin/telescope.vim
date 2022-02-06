@@ -19,5 +19,5 @@ nnoremap <leader>ps :lua require('alpha.telescope').grep_string()<CR>
 nnoremap <leader>pp :lua require('alpha.telescope').project_files()<CR>
 nnoremap <leader>pa :lua require('alpha.telescope').laravel_artisan()<CR>
 nnoremap <leader>gc :lua require('alpha.telescope').branches()<CR>
-nnoremap <leader>fp :lua require('alpha.telescope').project_find()<CR>
+nnoremap <leader>fp :Telescope projectionist<CR>
 nnoremap <leader>rc :lua require('alpha.telescope').search_config()<CR>

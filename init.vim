@@ -67,5 +67,7 @@ nnoremap <expr> <leader>dp ":saveas " .  expand('%')
 let g:laravel_artisan = 'sail artisan'
 let test#php#pest#executable = 'sail debug test'
 
+let $NO_TTY = 1
+
 " Has to be the last line for the .nvimrc per project
 set secure

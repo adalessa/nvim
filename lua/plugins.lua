@@ -132,4 +132,7 @@ return require('packer').startup(function(use)
 
     use { 'nicwest/vim-http', opt = true, cmd = {'Http'}}
     use { 'vimwiki/vimwiki', opt = true, cmd = {'VimwikiIndex'}}
+
+    -- Local plugins can be included
+    use '~/code/neovim/telescope-projectionist.nvim'
 end)
