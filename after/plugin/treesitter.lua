@@ -1,3 +1,7 @@
+if not pcall(require, "nvim-treesitter") then
+  return
+end
+
 require "nvim-treesitter.configs".setup {
     ensure_installed = {"php", "go", "comment", "css", "html", "javascript", "lua", "typescript"},
     highlight = {

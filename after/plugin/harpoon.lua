@@ -1,3 +1,10 @@
+local ok, harpoon = pcall(require, "harpoon")
+if not ok then
+  return
+end
+
+harpoon.setup {}
+
 vim.api.nvim_set_keymap("n", "<Leader>ss", [[ <Cmd>lua require("harpoon.ui").toggle_quick_menu()<CR>]], {noremap = true, silent = true, expr = false})
 
 vim.api.nvim_set_keymap("n", "<Leader>sa", [[ <Cmd>lua require("harpoon.mark").add_file()<CR>]], {noremap = true, silent = true, expr = false})

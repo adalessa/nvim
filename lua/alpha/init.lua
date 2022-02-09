@@ -14,6 +14,4 @@ require("alpha.dap")
 vim.api.nvim_set_keymap('n', '<leader>rs', ':lua require(\'alpha.refactor\').setter_getter()<cr>', {noremap = true})
 vim.api.nvim_set_keymap('n', '<leader>rn', ':lua require(\'alpha.refactor\').new_property()<cr>', {noremap = true})
 
-vim.api.nvim_set_keymap('n', '<leader><leader>x', ':call alpha#save_and_exec()<cr>', {noremap = true})
-
 vim.api.nvim_set_keymap('n', '<leader>m', ':MaximizerToggle<cr>', {noremap = true})

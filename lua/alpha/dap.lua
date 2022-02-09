@@ -13,7 +13,7 @@ dap_install.config("php", {
             port = 9003,
             pathMappings = function ()
                 local sail = vim.call('composer#query', 'require-dev.laravel/sail')
-                if sail == nil then
+                if sail == "" then
                     return {['/app'] = vim.fn.getcwd()}
                 end
                 return {['/var/www/html'] = vim.fn.getcwd()}
