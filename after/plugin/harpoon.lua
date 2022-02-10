@@ -5,10 +5,16 @@ end
 
 harpoon.setup {}
 
-vim.api.nvim_set_keymap("n", "<Leader>ss", [[ <Cmd>lua require("harpoon.ui").toggle_quick_menu()<CR>]], {noremap = true, silent = true, expr = false})
+vim.keymap.set('n', '<leader>ss', require("harpoon.ui").toggle_quick_menu, {noremap = true, silent = true, expr = false})
+vim.keymap.set('n', '<leader>sa', require("harpoon.mark").add_file, {noremap = true, silent = true, expr = false})
 
-vim.api.nvim_set_keymap("n", "<Leader>sa", [[ <Cmd>lua require("harpoon.mark").add_file()<CR>]], {noremap = true, silent = true, expr = false})
-vim.api.nvim_set_keymap("n", "<Leader>su", [[ <Cmd>lua require("harpoon.ui").nav_file(1)<CR>]], {noremap = true, silent = true, expr = false})
-vim.api.nvim_set_keymap("n", "<Leader>si", [[ <Cmd>lua require("harpoon.ui").nav_file(2)<CR>]], {noremap = true, silent = true, expr = false})
-vim.api.nvim_set_keymap("n", "<Leader>so", [[ <Cmd>lua require("harpoon.ui").nav_file(3)<CR>]], {noremap = true, silent = true, expr = false})
-vim.api.nvim_set_keymap("n", "<Leader>sp", [[ <Cmd>lua require("harpoon.ui").nav_file(4)<CR>]], {noremap = true, silent = true, expr = false})
+for i = 1, 5 do
+    vim.keymap.set(
+        'n',
+        string.format("<leader>%s", i),
+        function ()
+            require("harpoon.ui").nav_file(i)
+        end,
+        {noremap = true, silent = true, expr = false}
+    )
+end

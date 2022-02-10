@@ -21,11 +21,11 @@ inoremap > ><c-g>u
 vnoremap < <gv
 vnoremap > >gv
 
-nnoremap <leader>h :wincmd h<CR>
-nnoremap <leader>j :wincmd j<CR>
-nnoremap <leader>k :wincmd k<CR>
-nnoremap <leader>l :wincmd l<CR>
-nnoremap <leader>q :wincmd q<CR>
+nnoremap <c-h> :wincmd h<CR>
+nnoremap <c-j> :wincmd j<CR>
+nnoremap <c-k> :wincmd k<CR>
+nnoremap <c-l> :wincmd l<CR>
+nnoremap <c-q> :wincmd q<CR>
 " Make windows to be basically the same size
 nnoremap <leader>= <C-w>=
 
