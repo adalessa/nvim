@@ -29,6 +29,8 @@ telescope.setup {
 }
 
 telescope.load_extension('fzy_native')
+telescope.load_extension("projectionist")
+telescope.load_extension("file_browser")
 
 local M = {}
 
@@ -64,6 +66,5 @@ M.grep_string = function ()
     end)
 end
 
-telescope.load_extension("projectionist")
 
 return M

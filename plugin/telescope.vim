@@ -8,7 +8,7 @@ nnoremap <leader>pk :lua require('telescope.builtin').man_pages()<CR>
 nnoremap <leader>pv :lua require('telescope.builtin').lsp_workspace_symbols({ query = vim.fn.input("Symbols > ")})<CR>
 nnoremap <leader>pe :lua require('telescope.builtin').buffers()<CR>
 nnoremap <leader>pr :lua require('telescope.builtin').treesitter()<CR>
-nnoremap <leader>bb :lua require "telescope".extensions.file_browser.file_browser()<CR>
+nnoremap <leader>bb :Telescope file_browser<CR>
 nnoremap <leader>gs :lua require('telescope.builtin').git_status()<CR>
 nnoremap <leader>vrr :lua require('telescope.builtin').lsp_references()<CR>
 nnoremap <leader>vs :lua require('telescope.builtin').lsp_document_symbols()<CR>
