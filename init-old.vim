@@ -9,15 +9,7 @@ inoremap <C-c> <esc>
 
 nnoremap <Leader><CR> :so ~/.config/nvim/init.vim<CR>
 
-let g:vimwiki_list = [{'path': '~/vimwiki/',
-                      \ 'syntax': 'markdown', 'ext': '.md'}]
-
-let g:gitgutter_map_keys = 0
-
 " forward and backward search of current word
-
-" remove whitespaces
-autocmd BufWritePre * :%s/\s\+$//e
 
 " format json files
 autocmd BufWritePre *stubs/**/*.json :%!jq
@@ -34,9 +26,6 @@ autocmd FileType cucumber setl indentkeys-=<:>
 autocmd FileType cucumber setlocal ts=2 sts=2 sw=2 expandtab
 
 autocmd BufWritePost */alpha/**.lua lua require('plenary.reload').reload_module('alpha')
-
-" disable vim-go K binding
-let g:go_doc_keywordprg_enabled = 0
 
 lua require("alpha")
 
