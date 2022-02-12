@@ -21,24 +21,25 @@ inoremap > ><c-g>u
 vnoremap < <gv
 vnoremap > >gv
 
-nnoremap <c-h> :wincmd h<CR>
-nnoremap <c-j> :wincmd j<CR>
-nnoremap <c-k> :wincmd k<CR>
-nnoremap <c-l> :wincmd l<CR>
-nnoremap <c-q> :wincmd q<CR>
+nnoremap <leader>wh :wincmd h<CR>
+nnoremap <leader>wj :wincmd j<CR>
+nnoremap <leader>wk :wincmd k<CR>
+nnoremap <leader>wl :wincmd l<CR>
+nnoremap <leader>wq :wincmd q<CR>
+
 " Make windows to be basically the same size
 nnoremap <leader>= <C-w>=
 
-nnoremap <leader>wv :vsp<CR>
-nnoremap <leader>wh :sp<CR>
+nnoremap <leader>wsv :vsp<CR>
+nnoremap <leader>wsh :sp<CR>
 
-nnoremap <C-j> :cnext<CR>
-nnoremap <C-k> :cprev<CR>
+nnoremap <leader>j :cnext<CR>
+nnoremap <leader>k :cprev<CR>
 
 nnoremap <leader>i :lnext<CR>
 nnoremap <leader>o :lprev<CR>
 
-nnoremap <leader>bd :bd<CR>
+nnoremap <leader>bd :bd!<CR>
 
 nnoremap <expr> <leader>dp ":saveas " .  expand('%')
 
