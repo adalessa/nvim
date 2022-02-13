@@ -39,11 +39,16 @@ local promoted_property
 promoted_property = function()
     return snippet_from_nodes(nil, {
         c(1, {
-            t(""),
+            t "",
             snippet_from_nodes(nil, {
                 newline "\t",
                 d(1, visibility, {}, "private"),
-                i(2, '$var'),
+                t " ",
+                i(2, 'Type'),
+                t " $",
+                f( function (args)
+                    return args[1][1]:gsub("^%u", string.lower)
+                end, {2}),
                 t ",",
                 d(3, promoted_property, {})
             }),
@@ -84,7 +89,7 @@ local M = {
 {} ${};
 ]], {
             i(1, "type"),
-            d(2, visibility, { 1 }, "private"),
+            d(2, visibility, {}, "private"),
             i(3, "var")
         }),
     class = fmt(
@@ -105,6 +110,32 @@ class []
         f(class_name),
         i(0),
     }, { delimiters = "[]"}),
+
+    _c = {
+        d(1, visibility, {}, "public"),
+        t(' function __construct('),
+        i(2, ''),
+        t {")", "{", "\t"},
+        i(0),
+        newline "}"
+    },
+
+    _p = {
+        d(1, visibility, {}, "public"),
+        t " function __construct(",
+        d(2, promoted_property),
+        t {"", ") {", "}"},
+    },
+
+    pro = {
+        d(1, visibility, {}, "private"),
+        t " ",
+        i(2, "type"),
+        t " $",
+        i(3),
+    },
+
+    strict = t "declare(strict_types=1);",
 }
 
 return M
