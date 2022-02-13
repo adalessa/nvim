@@ -16,5 +16,5 @@ require "alpha.plugins"
 
 -- require "alpha.lsp"
 
--- require "alpha.telescope"
--- maybe here set up and mapping // need to check tj config
+require "alpha.telescope.setup"
+require "alpha.telescope.mappings"

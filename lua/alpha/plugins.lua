@@ -2,6 +2,28 @@ vim.cmd [[packadd packer.nvim]]
 vim.cmd([[autocmd BufWritePost plugins.lua source <afile> | PackerCompile]])
 
 return require('packer').startup(function(use)
+
+    local local_use = function(first, second, opts)
+      opts = opts or {}
+
+      local plug_path, home
+      if second == nil then
+        plug_path = first
+        home = "adalessa"
+      else
+        plug_path = second
+        home = first
+      end
+
+      if vim.fn.isdirectory(vim.fn.expand("~/plugins/" .. plug_path)) == 1 then
+        opts[1] = "~/plugins/" .. plug_path
+      else
+        opts[1] = string.format("%s/%s", home, plug_path)
+      end
+
+      use(opts)
+    end
+
     use 'wbthomason/packer.nvim'
     use "lewis6991/impatient.nvim"
 
@@ -70,6 +92,18 @@ return require('packer').startup(function(use)
     }
 
     use {
+      "ThePrimeagen/git-worktree.nvim",
+      config = function()
+        require("git-worktree").setup {}
+      end,
+    }
+
+    use "nvim-telescope/telescope-dap.nvim"
+    use "rcarriga/nvim-notify"
+    use { "nvim-telescope/telescope-ui-select.nvim" }
+    use { "nvim-telescope/telescope-fzf-native.nvim", run = "make" }
+
+    use {
         'nvim-lualine/lualine.nvim',
         requires = {'kyazdani42/nvim-web-devicons', opt = true}
     }
@@ -132,5 +166,6 @@ return require('packer').startup(function(use)
     use { 'vimwiki/vimwiki', opt = true, cmd = {'VimwikiIndex'}}
 
     -- Local plugins can be included
-    use '~/code/neovim/telescope-projectionist.nvim'
+    local_use 'telescope-projectionist.nvim'
+    local_use 'telescope-laravel.nvim'
 end)
