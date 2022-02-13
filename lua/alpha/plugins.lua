@@ -122,7 +122,7 @@ return require('packer').startup(function(use)
 
     use 'vim-test/vim-test'
 
-    use 'fatih/vim-go'
+    -- use 'fatih/vim-go'
 
     use {
         'noahfrederick/vim-laravel',

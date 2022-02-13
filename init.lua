@@ -14,7 +14,5 @@ require "alpha.disable_builtin"
 
 require "alpha.plugins"
 
--- require "alpha.lsp"
-
 require "alpha.telescope.setup"
 require "alpha.telescope.mappings"

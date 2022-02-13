@@ -1,29 +1,40 @@
-local function on_attach()
-    -- keymaps for lsp
-    vim.api.nvim_set_keymap('n', 'K', ':lua vim.lsp.buf.hover()<cr>', {noremap = true})
-    vim.api.nvim_set_keymap('n', '<leader>vd', ':lua vim.lsp.buf.definition()<cr>', {noremap = true})
+local telescope_mapper = require "alpha.telescope.mappings"
 
+local filetype_attach = setmetatable({
+  go = function(_)
+    vim.cmd [[
+      augroup lsp_buf_format
+        au! BufWritePre <buffer>
+        autocmd BufWritePre <buffer> :lua vim.lsp.buf.formatting_sync()
+      augroup END
+    ]]
+  end,
+}, {
+  __index = function()
+    return function() end
+  end,
+})
+
+local function on_attach(client)
+    local filetype = vim.api.nvim_buf_get_option(0, "filetype")
+    -- keymaps for lsp
+    vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = 0 })
+    vim.keymap.set("n", "<c-]>", vim.lsp.buf.definition, { buffer = 0 })
+    vim.keymap.set("n", "<leader>vrn", vim.lsp.buf.rename, { buffer = 0 })
+    vim.keymap.set("n", "<leader>vf", vim.lsp.buf.formatting, { buffer = 0 })
+    vim.keymap.set("n", "<leader>vn", vim.lsp.diagnostic.goto_next, { buffer = 0 })
+    vim.keymap.set("n", "<leader>vp", vim.lsp.diagnostic.goto_prev, { buffer = 0 })
+
+    telescope_mapper("gr", "lsp_references", nil, true)
+    telescope_mapper("<leader>pv", "find_symbol", nil, true)
 
     vim.api.nvim_set_keymap('n', '<leader>vo', ':LspRestart<cr>', {noremap = true})
 
-    -- diagnostics to move between info and errors
-    vim.api.nvim_set_keymap('n', '<leader>vn', ':lua vim.lsp.diagnostic.goto_next()<cr>', {noremap = true})
-    vim.api.nvim_set_keymap('n', '<leader>vp', ':lua vim.lsp.diagnostic.goto_prev()<cr>', {noremap = true})
-
-
-    vim.api.nvim_set_keymap('n', '<leader>vca', ':lua vim.lsp.buf.code_action()<cr>', {noremap = true})
-    vim.api.nvim_set_keymap('n', '<leader>vf', ':lua vim.lsp.buf.formatting()<cr>', {noremap = true})
-
-    vim.api.nvim_set_keymap('n', '<leader>vi', ':lua vim.lsp.buf.implementation()<cr>', {noremap = true})
-    vim.api.nvim_set_keymap('n', '<leader>vrn', ':lua vim.lsp.buf.rename()<cr>', {noremap = true})
-
     require "lsp_signature".on_attach()
 
-    vim.cmd [[au Filetype php setl omnifunc=v:lua.vim.lsp.omnifunc]]
-    vim.cmd [[autocmd FileType go setlocal omnifunc=v:lua.vim.lsp.omnifunc]]
-
-    vim.g.completion_matching_strategy_list = { 'exact', 'substring', 'fuzzy' }
-
+    vim.bo.omnifunc = "v:lua.vim.lsp.omnifunc"
+    -- Attach any filetype specific options to the client
+    filetype_attach[filetype](client)
 end
 
 local lsp_installer = require("nvim-lsp-installer")

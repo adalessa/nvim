@@ -1,3 +1,15 @@
+SHOULD_RELOAD_TELESCOPE = true
+
+local reloader = function()
+  if SHOULD_RELOAD_TELESCOPE then
+    RELOAD "plenary"
+    RELOAD "telescope"
+    RELOAD "alpha.telescope.setup"
+  end
+end
+
+local action_state = require "telescope.actions.state"
+local fb_actions = require "telescope".extensions.file_browser.actions
 local actions = require('telescope.actions')
 
 local M = {}
@@ -51,9 +63,59 @@ function M.my_plugins()
     }
 end
 
+function M.projectionist ()
+    return require("telescope").extensions.projectionist.projectionist()
+end
+
+function M.laravel ()
+    return require("telescope").extensions.laravel.laravel()
+end
+
+function M.file_browser ()
+    local opts
+
+    opts = {
+        sorting_strategy = "ascending",
+        scroll_strategy = "cycle",
+        layout_config = {
+            prompt_position = "top",
+        },
+
+        attach_mappings = function(prompt_bufnr, map)
+            local current_picker = action_state.get_current_picker(prompt_bufnr)
+
+            local modify_cwd = function(new_cwd)
+                local finder = current_picker.finder
+
+                finder.path = new_cwd
+                finder.files = true
+                current_picker:refresh(false, { reset_prompt = true })
+            end
+
+            map("i", "-", function()
+                modify_cwd(current_picker.cwd .. "/..")
+            end)
+
+            map("i", "~", function()
+                modify_cwd(vim.fn.expand "~")
+            end)
+
+            map("n", "yy", function()
+                local entry = action_state.get_selected_entry()
+                vim.fn.setreg("+", entry.value)
+            end)
+
+            map("i", "<c-y>", fb_actions.create)
+
+            return true
+        end,
+    }
+    return require("telescope").extensions.file_browser.file_browser(opts)
+end
+
 return setmetatable({}, {
   __index = function(_, k)
-
+    reloader()
     if M[k] then
       return M[k]
     else
