@@ -98,18 +98,18 @@ local M = {
 
 declare(strict_types=1);
 
-namespace [];
+namespace {};
 
-class []
-{
-    []
-}
+class {}
+{{
+    {}
+}}
 ]],
     {
         f(namespace),
         f(class_name),
         i(0),
-    }, { delimiters = "[]"}),
+    }),
 
     _c = {
         d(1, visibility, {}, "public"),
@@ -125,6 +125,26 @@ class []
         t " function __construct(",
         d(2, promoted_property),
         t {"", ") {", "}"},
+    },
+
+    fn = {
+        d(1, visibility, {}, "public"),
+        t(" function "),
+        i(2, "name"),
+        t("("),
+        i(3, "$arg"),
+        t(")"),
+        c(4, {
+            t(""),
+            snippet_from_nodes(nil, {
+                t(': '),
+                i(1, "void"),
+            }),
+        }),
+        newline "{",
+        newline "\t",
+        i(0, ""),
+        newline "}",
     },
 
     pro = {

@@ -243,4 +243,7 @@ M.new_property = function ()
     vim.api.nvim_win_set_cursor(0, {row, column})
 end
 
+vim.keymap.set("n", "<leader>rs", M.setter_getter, {})
+vim.keymap.set("n", "<leader>rn", M.new_property, {})
+
 return M

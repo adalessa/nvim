@@ -3,7 +3,7 @@ if not pcall(require, "nvim-treesitter") then
 end
 
 require "nvim-treesitter.configs".setup {
-    ensure_installed = {"php", "go", "comment", "css", "html", "javascript", "lua", "typescript"},
+    ensure_installed = {"php", "phpdoc", "vim", "go", "comment", "css", "html", "javascript", "lua", "typescript"},
     highlight = {
         enable = true,
         additional_vim_regex_highlighting = false,
@@ -12,7 +12,7 @@ require "nvim-treesitter.configs".setup {
         enable = true,
     },
     incremental_selection = {
-        enable = true,
+        enable = false,
         keymaps = {
             init_selection = "gnn",
             node_incremental = "grn",
@@ -25,7 +25,7 @@ require "nvim-treesitter.configs".setup {
         smart_rename = {
             enable = true,
             keymaps = {
-                smart_rename = "grr",
+                smart_rename = "trr",
             },
         },
     },
