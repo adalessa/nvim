@@ -45,6 +45,14 @@ return require('packer').startup(function(use)
         }
     }
 
+    use {'kevinhwang91/nvim-bqf', ft = 'qf'}
+
+    -- optional
+    use {'junegunn/fzf', run = function()
+        vim.fn['fzf#install']()
+    end
+    }
+
     use {
         'ThePrimeagen/harpoon',
         requires = {
