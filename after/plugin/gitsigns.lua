@@ -9,5 +9,6 @@ gitsigns.setup({
         vim.keymap.set('n', '<leader>hu', gitsigns.undo_stage_hunk, {buffer = bufnr} )
         vim.keymap.set('n', '<leader>hr', gitsigns.reset_hunk, {buffer = bufnr} )
         vim.keymap.set('n', '<leader>hp', gitsigns.preview_hunk, {buffer = bufnr} )
-    end
+    end,
+    max_file_length = 10000,
 })
