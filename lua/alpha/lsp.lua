@@ -52,3 +52,16 @@ lsp_installer.on_server_ready(function(server)
     server:setup(opts)
     vim.cmd [[ do User LspAttachBuffers ]]
 end)
+
+require "lspconfig".efm.setup {
+    init_options = {documentFormatting = true},
+    settings = {
+        rootMarkers = {".git/"},
+        languages = {
+            blade = {
+                {formatCommand = "blade-formatter --stdin", formatStdin = true}
+            },
+            json = {}
+        }
+    }
+}
