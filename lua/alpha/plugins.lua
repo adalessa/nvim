@@ -48,6 +48,7 @@ return require('packer').startup(function(use)
     use {'kevinhwang91/nvim-bqf', ft = 'qf'}
 
     -- optional
+    use {'junegunn/fzf.vim'}
     use {'junegunn/fzf', run = function()
         vim.fn['fzf#install']()
     end
