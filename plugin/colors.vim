@@ -7,7 +7,7 @@ fun! ColorMyPencils()
     endif
 
     set background=dark
-    colorscheme dracula
+    colorscheme onedark
 
     " Transparency
     "highlight Normal ctermbg=NONE guibg=NONE

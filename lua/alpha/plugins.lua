@@ -107,6 +107,17 @@ return require('packer').startup(function(use)
       end,
     }
 
+    use {
+      "norcalli/nvim-colorizer.lua",
+      config = function()
+        require("colorizer").setup {
+                'conf',
+                'html',
+                'javascript',
+            }
+      end,
+    }
+
     use "nvim-telescope/telescope-dap.nvim"
     use "rcarriga/nvim-notify"
     use { "nvim-telescope/telescope-ui-select.nvim" }
@@ -157,6 +168,7 @@ return require('packer').startup(function(use)
     use 'jwalton512/vim-blade'
 
     use 'dracula/vim'
+    use 'joshdick/onedark.vim'
 
     use 'Raimondi/delimitMate'
     use 'tpope/vim-surround'
