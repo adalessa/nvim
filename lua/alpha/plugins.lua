@@ -63,6 +63,12 @@ return require('packer').startup(function(use)
     }
 
     use 'tpope/vim-dispatch'
+    use {
+        'windwp/nvim-projectconfig',
+        config = function ()
+            require('nvim-projectconfig').setup()
+        end
+    }
 
     -- Completition
     use {
