@@ -176,6 +176,7 @@ return require('packer').startup(function(use)
     -- usefull for unix functions
     use 'tpope/vim-eunuch'
     use 'tpope/vim-commentary'
+    use 'tpope/vim-tbone'
 
     use 'jwalton512/vim-blade'
 
@@ -186,11 +187,12 @@ return require('packer').startup(function(use)
         }
     }
 
-    use 'tpope/vim-tbone'
+
     use {
-        'tpope/vim-dadbod',
+       'kristijanhusak/vim-dadbod-ui',
         requires = {
-           'kristijanhusak/vim-dadbod-ui',
+            'tpope/vim-dadbod',
+            'tpope/vim-dotenv',
         }
     }
 
