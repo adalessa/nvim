@@ -116,17 +116,13 @@ return require('packer').startup(function(use)
     use {
       "norcalli/nvim-colorizer.lua",
       config = function()
-        require("colorizer").setup {
-                'conf',
-                'html',
-                'javascript',
-            }
+        require("colorizer").setup {}
       end,
     }
 
     use "nvim-telescope/telescope-dap.nvim"
     use "rcarriga/nvim-notify"
-    use { "nvim-telescope/telescope-ui-select.nvim" }
+    use "nvim-telescope/telescope-ui-select.nvim"
     use { "nvim-telescope/telescope-fzf-native.nvim", run = "make" }
 
     use {
@@ -145,10 +141,7 @@ return require('packer').startup(function(use)
     }
 
     use 'szw/vim-maximizer'
-
     use 'vim-test/vim-test'
-
-    -- use 'fatih/vim-go'
 
     use {
         'noahfrederick/vim-laravel',
@@ -158,7 +151,6 @@ return require('packer').startup(function(use)
         }
     }
 
-    -- Lua
     use {
         "folke/trouble.nvim",
         requires = "kyazdani42/nvim-web-devicons",
@@ -171,8 +163,6 @@ return require('packer').startup(function(use)
         end
     }
 
-    use 'jwalton512/vim-blade'
-
     use 'dracula/vim'
     use 'joshdick/onedark.vim'
 
@@ -183,8 +173,11 @@ return require('packer').startup(function(use)
     use 'tpope/vim-repeat'
     use 'tpope/vim-obsession'
     use 'tpope/vim-vinegar'
+    -- usefull for unix functions
     use 'tpope/vim-eunuch'
     use 'tpope/vim-commentary'
+
+    use 'jwalton512/vim-blade'
 
     use {
         'lewis6991/gitsigns.nvim',
@@ -194,7 +187,6 @@ return require('packer').startup(function(use)
     }
 
     use 'tpope/vim-tbone'
-
     use {
         'tpope/vim-dadbod',
         requires = {
