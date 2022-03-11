@@ -35,6 +35,7 @@ map_tele("<leader>pe", "buffers")
 map_tele("<leader>pr", "treesitter")
 map_tele("<leader>bb", "file_browser")
 map_tele("<leader>gs", "git_status")
+map_tele("<leader>gt", "git_worktree")
 map_tele("<leader>ve", "diagnostics")
 map_tele("<leader>fp", "my_plugins")
 

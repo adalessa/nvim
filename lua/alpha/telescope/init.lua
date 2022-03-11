@@ -67,6 +67,10 @@ function M.projectionist ()
     return require("telescope").extensions.projectionist.projectionist()
 end
 
+function M.git_worktree ()
+    return require("telescope").extensions.git_worktree.git_worktrees()
+end
+
 function M.laravel ()
     vim.env.NO_TTY = 1
     return require("telescope").extensions.laravel.laravel()
