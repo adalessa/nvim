@@ -26,6 +26,7 @@ vim.api.nvim_set_keymap("c", "<c-r><c-r>", "<Plug>(TelescopeFuzzyCommandSearch)"
 
 map_tele("<leader>pp", "project_files")
 map_tele("<leader>gc", "branches")
+map_tele("<leader>gt", "worktree")
 map_tele("<leader>pw", "grep_word")
 map_tele("<leader>ps", "grep_string")
 map_tele("<leader>pf", "projectionist")

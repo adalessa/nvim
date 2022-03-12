@@ -76,6 +76,10 @@ function M.laravel ()
     return require("telescope").extensions.laravel.laravel()
 end
 
+function M.worktree ()
+    return require('telescope').extensions.git_worktree.git_worktrees()
+end
+
 function M.file_browser ()
     local opts
 

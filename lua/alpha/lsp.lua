@@ -44,7 +44,7 @@ lsp_installer.on_server_ready(function(server)
 
     -- (optional) Customize the options passed to the server
     if server.name == "emmet_ls" then
-        opts.filetypes = {"html", "css", "blade"}
+        opts.filetypes = {"html", "css", "blade", "typescriptreact"}
     end
 
     opts.on_attach = on_attach
