@@ -11,7 +11,7 @@ ls.config.set_config {
     history = true,
 
     -- This one is cool cause if you have dynamic snippets, it updatesas you type!
-    updateevent = "TextChanged,TextChangedI",
+    updateevents = "TextChanged,TextChangedI",
 
     -- Autosnippets:
     enable_autosnippets = true,
@@ -19,7 +19,7 @@ ls.config.set_config {
     ext_opts = {
         [types.choiceNode] = {
             active = {
-                virt_text = { { "<-", "Error" } },
+                virt_text = { { "<- Choice", "Error" } },
             },
         },
     },

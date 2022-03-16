@@ -17,43 +17,19 @@ local newline = function(text)
   return t { "", text }
 end
 
-local visibility = function(_, _, _, inital)
-    local possibles = {'private', 'public', 'protected'}
-
+local visibility = function (position, default)
+    local possibles = {'private', 'public'}
     local options = {}
 
     for _, value in pairs(possibles) do
-        if value == inital then
+        if value == default then
             table.insert(options, 1, t(value))
         else
             table.insert(options, t(value))
         end
     end
 
-    return snippet_from_nodes(nil, {
-        c(1, options)
-    })
-end
-
-local promoted_property
-promoted_property = function()
-    return snippet_from_nodes(nil, {
-        c(1, {
-            t "",
-            snippet_from_nodes(nil, {
-                newline "\t",
-                d(1, visibility, {}, "private"),
-                t " ",
-                i(2, 'Type'),
-                t " $",
-                f( function (args)
-                    return args[1][1]:gsub("^%u", string.lower)
-                end, {2}),
-                t ",",
-                d(3, promoted_property, {})
-            }),
-        }),
-    })
+    return c(position, options)
 end
 
 local namespace = function ()
@@ -111,24 +87,41 @@ class {}
         i(0),
     }),
 
-    _c = {
-        d(1, visibility, {}, "public"),
-        t(' function __construct('),
-        i(2, ''),
-        t {")", "{", "\t"},
-        i(0),
-        newline "}"
-    },
+    pro = fmt(
+        [[{} {} ${},]],
+        {
+            visibility(1, "private"),
+            i(2, 'Type'),
+            f( function (args)
+                return args[1][1]:gsub("^%u", string.lower)
+            end, {2}),
+        }
+    ),
 
-    _p = {
-        d(1, visibility, {}, "public"),
-        t " function __construct(",
-        d(2, promoted_property),
-        t {"", ") {", "}"},
-    },
+    _c = fmt(
+[[{} function __construct({}) {{
+    {}
+}}]],
+        {
+            visibility(1, "public"),
+            i(2),
+            i(0)
+        }
+    ),
+
+    _p = fmt(
+[[{} function __construct(
+    {}
+) {{
+}}]],
+        {
+            visibility(1, "public"),
+            i(2),
+        }
+    ),
 
     fn = {
-        d(1, visibility, {}, "public"),
+        visibility(1, "public"),
         t(" function "),
         i(2, "name"),
         t("("),
@@ -145,14 +138,6 @@ class {}
         newline "\t",
         i(0, ""),
         newline "}",
-    },
-
-    pro = {
-        d(1, visibility, {}, "private"),
-        t " ",
-        i(2, "type"),
-        t " $",
-        i(3),
     },
 
     strict = t "declare(strict_types=1);",
