@@ -7,6 +7,7 @@ lualine.setup{
     options = {
       theme = 'onedark',
       icons_enabled = true,
+      globalstatus = true,
     },
     extensions = {'quickfix', 'fugitive'},
     sections = {
