@@ -5,3 +5,5 @@ nmap <silent> t<C-l> :TestLast<CR>
 nmap <silent> t<C-g> :TestVisit<CR>
 
 let test#php#pest#executable = 'sail test'
+let test#strategy = 'harpoon'
+let g:test#preserve_screen = 1

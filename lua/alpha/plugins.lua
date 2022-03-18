@@ -84,6 +84,8 @@ return require('packer').startup(function(use)
         }
     }
 
+    use "jose-elias-alvarez/null-ls.nvim"
+
     use "windwp/nvim-autopairs"
 
     use "tjdevries/colorbuddy.nvim"
