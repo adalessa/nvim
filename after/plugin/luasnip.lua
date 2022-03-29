@@ -95,16 +95,11 @@ local make = function(tbl)
   return result
 end
 
-
-
-local snippets = {}
-
 for _, ft_path in ipairs(vim.api.nvim_get_runtime_file("lua/alpha/snips/ft/*.lua", true)) do
   local ft = vim.fn.fnamemodify(ft_path, ":t:r")
-  snippets[ft] = make(loadfile(ft_path)())
+  ls.add_snippets(ft, make(loadfile(ft_path)()))
 end
 
-ls.snippets = snippets
 
 -- <c-k> is my expansion key
 -- this will expand the current item or jump to the next item within the snippet.
