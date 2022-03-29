@@ -97,6 +97,8 @@ return require('packer').startup(function(use)
         'ray-x/lsp_signature.nvim'
     }
 
+    use "github/copilot.vim"
+
     use {
         'nvim-telescope/telescope.nvim',
         requires = {
