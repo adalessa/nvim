@@ -39,6 +39,7 @@ map_tele("<leader>bb", "file_browser")
 map_tele("<leader>gs", "git_status")
 map_tele("<leader>ve", "diagnostics")
 map_tele("<leader>fp", "my_plugins")
+map_tele("<leader>rr", "refactor")
 
 map_tele("<leader>pa", "laravel")
 map_tele("<leader>vca", "lsp_code_actions")

@@ -81,6 +81,10 @@ function M.worktree_create ()
     return require('telescope').extensions.git_worktree.create_git_worktree()
 end
 
+function M.refactor ()
+    return require('telescope').extensions.refactoring.refactors()
+end
+
 function M.file_browser ()
     local opts
 
