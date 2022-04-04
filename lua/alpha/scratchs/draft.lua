@@ -67,5 +67,7 @@ function Queries()
     local rootNode = get_root_node()
     for _, node in query:iter_captures(rootNode, 0, rootNode:start(), rootNode:end_()) do
         P(get_node_text(node, 0))
+        P(node:start())
+        P(node:end_())
     end
 end
