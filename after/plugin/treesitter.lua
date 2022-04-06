@@ -3,7 +3,7 @@ if not pcall(require, "nvim-treesitter") then
 end
 
 require "nvim-treesitter.configs".setup {
-    ensure_installed = {"php", "phpdoc", "vim", "go", "css", "html", "javascript", "lua", "typescript"},
+    ensure_installed = {"php", "phpdoc", "vim", "go", "gomod", "css", "html", "javascript", "lua", "typescript"},
     highlight = {
         enable = true,
         additional_vim_regex_highlighting = false,
