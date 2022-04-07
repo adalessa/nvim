@@ -85,10 +85,15 @@ function M.refactor ()
     return require('telescope').extensions.refactoring.refactors()
 end
 
-function M.file_browser ()
-    local opts
+function M.file_browser_relative ()
+    return M.file_browser({path = "%:p:h"})
+end
+
+function M.file_browser (opts)
+    opts = opts or {}
 
     opts = {
+        path = opts.path,
         sorting_strategy = "ascending",
         scroll_strategy = "cycle",
         layout_config = {
@@ -106,7 +111,7 @@ function M.file_browser ()
                 current_picker:refresh(false, { reset_prompt = true })
             end
 
-            map("i", "-", function()
+            map("n", "-", function()
                 modify_cwd(current_picker.cwd .. "/..")
             end)
 
@@ -124,6 +129,7 @@ function M.file_browser ()
             return true
         end,
     }
+
     return require("telescope").extensions.file_browser.file_browser(opts)
 end
 
