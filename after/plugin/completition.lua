@@ -39,7 +39,7 @@ cmp.setup {
     },
     sources = {
         { name = "nvim_lua" },
-        { name = "copilot" },
+        -- { name = "copilot" },
         { name = "nvim_lsp" },
         { name = "path" },
         { name = "luasnip" },
@@ -73,7 +73,7 @@ cmp.setup {
                 nvim_lua = "[api]",
                 path = "[path]",
                 luasnip = "[snip]",
-                copilot = "[copilot]",
+                -- copilot = "[copilot]",
             }
         }
     },
