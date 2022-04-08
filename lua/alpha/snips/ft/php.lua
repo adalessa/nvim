@@ -33,7 +33,7 @@ local visibility = function (position, default)
 end
 
 local namespace = function ()
-    local dir = vim.fn.expand('%:h')
+    local dir = vim.fn.getcwd()
     local autoloads = vim.call('composer#query', 'autoload.psr-4')
     if autoloads == nil then
         return (dir:gsub("^%l", string.upper))
