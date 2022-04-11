@@ -1,28 +1,27 @@
 TelescopeMapArgs = TelescopeMapArgs or {}
 
 local map_tele = function(key, f, options, buffer)
-  local map_key = vim.api.nvim_replace_termcodes(key .. f, true, true, true)
+	local map_key = vim.api.nvim_replace_termcodes(key .. f, true, true, true)
 
-  TelescopeMapArgs[map_key] = options or {}
+	TelescopeMapArgs[map_key] = options or {}
 
-  local mode = "n"
-  local rhs = string.format("<cmd>lua R('alpha.telescope')['%s'](TelescopeMapArgs['%s'])<CR>", f, map_key)
+	local mode = "n"
+	local rhs = string.format("<cmd>lua R('alpha.telescope')['%s'](TelescopeMapArgs['%s'])<CR>", f, map_key)
 
-  local map_options = {
-    noremap = true,
-    silent = true,
-  }
+	local map_options = {
+		noremap = true,
+		silent = true,
+	}
 
-  if not buffer then
-    vim.api.nvim_set_keymap(mode, key, rhs, map_options)
-  else
-    vim.api.nvim_buf_set_keymap(0, mode, key, rhs, map_options)
-  end
+	if not buffer then
+		vim.api.nvim_set_keymap(mode, key, rhs, map_options)
+	else
+		vim.api.nvim_buf_set_keymap(0, mode, key, rhs, map_options)
+	end
 end
 
 -- not shure what this line does
 vim.api.nvim_set_keymap("c", "<c-r><c-r>", "<Plug>(TelescopeFuzzyCommandSearch)", { noremap = false, nowait = true })
-
 
 map_tele("<leader>pp", "project_files")
 map_tele("<leader>gc", "branches")
@@ -45,7 +44,5 @@ map_tele("<leader>rr", "refactor")
 
 map_tele("<leader>pa", "laravel")
 map_tele("<leader>vca", "lsp_code_actions")
-
-
 
 return map_tele
