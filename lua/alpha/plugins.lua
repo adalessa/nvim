@@ -99,17 +99,6 @@ return require("packer").startup(function(use)
 	})
 
 	use("github/copilot.vim")
-	-- use {
-	--   "zbirenbaum/copilot.lua",
-	--   event = "InsertEnter",
-	--   config = function ()
-	--     vim.schedule(function() require("copilot").setup() end)
-	--   end,
-	-- }
-	-- use {
-	--     "zbirenbaum/copilot-cmp",
-	--     after = {"copilot.lua", "nvim-cmp"},
-	-- }
 
 	use({
 		"nvim-telescope/telescope.nvim",
