@@ -190,7 +190,11 @@ return require("packer").startup(function(use)
 		},
 	})
 
-	use({ "nicwest/vim-http", opt = true, cmd = { "Http" } })
+	use({
+		"NTBBloodbath/rest.nvim",
+		requires = { "nvim-lua/plenary.nvim" },
+	})
+
 	use({ "vimwiki/vimwiki", opt = true, cmd = { "VimwikiIndex" } })
 
 	-- Local plugins can be included

@@ -10,6 +10,8 @@ dapui.setup({
 
 require("dap-go").setup()
 
+vim.fn.sign_define("DapBreakpoint", { text = "ß", texthl = "", linehl = "", numhl = "" })
+
 dap_install.config("php", {
 	configurations = {
 		{
