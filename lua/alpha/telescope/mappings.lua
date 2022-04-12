@@ -30,7 +30,6 @@ map_tele("<leader>gn", "worktree_create")
 map_tele("<leader>pw", "grep_word")
 map_tele("<leader>ps", "grep_string")
 map_tele("<leader>pf", "projectionist")
-map_tele("<leader>pd", "lsp_document_symbols")
 map_tele("<leader>rc", "search_config")
 map_tele("<leader>ph", "help_tags")
 map_tele("<leader>pe", "buffers")
@@ -43,6 +42,5 @@ map_tele("<leader>fp", "my_plugins")
 map_tele("<leader>rr", "refactor")
 
 map_tele("<leader>pa", "laravel")
-map_tele("<leader>vca", "lsp_code_actions")
 
 return map_tele

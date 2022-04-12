@@ -26,6 +26,8 @@ return require("packer").startup(function(use)
 	use("wbthomason/packer.nvim")
 	use("lewis6991/impatient.nvim")
 
+	use("tjdevries/colorbuddy.nvim")
+
 	use({
 		"ThePrimeagen/refactoring.nvim",
 		requires = {
@@ -63,7 +65,6 @@ return require("packer").startup(function(use)
 		},
 	})
 
-	use("tpope/vim-dispatch")
 	use({
 		"windwp/nvim-projectconfig",
 		config = function()
@@ -82,20 +83,16 @@ return require("packer").startup(function(use)
 			"saadparwaiz1/cmp_luasnip",
 			"onsails/lspkind-nvim",
 			"L3MON4D3/LuaSnip",
+			"windwp/nvim-autopairs",
 		},
 	})
 
-	use("jose-elias-alvarez/null-ls.nvim")
-
-	use("windwp/nvim-autopairs")
-
-	use("tjdevries/colorbuddy.nvim")
-
+	-- LSP
 	use({
 		"neovim/nvim-lspconfig",
 		"williamboman/nvim-lsp-installer",
 		"hrsh7th/cmp-nvim-lsp-signature-help",
-		"ray-x/lsp_signature.nvim",
+		"jose-elias-alvarez/null-ls.nvim",
 	})
 
 	use("github/copilot.vim")
@@ -108,6 +105,9 @@ return require("packer").startup(function(use)
 			{ "nvim-telescope/telescope-fzy-native.nvim" },
 			{ "kyazdani42/nvim-web-devicons" },
 			{ "nvim-telescope/telescope-file-browser.nvim" },
+			{ "nvim-telescope/telescope-dap.nvim" },
+			{ "nvim-telescope/telescope-ui-select.nvim" },
+			{ "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
 		},
 	})
 
@@ -125,11 +125,6 @@ return require("packer").startup(function(use)
 		end,
 	})
 
-	use("nvim-telescope/telescope-dap.nvim")
-	use("rcarriga/nvim-notify")
-	use("nvim-telescope/telescope-ui-select.nvim")
-	use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
-
 	use({
 		"nvim-lualine/lualine.nvim",
 		requires = { "kyazdani42/nvim-web-devicons", opt = true },
@@ -145,9 +140,6 @@ return require("packer").startup(function(use)
 		},
 	})
 
-	use("szw/vim-maximizer")
-	use("vim-test/vim-test")
-
 	use({
 		"noahfrederick/vim-laravel",
 		requires = {
@@ -161,7 +153,11 @@ return require("packer").startup(function(use)
 		requires = "kyazdani42/nvim-web-devicons",
 	})
 
-	use("dracula/vim")
+	use("szw/vim-maximizer")
+	use("vim-test/vim-test")
+	use("rcarriga/nvim-notify")
+
+	-- use("dracula/vim")
 	use("joshdick/onedark.vim")
 
 	use("Raimondi/delimitMate")
@@ -175,6 +171,7 @@ return require("packer").startup(function(use)
 	use("tpope/vim-eunuch")
 	use("tpope/vim-commentary")
 	use("tpope/vim-tbone")
+	use("tpope/vim-dispatch")
 
 	use("jwalton512/vim-blade")
 
