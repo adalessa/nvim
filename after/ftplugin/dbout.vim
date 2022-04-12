@@ -1,1 +1,2 @@
 set nofoldenable
+set colorcolumn=

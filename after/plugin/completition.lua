@@ -73,6 +73,7 @@ cmp.setup {
                 nvim_lua = "[api]",
                 path = "[path]",
                 luasnip = "[snip]",
+                ["vim-dadbod-completion"] = "[DB]",
                 -- copilot = "[copilot]",
             }
         }
@@ -84,6 +85,17 @@ cmp.setup {
         ghost_text = true,
     }
 }
+
+vim.api.nvim_create_autocmd(
+    "FileType",
+    {
+        pattern = "sql,mysql,plsql",
+        callback = function()
+            require('cmp').setup.buffer({ sources = {{ name = 'vim-dadbod-completion' }} })
+        end
+    }
+)
+
 -- Setup lspconfig.
   local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
   -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.

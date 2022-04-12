@@ -12,7 +12,7 @@ lualine.setup{
     extensions = {'quickfix', 'fugitive'},
     sections = {
       lualine_a = { { 'mode', upper = true } },
-      lualine_b = { { 'branch', icon = '' }, 'diff' },
+      lualine_b = { { 'branch', icon = '' }, { 'db_ui#statusline' }, 'diff' },
       lualine_c = { { 'filename', file_status = true, path = 1 } },
       lualine_x = { { 'diagnostics', sources = { 'nvim_diagnostic' } },'encoding', 'fileformat', 'filetype' },
       lualine_y = { 'progress' },

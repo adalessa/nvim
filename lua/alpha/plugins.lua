@@ -186,6 +186,7 @@ return require("packer").startup(function(use)
 		"kristijanhusak/vim-dadbod-ui",
 		requires = {
 			"tpope/vim-dadbod",
+			"kristijanhusak/vim-dadbod-completion",
 			"tpope/vim-dotenv",
 		},
 	})
