@@ -158,7 +158,8 @@ return require("packer").startup(function(use)
 	use("rcarriga/nvim-notify")
 
 	-- use("dracula/vim")
-	use("joshdick/onedark.vim")
+	-- use("joshdick/onedark.vim")
+	use("EdenEast/nightfox.nvim")
 
 	use("Raimondi/delimitMate")
 	use("tpope/vim-surround")
