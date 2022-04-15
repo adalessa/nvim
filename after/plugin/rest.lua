@@ -32,6 +32,7 @@ vim.api.nvim_create_autocmd("FileType", {
         local buff = tonumber(vim.fn.expand("<abuf>"), 10)
         vim.keymap.set("n", "<leader>rn", rest_nvim.run, { noremap = true, buffer = buff })
         vim.keymap.set("n", "<leader>rl", rest_nvim.last, { noremap = true, buffer = buff })
+        vim.keymap.set("n", "<leader>rp", function () rest_nvim.run(true) end, { noremap = true, buffer = buff })
     end
 })
 
