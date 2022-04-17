@@ -40,7 +40,6 @@ cmp.setup {
     },
     sources = {
         { name = "nvim_lua" },
-        -- { name = "copilot" },
         { name = "nvim_lsp" },
         { name = "path" },
         { name = "luasnip" },
@@ -75,7 +74,6 @@ cmp.setup {
                 path = "[path]",
                 luasnip = "[snip]",
                 ["vim-dadbod-completion"] = "[DB]",
-                -- copilot = "[copilot]",
             }
         }
     },
