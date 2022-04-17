@@ -31,6 +31,7 @@ cmp.setup {
                 fallback()
             end
         end, { "i", "s" }),
+        ["<C-p>"] = cmp.mapping.select_prev_item(),
         ["<C-y>"] = cmp.mapping.confirm {
             behavior = cmp.ConfirmBehavior.Insert,
             select = true,
