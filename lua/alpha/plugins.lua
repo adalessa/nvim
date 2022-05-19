@@ -135,10 +135,11 @@ return require("packer").startup(function(use)
 		requires = {
 			"rcarriga/nvim-dap-ui",
 			"mfussenegger/nvim-dap",
-			"Pocco81/DAPInstall.nvim",
+			"Pocco81/dap-buddy.nvim",
 			"leoluz/nvim-dap-go",
 		},
 	})
+    use({"Pocco81/dap-buddy.nvim", branch="dev"})
 
 	use({
 		"noahfrederick/vim-laravel",
