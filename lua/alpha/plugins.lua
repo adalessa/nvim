@@ -125,21 +125,21 @@ return require("packer").startup(function(use)
 		end,
 	})
 
-	use({
-		"nvim-lualine/lualine.nvim",
-		requires = { "kyazdani42/nvim-web-devicons", opt = true },
-	})
+	-- use({
+	-- 	"nvim-lualine/lualine.nvim",
+	-- 	requires = { "kyazdani42/nvim-web-devicons", opt = true },
+	-- })
+	use("feline-nvim/feline.nvim")
 
 	use({
 		"leoluz/nvim-dap-go",
 		requires = {
 			"rcarriga/nvim-dap-ui",
 			"mfussenegger/nvim-dap",
-			"Pocco81/dap-buddy.nvim",
+			{ "Pocco81/DAPInstall.nvim", branch = "dev" },
 			"leoluz/nvim-dap-go",
 		},
 	})
-    use({"Pocco81/dap-buddy.nvim", branch="dev"})
 
 	use({
 		"noahfrederick/vim-laravel",

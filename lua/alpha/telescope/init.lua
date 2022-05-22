@@ -57,7 +57,7 @@ function M.find_symbol()
 		if input == nil then
 			return
 		end
-		require("telescope.builtin").lsp_workspace_symbols({ search = input })
+		require("telescope.builtin").lsp_workspace_symbols({ query = input })
 	end)
 end
 
