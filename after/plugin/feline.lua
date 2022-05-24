@@ -5,6 +5,7 @@ end
 
 local my_theme = {
     bg = '#131a24',
+    bg1 = '#192330',
     black = '#131a24',
     skyblue = '#719cd6',
     cyan = '#63cdcf',
@@ -20,4 +21,41 @@ local my_theme = {
 
 feline.setup()
 feline.use_theme(my_theme)
-feline.winbar.setup()
+feline.winbar.setup({
+    components = {
+        active = {
+            {
+                {
+                    provider = {
+                        name = 'file_info',
+                        opts = {
+                            type = 'full-path',
+                            file_modified_icon = '[M]'
+                        },
+                    },
+                    hl = {
+                        bg = 'bg1',
+                        fg = 'skyblue',
+                    },
+                }
+            }
+        },
+        inactive = {
+            {
+                {
+                    provider = {
+                        name = 'file_info',
+                        opts = {
+                            type = 'full-path',
+                            file_modified_icon = '[*]'
+                        },
+                    },
+                    hl = {
+                        bg = 'bg1',
+                        fg = 'fg',
+                    },
+                }
+            }
+        }
+    }
+})

@@ -15,8 +15,8 @@ set incsearch
 set ignorecase
 set smartcase
 set termguicolors
-set scrolloff=8
-set sidescrolloff=8
+set scrolloff=4
+set sidescrolloff=4
 set noshowmode
 set clipboard+=unnamedplus
 set completeopt=menuone,noinsert,noselect
@@ -27,6 +27,7 @@ set splitright
 set autowrite
 set list
 set listchars=tab:\ ,trail:-
+set laststatus=3
 
 set cmdheight=1
 
