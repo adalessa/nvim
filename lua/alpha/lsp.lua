@@ -24,13 +24,13 @@ local function on_attach(client)
 	vim.keymap.set("n", "<leader>vf", vim.lsp.buf.formatting, { buffer = 0 })
 	vim.keymap.set("n", "<leader>vn", vim.diagnostic.goto_next, { buffer = 0 })
 	vim.keymap.set("n", "<leader>vp", vim.diagnostic.goto_prev, { buffer = 0 })
+	vim.keymap.set("n", "<leader>vca", vim.lsp.buf.code_action, { buffer = 0 })
 	vim.keymap.set("i", "<c-k>", vim.lsp.buf.signature_help, { buffer = 0 })
 	vim.keymap.set("n", "<leader>vo", ":LspRestart<cr>", { noremap = true })
 
 	telescope_mapper("gr", "lsp_references", nil, true)
 	telescope_mapper("<leader>pv", "find_symbol", nil, true)
 	telescope_mapper("<leader>pd", "lsp_document_symbols", nil, true)
-    telescope_mapper("<leader>vca", "lsp_code_actions", nil, true)
 
 	vim.bo.omnifunc = "v:lua.vim.lsp.omnifunc"
 

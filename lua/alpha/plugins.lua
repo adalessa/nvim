@@ -97,6 +97,8 @@ return require("packer").startup(function(use)
 
 	use("github/copilot.vim")
 
+    use "kdheepak/lazygit.nvim"
+
 	use({
 		"nvim-telescope/telescope.nvim",
 		requires = {

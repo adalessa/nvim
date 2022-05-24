@@ -18,5 +18,5 @@ require "alpha.telescope.setup"
 require "alpha.telescope.mappings"
 require "alpha.dap"
 
-require "alpha.refactor"
+-- require "alpha.refactor"
 require "alpha.lsp"

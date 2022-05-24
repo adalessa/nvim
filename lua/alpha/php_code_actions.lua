@@ -38,6 +38,9 @@ local php_setter_getter_actions = {
 	generator = {
 		fn = function(context)
 			local cursor_node = utils.get_master_node()
+            if cursor_node == nil then
+                return
+            end
 			if cursor_node.type(cursor_node) ~= "property_declaration" then
 				return
 			end
