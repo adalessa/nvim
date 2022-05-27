@@ -25,4 +25,4 @@ endfun
 
 call ColorMyPencils()
 
-nnoremap <leader>cc :call ColorMyPencils()<CR>
+" nnoremap <leader>cc :call ColorMyPencils()<CR>

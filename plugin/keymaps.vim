@@ -72,3 +72,5 @@ if has('nvim')
 endif
 
 nnoremap <leader><leader>x :call alpha#save_and_exec()<cr>
+
+nnoremap <leader>cc :cclose<CR>
