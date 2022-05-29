@@ -202,6 +202,8 @@ return require("packer").startup(function(use)
 
 	use({ "vimwiki/vimwiki", opt = true, cmd = { "VimwikiIndex" } })
 
+    use({"hkupty/iron.nvim"})
+
 	-- Local plugins can be included
 	local_use("telescope-projectionist.nvim")
 	local_use("telescope-laravel.nvim")
