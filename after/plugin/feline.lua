@@ -30,7 +30,7 @@ feline.winbar.setup({
                         name = 'file_info',
                         opts = {
                             type = 'full-path',
-                            file_modified_icon = '[*]'
+                            file_modified_icon = ''
                         },
                     },
                     hl = {
@@ -47,7 +47,7 @@ feline.winbar.setup({
                         name = 'file_info',
                         opts = {
                             type = 'full-path',
-                            file_modified_icon = '[*]'
+                            file_modified_icon = ''
                         },
                     },
                     hl = {
