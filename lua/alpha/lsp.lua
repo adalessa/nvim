@@ -25,7 +25,7 @@ local function on_attach(client)
 	vim.keymap.set("n", "<leader>vn", vim.diagnostic.goto_next, { buffer = 0 })
 	vim.keymap.set("n", "<leader>vp", vim.diagnostic.goto_prev, { buffer = 0 })
 	vim.keymap.set("n", "<leader>vca", vim.lsp.buf.code_action, { buffer = 0 })
-	vim.keymap.set("i", "<c-k>", vim.lsp.buf.signature_help, { buffer = 0 })
+	vim.keymap.set("i", "<c-h>", vim.lsp.buf.signature_help, { buffer = 0 })
 	vim.keymap.set("n", "<leader>vo", ":LspRestart<cr>", { noremap = true })
 
 	telescope_mapper("gr", "lsp_references", nil, true)
