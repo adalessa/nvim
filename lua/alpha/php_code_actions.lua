@@ -1,8 +1,16 @@
 local null_ls = require("null-ls")
 local utils = require("alpha.utils")
 local ts_utils = require("nvim-treesitter.ts_utils")
+local generator = require("alpha.setter_getter_template")
 
 local get_node_text = vim.treesitter.get_node_text
+
+local function tableConcat(t1,t2)
+    for i=1,#t2 do
+        t1[#t1+1] = t2[i]
+    end
+    return t1
+end
 
 vim.treesitter.set_query(
 	"php",
@@ -27,7 +35,12 @@ vim.treesitter.set_query(
     "Alpha_refactor_property_phpdoc",
     [[
     [
-        (text) @types
+        (type_list
+            (named_type
+                (name) @class
+            )
+            (primitive_type) @primitive
+        )
     ]
     ]]
 )
@@ -52,6 +65,7 @@ local php_setter_getter_actions = {
 
 						local property_name
 						local property_types = {}
+                        local nullable = false
 						local query = vim.treesitter.get_query("php", "Alpha_refactor_property")
 						for _, match in query:iter_matches(property_node, 0) do
 							for id, subNode in pairs(match) do
@@ -65,48 +79,26 @@ local php_setter_getter_actions = {
 						end
 
                         local comment_node = ts_utils.get_previous_node(property_node)
-                        P(comment_node:type())
+                        -- P(comment_node:type())
                         local row, column = comment_node:start()
                         local test_node = ts_utils.get_root_for_position(row, column)
 						local comment_query = vim.treesitter.get_query("phpdoc", "Alpha_refactor_property_phpdoc")
 						for _, match in comment_query:iter_matches(test_node, 0) do
 							for _, subNode in pairs(match) do
-                                P(get_node_text(subNode, 0))
+                                local type = get_node_text(subNode, 0)
+                                if type ~= "null" then
+                                    table.insert(property_types, type)
+                                else
+                                    nullable = true
+                                end
 							end
 						end
 
-						local insert = {}
-						table.insert(insert, "")
-						table.insert(
-							insert,
-							string.format(
-								"    public function get%s(): %s",
-								utils.ucfirst(property_name),
-								table.concat(property_types, "|")
-							)
-						)
-						table.insert(insert, "    {")
-						table.insert(insert, string.format("        return $this->%s;", property_name))
-						table.insert(insert, "    }")
-						table.insert(insert, "")
-
-						table.insert(
-							insert,
-							string.format(
-								"    public function set%s(%s $%s): self",
-								utils.ucfirst(property_name),
-								table.concat(property_types, "|"),
-								property_name
-							)
-						)
-						table.insert(insert, "    {")
-						table.insert(insert, string.format("        $this->%s = $%s;", property_name, property_name))
-						table.insert(insert, "")
-						table.insert(insert, string.format("        return $this;"))
-						table.insert(insert, "    }")
+                        local getter = generator.getGetter(property_name, nullable, property_types)
+                        local setter = generator.getSetter(property_name, nullable, property_types)
 
                         -- this is using the last line of file mines 2
-						vim.api.nvim_buf_set_lines(0, #context.content - 2, #context.content - 2, false, insert)
+						vim.api.nvim_buf_set_lines(0, #context.content - 2, #context.content - 2, false, tableConcat(getter, setter))
 					end,
 				},
 			}
