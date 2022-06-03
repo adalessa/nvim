@@ -7,8 +7,6 @@ end
 iron.setup({
 	config = {
 		highlight_last = "IronLastSent",
-		-- If iron should expose `<plug>(...)` mappings for the plugins
-		should_map_plug = false,
 		-- Whether a repl should be discarded or not
 		scratch_repl = true,
 		close_window_on_exit = true,
@@ -21,6 +19,9 @@ iron.setup({
 				command = { "node" },
 			},
 			php = {
+				command = { "psysh" },
+			},
+			tinker = {
 				command = { "sail", "tinker" },
 			},
 		},
@@ -32,7 +33,7 @@ iron.setup({
 		send_motion = "<space>sc",
 		visual_send = "<space>sc",
 		send_line = "<space>sl",
-		repeat_cmd = "<space>s.",
+		send_mark = "<space>s.",
 		cr = "<space>s<cr>",
 		interrupt = "<space>s<space>",
 		exit = "<space>sq",
