@@ -1,8 +1,5 @@
 scriptencoding utf-8
 
-nnoremap * /\<<C-R>=expand('<cword>')<CR>\><CR>
-nnoremap # ?\<<C-R>=expand('<cword>')<CR>\><CR>
-
 vnoremap <leader>p "_dP
 
 nnoremap Y y$

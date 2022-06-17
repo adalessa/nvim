@@ -45,7 +45,9 @@ vim.treesitter.set_query(
     ]]
 )
 
-local php_setter_getter_actions = {
+local M = {}
+
+M.php_setter_getter_actions = {
 	method = null_ls.methods.CODE_ACTION,
 	filetypes = { "php" },
 	generator = {
@@ -86,6 +88,7 @@ local php_setter_getter_actions = {
 						for _, match in comment_query:iter_matches(test_node, 0) do
 							for _, subNode in pairs(match) do
                                 local type = get_node_text(subNode, 0)
+                                P(type)
                                 if type ~= "null" then
                                     table.insert(property_types, type)
                                 else
@@ -94,6 +97,7 @@ local php_setter_getter_actions = {
 							end
 						end
 
+                        P(property_types)
                         local getter = generator.getGetter(property_name, nullable, property_types)
                         local setter = generator.getSetter(property_name, nullable, property_types)
 
@@ -126,6 +130,5 @@ local php_setter_getter_actions = {
 		end,
 	},
 }
--- uncomment when not developing this
-null_ls.reset_sources()
-null_ls.register(php_setter_getter_actions)
+
+return M

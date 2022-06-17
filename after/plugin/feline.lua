@@ -29,7 +29,7 @@ feline.winbar.setup({
                     provider = {
                         name = 'file_info',
                         opts = {
-                            type = 'full-path',
+                            type = 'relative',
                             file_modified_icon = ''
                         },
                     },
@@ -46,7 +46,7 @@ feline.winbar.setup({
                     provider = {
                         name = 'file_info',
                         opts = {
-                            type = 'full-path',
+                            type = 'relative',
                             file_modified_icon = ''
                         },
                     },

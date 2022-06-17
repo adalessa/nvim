@@ -95,10 +95,6 @@ return require("packer").startup(function(use)
 		"jose-elias-alvarez/null-ls.nvim",
 	})
 
-	use("github/copilot.vim")
-
-	use("kdheepak/lazygit.nvim")
-
 	use({
 		"nvim-telescope/telescope.nvim",
 		requires = {
@@ -127,10 +123,6 @@ return require("packer").startup(function(use)
 		end,
 	})
 
-	-- use({
-	-- 	"nvim-lualine/lualine.nvim",
-	-- 	requires = { "kyazdani42/nvim-web-devicons", opt = true },
-	-- })
 	use("feline-nvim/feline.nvim")
 
 	use({
@@ -143,13 +135,7 @@ return require("packer").startup(function(use)
 		},
 	})
 
-	use({
-		"noahfrederick/vim-laravel",
-		requires = {
-			{ "tpope/vim-projectionist" },
-			{ "noahfrederick/vim-composer" },
-		},
-	})
+	use({ "noahfrederick/vim-composer" })
 
 	use({
 		"folke/trouble.nvim",

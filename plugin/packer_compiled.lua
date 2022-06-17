@@ -114,11 +114,6 @@ _G.packer_plugins = {
     path = "/home/adalessa/.local/share/nvim/site/pack/packer/start/colorbuddy.nvim",
     url = "https://github.com/tjdevries/colorbuddy.nvim"
   },
-  ["copilot.vim"] = {
-    loaded = true,
-    path = "/home/adalessa/.local/share/nvim/site/pack/packer/start/copilot.vim",
-    url = "https://github.com/github/copilot.vim"
-  },
   delimitMate = {
     loaded = true,
     path = "/home/adalessa/.local/share/nvim/site/pack/packer/start/delimitMate",
@@ -164,11 +159,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/adalessa/.local/share/nvim/site/pack/packer/start/iron.nvim",
     url = "https://github.com/hkupty/iron.nvim"
-  },
-  ["lazygit.nvim"] = {
-    loaded = true,
-    path = "/home/adalessa/.local/share/nvim/site/pack/packer/start/lazygit.nvim",
-    url = "https://github.com/kdheepak/lazygit.nvim"
   },
   ["lspkind-nvim"] = {
     loaded = true,
@@ -389,11 +379,6 @@ _G.packer_plugins = {
     path = "/home/adalessa/.local/share/nvim/site/pack/packer/start/vim-fugitive",
     url = "https://github.com/tpope/vim-fugitive"
   },
-  ["vim-laravel"] = {
-    loaded = true,
-    path = "/home/adalessa/.local/share/nvim/site/pack/packer/start/vim-laravel",
-    url = "https://github.com/noahfrederick/vim-laravel"
-  },
   ["vim-maximizer"] = {
     loaded = true,
     path = "/home/adalessa/.local/share/nvim/site/pack/packer/start/vim-maximizer",
@@ -403,11 +388,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/adalessa/.local/share/nvim/site/pack/packer/start/vim-obsession",
     url = "https://github.com/tpope/vim-obsession"
-  },
-  ["vim-projectionist"] = {
-    loaded = true,
-    path = "/home/adalessa/.local/share/nvim/site/pack/packer/start/vim-projectionist",
-    url = "https://github.com/tpope/vim-projectionist"
   },
   ["vim-repeat"] = {
     loaded = true,
@@ -445,10 +425,6 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
--- Config for: nvim-colorizer.lua
-time([[Config for nvim-colorizer.lua]], true)
-try_loadstring("\27LJ\2\n;\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\14colorizer\frequire\0", "config", "nvim-colorizer.lua")
-time([[Config for nvim-colorizer.lua]], false)
 -- Config for: nvim-projectconfig
 time([[Config for nvim-projectconfig]], true)
 try_loadstring("\27LJ\2\n@\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\23nvim-projectconfig\frequire\0", "config", "nvim-projectconfig")
@@ -457,6 +433,10 @@ time([[Config for nvim-projectconfig]], false)
 time([[Config for git-worktree.nvim]], true)
 try_loadstring("\27LJ\2\n>\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\17git-worktree\frequire\0", "config", "git-worktree.nvim")
 time([[Config for git-worktree.nvim]], false)
+-- Config for: nvim-colorizer.lua
+time([[Config for nvim-colorizer.lua]], true)
+try_loadstring("\27LJ\2\n;\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\14colorizer\frequire\0", "config", "nvim-colorizer.lua")
+time([[Config for nvim-colorizer.lua]], false)
 
 -- Command lazy-loads
 time([[Defining lazy-load commands]], true)

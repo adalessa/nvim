@@ -95,6 +95,7 @@ local make = function(tbl)
 	return result
 end
 
+ls.cleanup()
 for _, ft_path in ipairs(vim.api.nvim_get_runtime_file("lua/alpha/snips/ft/*.lua", true)) do
 	local ft = vim.fn.fnamemodify(ft_path, ":t:r")
 	ls.add_snippets(ft, make(loadfile(ft_path)()))
