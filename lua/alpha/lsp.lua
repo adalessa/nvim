@@ -9,6 +9,9 @@ local filetype_attach = setmetatable({
       augroup END
     ]])
 	end,
+
+    gdscript = function (_)
+    end
 }, {
 	__index = function()
 		return function() end
@@ -53,6 +56,10 @@ lsp_installer.on_server_ready(function(server)
 	server:setup(opts)
 	vim.cmd([[ do User LspAttachBuffers ]])
 end)
+
+require("lspconfig").gdscript.setup({
+    on_attach = on_attach,
+})
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
 	underline = true,

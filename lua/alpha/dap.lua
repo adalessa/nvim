@@ -2,10 +2,26 @@ local dap, dapui, dap_install = require("dap"), require("dapui"), require("dap-i
 local api = vim.api
 
 dapui.setup({
-	sidebar = {
-		size = 80,
-		position = "right",
-	},
+  layouts = {
+    {
+      elements = {
+        'scopes',
+        'breakpoints',
+        'stacks',
+        'watches',
+      },
+      size = 80,
+      position = 'right',
+    },
+    {
+      elements = {
+        'repl',
+        'console',
+      },
+      size = 10,
+      position = 'bottom',
+    },
+  },
 })
 
 require("dap-go").setup()

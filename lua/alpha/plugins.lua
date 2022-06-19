@@ -193,4 +193,6 @@ return require("packer").startup(function(use)
 	-- Local plugins can be included
 	local_use("telescope-projectionist.nvim")
 	local_use("telescope-laravel.nvim")
+
+    use({"habamax/vim-godot"})
 end)
