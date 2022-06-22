@@ -46,8 +46,6 @@ return require("packer").startup(function(use)
 		},
 	})
 
-	use({ "kevinhwang91/nvim-bqf", ft = "qf" })
-
 	-- optional
 	use({ "junegunn/fzf.vim" })
 	use({
@@ -142,8 +140,18 @@ return require("packer").startup(function(use)
 		requires = "kyazdani42/nvim-web-devicons",
 	})
 
-	use("szw/vim-maximizer")
 	use("vim-test/vim-test")
+    use {
+        "nvim-neotest/neotest",
+        requires = {
+            "nvim-lua/plenary.nvim",
+            "nvim-treesitter/nvim-treesitter",
+            "antoinemadec/FixCursorHold.nvim",
+            "nvim-neotest/neotest-go",
+            "nvim-neotest/neotest-vim-test",
+        }
+    }
+
 	use("rcarriga/nvim-notify")
 
 	-- use("dracula/vim")
