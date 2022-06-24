@@ -12,14 +12,16 @@ neotest.setup({
     },
 })
 
-vim.keymap.set("n", "t<C-n>", function()
+-- Not working for behat
+-- So add the leader, not ideal but for now is the best
+vim.keymap.set("n", "<leader>t<C-n>", function()
     neotest.run.run()
 end, { silent = true, noremap = true })
 
-vim.keymap.set("n", "t<C-f>", function()
+vim.keymap.set("n", "<leader>t<C-f>", function()
     neotest.run.run(vim.fn.expand("%"))
 end, { silent = true, noremap = true })
 
-vim.keymap.set("n", "t<C-s>", function()
+vim.keymap.set("n", "<leader>t<C-s>", function()
     neotest.summary.toggle()
 end, { silent = true, noremap = true })
