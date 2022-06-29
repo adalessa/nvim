@@ -5,7 +5,6 @@ if require "alpha.first_load"() then
 end
 
 vim.g.mapleader = " "
-
 vim.g.snippets = "luasnip"
 
 require "alpha.globals"
