@@ -141,16 +141,16 @@ return require("packer").startup(function(use)
 	})
 
 	use("vim-test/vim-test")
-    use {
-        "nvim-neotest/neotest",
-        requires = {
-            "nvim-lua/plenary.nvim",
-            "nvim-treesitter/nvim-treesitter",
-            "antoinemadec/FixCursorHold.nvim",
-            "nvim-neotest/neotest-go",
-            "nvim-neotest/neotest-vim-test",
-        }
-    }
+	use({
+		"nvim-neotest/neotest",
+		requires = {
+			"nvim-lua/plenary.nvim",
+			"nvim-treesitter/nvim-treesitter",
+			"antoinemadec/FixCursorHold.nvim",
+			"nvim-neotest/neotest-go",
+			"nvim-neotest/neotest-vim-test",
+		},
+	})
 
 	use("rcarriga/nvim-notify")
 
@@ -196,11 +196,12 @@ return require("packer").startup(function(use)
 
 	use({ "vimwiki/vimwiki", opt = true, cmd = { "VimwikiIndex" } })
 
-    use({"hkupty/iron.nvim"})
+	use({ "hkupty/iron.nvim" })
 
 	-- Local plugins can be included
 	local_use("telescope-projectionist.nvim")
 	local_use("telescope-laravel.nvim")
 
-    use({"habamax/vim-godot"})
+	use("habamax/vim-godot")
+	use("junegunn/vim-easy-align")
 end)
