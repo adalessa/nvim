@@ -40,7 +40,7 @@ function M.search_config()
 end
 
 function M.grep_string()
-	vim.ui.input("Grep for > ", function(input)
+	vim.ui.input({ prompt = "Grep for > " }, function(input)
 		if input == nil then
 			return
 		end
