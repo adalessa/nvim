@@ -4,7 +4,7 @@ if not ok then
     return
 end
 
-local my_sources = require("alpha.php_code_actions")
+local my_sources = R("alpha.php_code_actions")
 
 local sources = {
     null_ls.builtins.code_actions.gitsigns,
@@ -21,6 +21,9 @@ local sources = {
 
     my_sources.php_setter_getter_actions,
 }
+
+-- null_ls.reset_sources()
+-- null_ls.register(sources)
 
 null_ls.setup({
     sources = sources,

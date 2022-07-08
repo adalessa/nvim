@@ -65,7 +65,7 @@ local M = {
 ]],
 		{
 			i(1, "type"),
-			d(2, visibility, {}, "private"),
+			visibility(2, "private"),
 			i(3, "var"),
 		}
 	),

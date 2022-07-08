@@ -15,7 +15,7 @@ local actions = require("telescope.actions")
 local M = {}
 
 function M.project_files()
-	local opts = {} -- define here if you want to define something
+	local opts = {show_untracked = true} -- define here if you want to define something
 	local ok = pcall(require("telescope.builtin").git_files, opts)
 	if not ok then
 		require("telescope.builtin").find_files(opts)
