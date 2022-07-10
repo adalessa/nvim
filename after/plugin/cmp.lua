@@ -3,7 +3,7 @@ if not ok then
 	return
 end
 
-local _ = require("alpha.colors")
+-- local _ = require("alpha.colors")
 
 local lspkind = require("lspkind")
 local luasnip = require("luasnip")
