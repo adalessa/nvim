@@ -14,3 +14,12 @@ Group.new('NonText' , groups.Comment    , groups.Comment   , groups.Comment)
 
 -- Define highlights in relative terms of other colors
 Group.new('Error'           , colors.red:light() , nil               , styles.bold)
+
+local g = require("colorbuddy.group").groups
+local s = require("colorbuddy.style").styles
+
+Group.new("CmpItemAbbr", g.Comment)
+Group.new("CmpItemAbbrDeprecated", g.Error)
+Group.new("CmpItemAbbrMatchFuzzy", g.CmpItemAbbr.fg:dark(), nil, s.italic)
+Group.new("CmpItemKind", g.Special)
+Group.new("CmpItemMenu", g.NonText)

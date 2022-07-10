@@ -3,6 +3,8 @@ if not ok then
 	return
 end
 
+local _ = require("alpha.colors")
+
 local lspkind = require("lspkind")
 local luasnip = require("luasnip")
 local cmp_autopairs = require("nvim-autopairs.completion.cmp")
@@ -127,12 +129,3 @@ require("lspconfig")["emmet_ls"].setup({
 	capabilities = capabilities,
 })
 
-local Group = require("colorbuddy.group").Group
-local g = require("colorbuddy.group").groups
-local s = require("colorbuddy.style").styles
-
-Group.new("CmpItemAbbr", g.Comment)
-Group.new("CmpItemAbbrDeprecated", g.Error)
-Group.new("CmpItemAbbrMatchFuzzy", g.CmpItemAbbr.fg:dark(), nil, s.italic)
-Group.new("CmpItemKind", g.Special)
-Group.new("CmpItemMenu", g.NonText)
