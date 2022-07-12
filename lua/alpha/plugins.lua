@@ -126,6 +126,7 @@ return require("packer").startup(function(use)
 	use({
 		"leoluz/nvim-dap-go",
 		requires = {
+            "theHamsta/nvim-dap-virtual-text",
 			"rcarriga/nvim-dap-ui",
 			"mfussenegger/nvim-dap",
 			{ "Pocco81/DAPInstall.nvim", branch = "dev" },

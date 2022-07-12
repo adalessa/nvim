@@ -1,30 +1,32 @@
-local dap, dapui, dap_install = require("dap"), require("dapui"), require("dap-install")
-local api = vim.api
+local dap, dapui, dap_install, dap_go = require("dap"), require("dapui"), require("dap-install"), require("dap-go")
+
+require("nvim-dap-virtual-text").setup()
 
 dapui.setup({
-  layouts = {
-    {
-      elements = {
-        'scopes',
-        'breakpoints',
-        'stacks',
-        'watches',
-      },
-      size = 80,
-      position = 'right',
-    },
-    {
-      elements = {
-        'repl',
-        -- 'console',
-      },
-      size = 30,
-      position = 'bottom',
-    },
-  },
+	icons = { expanded = "▾", collapsed = "▸" },
+	layouts = {
+		{
+			elements = {
+				"scopes",
+				"breakpoints",
+				"stacks",
+				"watches",
+			},
+			size = 80,
+			position = "left",
+		},
+		{
+			elements = {
+				"repl",
+				-- 'console',
+			},
+			size = 10,
+			position = "bottom",
+		},
+	},
 })
 
-require("dap-go").setup()
+dap_go.setup()
 
 vim.fn.sign_define("DapBreakpoint", { text = "ß", texthl = "", linehl = "", numhl = "" })
 
@@ -48,78 +50,39 @@ dap_install.config("php", {
 
 -- Events Listeners
 dap.listeners.after.event_initialized["dapui_config"] = function()
-	dapui.open()
+	dapui.open({})
 end
 
-local function with_win(win, fn, ...)
-	local cur_win = api.nvim_get_current_win()
-	api.nvim_set_current_win(win)
-	local ok, err = pcall(fn, ...)
-	api.nvim_set_current_win(cur_win)
-	assert(ok, err)
-end
+-- command to start debugging
+-- run dap continue and enable the keybindings
+-- when finish delete all keybindings
 
-local function jump_to_location(bufnr, line, column)
-	-- vscode-go sends columns with 0
-	-- That would cause a "Column value outside range" error calling nvim_win_set_cursor
-	-- nvim-dap says "columnsStartAt1 = true" on initialize :/
-	if column == 0 then
-		column = 1
-	end
-	for _, tab in pairs(api.nvim_list_tabpages()) do
-		for _, win in pairs(api.nvim_tabpage_list_wins(tab)) do
-			if api.nvim_win_get_buf(win) == bufnr then
-				api.nvim_win_set_cursor(win, { line, column - 1 })
-				api.nvim_set_current_tabpage(tab)
-				api.nvim_set_current_win(win)
-				return
-			end
-		end
-	end
-	-- TODO review
-	-- Buffer isn't active in any window; use the first window that is not special
-	-- (Don't want to move to code in the REPL...)
-	for _, win in pairs(api.nvim_tabpage_list_wins(0)) do
-		local winbuf = api.nvim_win_get_buf(win)
-		if api.nvim_buf_get_option(winbuf, "buftype") == "" then
-			local bufchanged, _ = pcall(api.nvim_win_set_buf, win, bufnr)
-			if bufchanged then
-				api.nvim_win_set_cursor(win, { line, column - 1 })
-				with_win(win, api.nvim_command, "normal zv")
-				return
-			end
-		end
-	end
-end
+local bindings = {
+	{ mode = "n", lhs = "<leader>dd", rhs = dap.continue },
+	{ mode = "n", lhs = "<leader>dbp", rhs = dap.toggle_breakpoint },
+	{ mode = "n", lhs = "<leader>dl", rhs = dap.step_into },
+	{ mode = "n", lhs = "<leader>dj", rhs = dap.step_over },
+	{ mode = "n", lhs = "<leader>dk", rhs = dap.step_out },
+	{ mode = "n", lhs = "<leader>dc", rhs = dap.run_to_cursor },
+	{ mode = "v", lhs = "<leader>dv", rhs = dapui.eval },
+}
 
-dap.listeners.after["event_stopped"]["alpha"] = function(session, body)
-	if body.reason ~= "breakpoint" then
-		return
+vim.keymap.set("n", "<leader>dst", function()
+	dap.continue()
+	for _, bind in pairs(bindings) do
+		vim.keymap.set(bind.mode, bind.lhs, bind.rhs, { noremap = true })
 	end
-	if not session.current_frame then
-		return
+end, { noremap = true })
+
+vim.keymap.set("n", "<leader>dsp", function()
+	dap.terminate()
+	dapui.close({})
+	dap.clear_breakpoints()
+
+	for _, bind in pairs(bindings) do
+		vim.keymap.del("n", bind.lhs)
 	end
-	local path = session.current_frame.source.path
-	local line = session.current_frame.line
-	local column = session.current_frame.column
+end, { noremap = true })
 
-	local bufnr = vim.uri_to_bufnr(vim.uri_from_fname(path))
-	vim.fn.bufload(bufnr)
-	jump_to_location(bufnr, line, column)
-end
-
-vim.keymap.set("n", "<leader>dbp", require("dap").toggle_breakpoint, { noremap = true })
-vim.keymap.set("n", "<leader>dd", require("dap").continue, { noremap = true })
-vim.keymap.set("n", "<leader>de", require("alpha.dap-fn").stop, { noremap = true })
-vim.keymap.set("n", "<leader>dl", require("dap").step_into, { noremap = true })
-vim.keymap.set("n", "<leader>dj", require("dap").step_over, { noremap = true })
-vim.keymap.set("n", "<leader>dk", require("dap").step_out, { noremap = true })
-vim.keymap.set("n", "<leader>dt", require("dap").repl.toggle, { noremap = true })
-vim.keymap.set("n", "<leader>ds", require("alpha.dap-fn").scopes, { noremap = true })
-vim.keymap.set("n", "<leader>da", require("alpha.dap-fn").fullscopes, { noremap = true })
-vim.keymap.set("n", "<leader>dbl", require("dap").list_breakpoints, { noremap = true })
-vim.keymap.set("n", "<leader>dbc", require("dap").clear_breakpoints, { noremap = true })
-vim.keymap.set("n", "<leader>dc", require("dap").run_to_cursor, { noremap = true })
-vim.keymap.set("v", "<leader>dk", require("dapui").eval, { noremap = true })
 -- can be skipped since I can do it running the continue and promt to use the "Debug test"
-vim.keymap.set("n", "<leader>dtt", require("dap-go").debug_test, { noremap = true })
+vim.keymap.set("n", "<leader>dtt", dap_go.debug_test, { noremap = true })
