@@ -65,6 +65,11 @@ local bindings = {
 	{ mode = "n", lhs = "<leader>dk", rhs = dap.step_out },
 	{ mode = "n", lhs = "<leader>dc", rhs = dap.run_to_cursor },
 	{ mode = "v", lhs = "<leader>dv", rhs = dapui.eval },
+	{ mode = "n", lhs = "<leader>dcb", rhs = function ()
+        vim.ui.input({prompt = "Condition: "}, function (condition)
+            dap.toggle_breakpoint(condition)
+        end)
+	end },
 }
 
 vim.keymap.set("n", "<leader>dst", function()
@@ -80,7 +85,7 @@ vim.keymap.set("n", "<leader>dsp", function()
 	dap.clear_breakpoints()
 
 	for _, bind in pairs(bindings) do
-		vim.keymap.del("n", bind.lhs)
+		vim.keymap.del(bind.mode, bind.lhs)
 	end
 end, { noremap = true })
 
