@@ -57,6 +57,8 @@ end
 -- run dap continue and enable the keybindings
 -- when finish delete all keybindings
 
+-- TODO create a hydra for debug
+
 local bindings = {
 	{ mode = "n", lhs = "<leader>dd", rhs = dap.continue },
 	{ mode = "n", lhs = "<leader>dbp", rhs = dap.toggle_breakpoint },
