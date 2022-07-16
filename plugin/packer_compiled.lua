@@ -292,6 +292,11 @@ _G.packer_plugins = {
     path = "/home/alpha/.local/share/nvim/site/pack/packer/start/packer.nvim",
     url = "https://github.com/wbthomason/packer.nvim"
   },
+  ["php-code-actions.nvim"] = {
+    loaded = true,
+    path = "/home/alpha/.local/share/nvim/site/pack/packer/start/php-code-actions.nvim",
+    url = "/home/alpha/plugins/php-code-actions.nvim"
+  },
   playground = {
     loaded = true,
     path = "/home/alpha/.local/share/nvim/site/pack/packer/start/playground",

@@ -162,6 +162,7 @@ require("telescope").setup {
 _ = require("telescope").load_extension "dap"
 _ = require("telescope").load_extension "notify"
 _ = require("telescope").load_extension "file_browser"
+-- makes the selection like lsp code actions in telescope
 _ = require("telescope").load_extension "ui-select"
 _ = require("telescope").load_extension "fzf"
 _ = require("telescope").load_extension "git_worktree"

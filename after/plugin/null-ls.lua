@@ -1,10 +1,9 @@
 local ok, null_ls = pcall(require, "null-ls")
-
 if not ok then
     return
 end
 
-local my_sources = R("alpha.php_code_actions")
+local php_actions = require("php-code-actions")
 
 local sources = {
     null_ls.builtins.code_actions.gitsigns,
@@ -18,12 +17,8 @@ local sources = {
     null_ls.builtins.code_actions.gitrebase,
     null_ls.builtins.code_actions.refactoring,
     null_ls.builtins.completion.luasnip,
-
-    my_sources.php_setter_getter_actions,
+    php_actions.getter_setter,
 }
-
--- null_ls.reset_sources()
--- null_ls.register(sources)
 
 null_ls.setup({
     sources = sources,
