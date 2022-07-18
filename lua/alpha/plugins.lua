@@ -156,8 +156,6 @@ return require("packer").startup(function(use)
 
 	use("rcarriga/nvim-notify")
 
-	-- use("dracula/vim")
-	-- use("joshdick/onedark.vim")
 	use("EdenEast/nightfox.nvim")
 
 	use("Raimondi/delimitMate")
@@ -166,12 +164,13 @@ return require("packer").startup(function(use)
 	use("tpope/vim-fugitive")
 	use("tpope/vim-repeat")
 	use("tpope/vim-obsession")
-	use("tpope/vim-vinegar")
+
 	-- usefull for unix functions
 	use("tpope/vim-eunuch")
 	use("tpope/vim-commentary")
 	use("tpope/vim-tbone")
 	use("tpope/vim-dispatch")
+	use("junegunn/vim-easy-align")
 
 	use("jwalton512/vim-blade")
 
@@ -206,7 +205,6 @@ return require("packer").startup(function(use)
 	local_use("php-code-actions.nvim")
 
 	use("habamax/vim-godot")
-	use("junegunn/vim-easy-align")
 
 	use({
 		"anuvyklack/hydra.nvim",

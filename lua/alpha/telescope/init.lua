@@ -53,7 +53,7 @@ function M.grep_word()
 end
 
 function M.find_symbol()
-	vim.ui.input("Symbol for > ", function(input)
+	vim.ui.input({ prompt = "Symbol for > " }, function(input)
 		if input == nil then
 			return
 		end
