@@ -6,4 +6,4 @@ end
 
 trouble.setup {}
 
-vim.keymap.set('n', '<leader>tt', ':TroubleToggle<cr>')
+--vim.keymap.set('n', '<leader>tt', ':TroubleToggle<cr>')

@@ -1,27 +1,48 @@
 local ok, neotest = pcall(require, "neotest")
 if not ok then
-    return
+	return
 end
 
 neotest.setup({
-    adapters = {
-        require("neotest-go"),
-        require("neotest-vim-test")({
-            ignore_file_types = { "go" },
-        }),
-    },
+	adapters = {
+		require("neotest-go"),
+		require("neotest-plenary"),
+		require("neotest-vim-test")({
+			ignore_file_types = { "go", "lua" },
+		}),
+	},
 })
 
--- Not working for behat
--- So add the leader, not ideal but for now is the best
-vim.keymap.set("n", "<leader>t<C-n>", function()
-    neotest.run.run()
-end, { silent = true, noremap = true })
+local hydra = require("hydra")
 
-vim.keymap.set("n", "<leader>t<C-f>", function()
-    neotest.run.run(vim.fn.expand("%"))
-end, { silent = true, noremap = true })
+local hint = [[
+ NeoTest
+ _n_: Near test  _f_: Current file   _s_: Toggle Summary ^
+ ^ ^                                            _<Esc>_
+]]
 
-vim.keymap.set("n", "<leader>t<C-s>", function()
-    neotest.summary.toggle()
-end, { silent = true, noremap = true })
+hydra({
+	name = "neotest",
+    hint = hint,
+	mode = "n",
+    config = {
+        color = "teal",
+        invoke_on_body = true,
+        hint = {
+            border = "rounded",
+            position = "bottom",
+        }
+    },
+	body = "<C-t>",
+	heads = {
+		{ "n", neotest.run.run },
+		{
+			"f",
+			function()
+				neotest.run.run(vim.fn.expand("%"))
+			end,
+		},
+		{ "s", neotest.summary.toggle },
+        { '<Esc>', nil, { exit = true } }
+	},
+})

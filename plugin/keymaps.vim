@@ -41,7 +41,7 @@ nnoremap <leader>o :lprev<CR>
 
 nnoremap <leader>bd :bd!<CR>
 
-nnoremap <expr> <leader>dp ":saveas " .  expand('%')
+nnoremap <expr> <leader><leader>dp ":saveas " .  expand('%')
 
 " For moving quickly up and down,
 " Goes to the first line above/below that isn't whitespace

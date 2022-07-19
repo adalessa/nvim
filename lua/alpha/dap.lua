@@ -53,43 +53,54 @@ dap.listeners.after.event_initialized["dapui_config"] = function()
 	dapui.open({})
 end
 
--- command to start debugging
--- run dap continue and enable the keybindings
--- when finish delete all keybindings
+local hydra = require("hydra")
+local hint = [[
+ Nvim DAP
+ _d_: Start/Continue  _j_: StepOver _k_: StepOut _l_: StepInto ^
+ _bp_: Toogle Breakpoint  _cb_: Conditional Breakpoint ^
+ _c_: Run To Cursor  _tt_: Go Debug Test
+ _sp_: Stop Debbuging
+ ^^                                                      _<Esc>_
+]]
+hydra({
+	name = "dap",
+	hint = hint,
+	mode = "n",
+	config = {
+		color = "amaranth",
+		invoke_on_body = true,
+		hint = {
+			border = "rounded",
+			position = "bottom",
+		},
+	},
+	body = "<leader>d",
+	heads = {
+		{ "d", dap.continue },
+		{ "bp", dap.toggle_breakpoint },
+		{ "l", dap.step_into },
+		{ "j", dap.step_over },
+		{ "k", dap.step_out },
+		{ "c", dap.run_to_cursor },
+		{ "tt", dap_go.debug_test },
+		{
+			"cb",
+			function()
+				vim.ui.input({ prompt = "Condition: " }, function(condition)
+					dap.toggle_breakpoint(condition)
+				end)
+			end,
+		},
 
--- TODO create a hydra for debug
+		{
+			"sp",
+			function()
+				dap.terminate()
+				dapui.close({})
+				dap.clear_breakpoints()
+			end,
+		},
 
-local bindings = {
-	{ mode = "n", lhs = "<leader>dd", rhs = dap.continue },
-	{ mode = "n", lhs = "<leader>dbp", rhs = dap.toggle_breakpoint },
-	{ mode = "n", lhs = "<leader>dl", rhs = dap.step_into },
-	{ mode = "n", lhs = "<leader>dj", rhs = dap.step_over },
-	{ mode = "n", lhs = "<leader>dk", rhs = dap.step_out },
-	{ mode = "n", lhs = "<leader>dc", rhs = dap.run_to_cursor },
-	{ mode = "v", lhs = "<leader>dv", rhs = dapui.eval },
-	{ mode = "n", lhs = "<leader>dcb", rhs = function ()
-        vim.ui.input({prompt = "Condition: "}, function (condition)
-            dap.toggle_breakpoint(condition)
-        end)
-	end },
-}
-
-vim.keymap.set("n", "<leader>dst", function()
-	dap.continue()
-	for _, bind in pairs(bindings) do
-		vim.keymap.set(bind.mode, bind.lhs, bind.rhs, { noremap = true })
-	end
-end, { noremap = true })
-
-vim.keymap.set("n", "<leader>dsp", function()
-	dap.terminate()
-	dapui.close({})
-	dap.clear_breakpoints()
-
-	for _, bind in pairs(bindings) do
-		vim.keymap.del(bind.mode, bind.lhs)
-	end
-end, { noremap = true })
-
--- can be skipped since I can do it running the continue and promt to use the "Debug test"
-vim.keymap.set("n", "<leader>dtt", dap_go.debug_test, { noremap = true })
+		{ "<Esc>", nil, { exit = true } },
+	},
+})
