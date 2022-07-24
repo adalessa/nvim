@@ -1,14 +1,18 @@
 local telescope_mapper = require("alpha.telescope.mappings")
 
-local filetype_attach = setmetatable({
-	go = function(_)
+local format_on_save = function(_)
 		vim.cmd([[
       augroup lsp_buf_format
         au! BufWritePre <buffer>
-        autocmd BufWritePre <buffer> :lua vim.lsp.buf.formatting_sync()
+        autocmd BufWritePre <buffer> :lua vim.lsp.buf.format({ async = true })
       augroup END
     ]])
-	end,
+	end
+
+local filetype_attach = setmetatable({
+	go = format_on_save,
+    php = format_on_save,
+    lua = format_on_save,
 
 	gdscript = function(_) end,
 }, {
@@ -42,12 +46,12 @@ local function on_attach(client)
 	filetype_attach[filetype](client)
 end
 
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-	underline = true,
-	update_in_insert = false,
-	virtual_text = { spacing = 2, prefix = "●" },
-	severity_sort = true,
-})
+-- vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+-- 	underline = true,
+-- 	update_in_insert = false,
+-- 	virtual_text = { spacing = 2, prefix = "●" },
+-- 	severity_sort = true,
+-- })
 
 local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
 for type, icon in pairs(signs) do

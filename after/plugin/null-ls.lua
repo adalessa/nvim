@@ -11,6 +11,7 @@ local sources = {
     null_ls.builtins.diagnostics.eslint,
     null_ls.builtins.diagnostics.phpstan,
     null_ls.builtins.formatting.phpcsfixer,
+    null_ls.builtins.formatting.pint,
     null_ls.builtins.diagnostics.golangci_lint,
     -- null_ls.builtins.formatting.goimports,
     null_ls.builtins.formatting.jq,

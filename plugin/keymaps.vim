@@ -28,7 +28,7 @@ vnoremap <leader>s :!sort<CR>
 " nnoremap <leader>wq :wincmd q<CR>
 
 " Make windows to be basically the same size
-nnoremap <leader>= <C-w>=
+" nnoremap <leader>= <C-w>=
 
 nnoremap <leader>wsv :vsp<CR>
 nnoremap <leader>wsh :sp<CR>

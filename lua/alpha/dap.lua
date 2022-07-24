@@ -1,4 +1,4 @@
-local dap, dapui, dap_install, dap_go = require("dap"), require("dapui"), require("dap-install"), require("dap-go")
+local dap, dapui, dap_go = require("dap"), require("dapui"), require("dap-go")
 
 require("nvim-dap-virtual-text").setup()
 
@@ -30,22 +30,24 @@ dap_go.setup()
 
 vim.fn.sign_define("DapBreakpoint", { text = "ß", texthl = "", linehl = "", numhl = "" })
 
-dap_install.config("php", {
-	configurations = {
-		{
-			type = "php",
-			request = "launch",
-			name = "Listen for Xdebug",
-			port = 9003,
-			pathMappings = function()
-				local sail = vim.call("composer#query", "require-dev.laravel/sail")
-				if sail == "" then
-					return { ["/app"] = vim.fn.getcwd() }
-				end
-				return { ["/var/www/html"] = vim.fn.getcwd() }
-			end,
-		},
-	},
+dap.adapters.php = {
+	type = "executable",
+	command = "node",
+	args = { "php-debug-adapter" },
+}
+
+dap.configurations.php({
+	type = "php",
+	request = "launch",
+	name = "Listen for Xdebug",
+	port = 9003,
+	pathMappings = function()
+		local sail = vim.call("composer#query", "require-dev.laravel/sail")
+		if sail == "" then
+			return { ["/app"] = vim.fn.getcwd() }
+		end
+		return { ["/var/www/html"] = vim.fn.getcwd() }
+	end,
 })
 
 -- Events Listeners
