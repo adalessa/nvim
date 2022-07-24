@@ -1,18 +1,18 @@
 local telescope_mapper = require("alpha.telescope.mappings")
 
 local format_on_save = function(_)
-		vim.cmd([[
+	vim.cmd([[
       augroup lsp_buf_format
         au! BufWritePre <buffer>
         autocmd BufWritePre <buffer> :lua vim.lsp.buf.format({ async = true })
       augroup END
     ]])
-	end
+end
 
 local filetype_attach = setmetatable({
 	go = format_on_save,
-    php = format_on_save,
-    lua = format_on_save,
+	php = format_on_save,
+	--    lua = format_on_save,
 
 	gdscript = function(_) end,
 }, {
