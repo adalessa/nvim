@@ -3,8 +3,6 @@ if not ok then
 	return
 end
 
--- local _ = require("alpha.colors")
-
 local lspkind = require("lspkind")
 local luasnip = require("luasnip")
 local cmp_autopairs = require("nvim-autopairs.completion.cmp")
@@ -128,4 +126,3 @@ local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protoco
 require("lspconfig")["emmet_ls"].setup({
 	capabilities = capabilities,
 })
-
