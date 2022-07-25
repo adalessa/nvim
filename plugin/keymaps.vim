@@ -20,21 +20,11 @@ vnoremap > >gv
 
 vnoremap <leader>s :!sort<CR>
 
-" move to use HYDRA
-" nnoremap <leader>wh :wincmd h<CR>
-" nnoremap <leader>wj :wincmd j<CR>
-" nnoremap <leader>wk :wincmd k<CR>
-" nnoremap <leader>wl :wincmd l<CR>
-" nnoremap <leader>wq :wincmd q<CR>
-
-" Make windows to be basically the same size
-" nnoremap <leader>= <C-w>=
-
 nnoremap <leader>wsv :vsp<CR>
 nnoremap <leader>wsh :sp<CR>
 
-nnoremap <leader>j :cnext<CR>
-nnoremap <leader>k :cprev<CR>
+nnoremap <leader>j :cnext<CR>zz
+nnoremap <leader>k :cprev<CR>zz
 
 nnoremap <leader>i :lnext<CR>
 nnoremap <leader>o :lprev<CR>
