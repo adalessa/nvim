@@ -1,6 +1,7 @@
 local dap, dapui, dap_go = require("dap"), require("dapui"), require("dap-go")
 
 require("nvim-dap-virtual-text").setup()
+-- dap.set_log_level('TRACE')
 
 dapui.setup({
 	icons = { expanded = "▾", collapsed = "▸" },
@@ -29,12 +30,15 @@ dap_go.setup()
 
 vim.fn.sign_define("DapBreakpoint", { text = "ß", texthl = "", linehl = "", numhl = "" })
 
+-- TODO replace with mason for check if installed and get the path
+-- the binary does not work
+local php_debug_adapter = vim.fn.stdpath("data") .. "/mason/packages/php-debug-adapter/extension/out/phpDebug.js"
+
 dap.adapters.php = {
 	type = "executable",
 	command = "node",
-	args = { "php-debug-adapter" },
+	args = { php_debug_adapter },
 }
-
 dap.configurations.php = {
 	{
 		type = "php",
