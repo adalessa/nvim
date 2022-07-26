@@ -7,7 +7,7 @@ end
 hydra({
     name = "windows",
     mode = "n",
-    body = "<C-w>",
+    body = "<leader>w",
     heads = {
         { 'l', '<C-w>l' },
         { 'h', '<C-w>h' },

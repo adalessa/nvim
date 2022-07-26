@@ -64,7 +64,7 @@ local hydra = require("hydra")
 local hint = [[
  Nvim DAP
  _d_: Start/Continue  _j_: StepOver _k_: StepOut _l_: StepInto ^
- _bp_: Toogle Breakpoint  _cb_: Conditional Breakpoint ^
+ _bp_: Toogle Breakpoint  _bc_: Conditional Breakpoint ^
  _c_: Run To Cursor  _tt_: Go Debug Test
  _s_: Start         _x_: Stop Debbuging
  ^^                                                      _<Esc>_
@@ -84,7 +84,10 @@ hydra({
 	body = "<leader>d",
 	heads = {
 		{ "d", dap.continue },
-		{ "s", dapui.open },
+		{ "s", function ()
+		    dap.continue()
+            dapui.open({})
+		end },
 		{ "bp", dap.toggle_breakpoint },
 		{ "l", dap.step_into },
 		{ "j", dap.step_over },
@@ -92,7 +95,7 @@ hydra({
 		{ "c", dap.run_to_cursor },
 		{ "tt", dap_go.debug_test },
 		{
-			"cb",
+			"bc",
 			function()
 				vim.ui.input({ prompt = "Condition: " }, function(condition)
 					dap.toggle_breakpoint(condition)

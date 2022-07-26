@@ -94,7 +94,11 @@ return require("packer").startup(function(use)
         "jose-elias-alvarez/null-ls.nvim",
     })
 
-    use({ "williamboman/mason.nvim", "williamboman/mason-lspconfig.nvim" })
+    -- Instalation of LSP/Debuggers/Other
+    use({
+        "williamboman/mason.nvim",
+        "williamboman/mason-lspconfig.nvim",
+    })
 
     use({
         "nvim-telescope/telescope.nvim",

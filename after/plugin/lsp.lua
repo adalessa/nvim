@@ -11,7 +11,7 @@ end
 
 local filetype_attach = setmetatable({
 	go = format_on_save,
-	php = format_on_save,
+	-- php = format_on_save,
 	--    lua = format_on_save,
 
 	gdscript = function(_) end,
