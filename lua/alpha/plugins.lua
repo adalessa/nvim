@@ -154,6 +154,7 @@ return require("packer").startup(function(use)
             "nvim-treesitter/nvim-treesitter",
             "antoinemadec/FixCursorHold.nvim",
             "nvim-neotest/neotest-go",
+            "rouge8/neotest-rust",
             "nvim-neotest/neotest-plenary",
             "nvim-neotest/neotest-vim-test",
         },

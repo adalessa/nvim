@@ -6,9 +6,10 @@ end
 neotest.setup({
 	adapters = {
 		require("neotest-go"),
+		require("neotest-rust"),
 		require("neotest-plenary"),
 		require("neotest-vim-test")({
-			ignore_file_types = { "go", "lua" },
+			ignore_file_types = { "go", "lua", "rust" },
 		}),
 	},
 })

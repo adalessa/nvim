@@ -36,6 +36,7 @@ function M.search_config()
 	require("telescope.builtin").git_files({
 		prompt_title = "< dotfiles >",
 		cwd = "$HOME/.dotfiles",
+        show_untracked = true
 	})
 end
 
