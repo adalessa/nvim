@@ -7,4 +7,13 @@ vim.diagnostic.config({
   virtual_text = false,
 })
 
+vim.diagnostic.config({ virtual_lines = { only_current_line = true } })
+
 lsp_lines.setup()
+
+vim.keymap.set(
+  "",
+  "<Leader>l",
+  require("lsp_lines").toggle,
+  { desc = "Toggle lsp_lines" }
+)

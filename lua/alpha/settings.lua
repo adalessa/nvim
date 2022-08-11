@@ -35,3 +35,5 @@ options.listchars = "tab:\\ ,trail:-"
 options.laststatus = 3
 options.cmdheight = 1
 options.updatetime = 50
+
+vim.g.neovide_transparency = 0.9

@@ -169,7 +169,7 @@ return require("packer").startup(function(use)
     use("tpope/vim-dotenv")
     use("tpope/vim-fugitive")
     use("tpope/vim-repeat")
-    use("tpope/vim-obsession")
+    -- use("tpope/vim-obsession")
 
     -- usefull for unix functions
     use("tpope/vim-eunuch")
@@ -207,8 +207,9 @@ return require("packer").startup(function(use)
 
     -- Local plugins can be included
     local_use("telescope-projectionist.nvim")
-    local_use("telescope-laravel.nvim")
+    -- local_use("telescope-laravel.nvim")
     local_use("php-code-actions.nvim")
+    local_use("laravel.nvim")
 
     use("habamax/vim-godot")
 

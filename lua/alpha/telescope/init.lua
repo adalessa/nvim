@@ -73,7 +73,6 @@ function M.projectionist()
 end
 
 function M.laravel()
-	vim.env.NO_TTY = 1
 	return require("telescope").extensions.laravel.laravel()
 end
 
