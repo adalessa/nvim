@@ -30,16 +30,19 @@ hydra({
 -- want a way to run make commands
 -- Make commands runs good but the output is not good
 -- like up I like that is done and good
-hydra({
-	name = "make",
-	mode = "n",
-	body = "<C-m>",
-	heads = {
-		{ "t", function() vim.cmd("vsplit term://make test") end },
-        { "v", function()
-            vim.cmd('vert new')
-            vim.fn.termopen("make vars")
-            vim.cmd('startinsert')
-        end },
-	},
-})
+-- hydra({
+-- 	name = "make",
+-- 	mode = "n",
+-- 	body = "<C-m>",
+--     config = {
+--         color = "blue",
+--     },
+-- 	heads = {
+-- 		{ "t", function() vim.cmd("vsplit term://make test") end },
+--         { "v", function()
+--             vim.cmd('vert new')
+--             vim.fn.termopen("make vars")
+--             vim.cmd('startinsert')
+--         end, {exit = true} },
+-- 	},
+-- })
