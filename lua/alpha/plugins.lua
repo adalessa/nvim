@@ -217,4 +217,7 @@ return require("packer").startup(function(use)
         "anuvyklack/hydra.nvim",
         requires = "anuvyklack/keymap-layer.nvim", -- needed only for pink hydras
     })
+
+
+    use({"xiyaowong/nvim-transparent"})
 end)
