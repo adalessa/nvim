@@ -21,18 +21,23 @@ local filetype_attach = setmetatable({
 	end,
 })
 
+
+-- Since I use null os this allows to have the format and actions
+-- in all buffers not just configured servers
+vim.keymap.set("n", "<leader>vca", vim.lsp.buf.code_action, {})
+
+vim.keymap.set("n", "<leader>vf", function()
+    return vim.lsp.buf.format({ async = true })
+end, {})
+
 local function on_attach(client)
 	local filetype = vim.api.nvim_buf_get_option(0, "filetype")
 	-- keymaps for lsp
 	vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = 0 })
 	vim.keymap.set("n", "<c-]>", vim.lsp.buf.definition, { buffer = 0 })
 	vim.keymap.set("n", "<leader>vrn", vim.lsp.buf.rename, { buffer = 0 })
-	vim.keymap.set("n", "<leader>vf", function()
-		return vim.lsp.buf.format({ async = true })
-	end, { buffer = 0 })
 	vim.keymap.set("n", "<leader>vn", vim.diagnostic.goto_next, { buffer = 0 })
 	vim.keymap.set("n", "<leader>vp", vim.diagnostic.goto_prev, { buffer = 0 })
-	vim.keymap.set("n", "<leader>vca", vim.lsp.buf.code_action, { buffer = 0 })
 	vim.keymap.set("i", "<c-h>", vim.lsp.buf.signature_help, { buffer = 0 })
 	vim.keymap.set("n", "<leader>vo", ":LspRestart<cr>", { noremap = true })
 
