@@ -85,8 +85,6 @@ return require("packer").startup(function(use)
         },
     })
 
-    use("https://git.sr.ht/~whynothugo/lsp_lines.nvim")
-
     -- LSP
     use({
         "neovim/nvim-lspconfig",
