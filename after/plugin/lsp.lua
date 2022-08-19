@@ -58,6 +58,11 @@ end
 -- 	severity_sort = true,
 -- })
 
+-- disable virtual text
+vim.diagnostic.config({
+  virtual_text = false,
+})
+
 local signs = { Error = "⛔", Warn = "⚠️", Hint = "💡", Info = "ℹ️" }
 for type, icon in pairs(signs) do
 	local hl = "DiagnosticSign" .. type
