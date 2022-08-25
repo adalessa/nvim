@@ -58,7 +58,6 @@ end
 -- 	severity_sort = true,
 -- })
 
--- disable virtual text
 vim.diagnostic.config({
   virtual_text = false,
 })
