@@ -159,6 +159,13 @@ return require("packer").startup(function(use)
         },
     })
 
+    use({
+        "j-hui/fidget.nvim",
+        config = function()
+            require("fidget").setup()
+        end,
+    })
+
     use("rcarriga/nvim-notify")
 
     use("EdenEast/nightfox.nvim")
