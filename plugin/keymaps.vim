@@ -45,7 +45,7 @@ nnoremap <leader><leader>c :<up>
 
 if has('nvim')
     " Make esc leave terminal mode
-    tnoremap <leader><Esc> <C-\><C-n>
+    " tnoremap <leader><Esc> <C-\><C-n>
     tnoremap <Esc><Esc> <C-\><C-n>
 
     " Easy moving between the buffers
@@ -55,8 +55,8 @@ if has('nvim')
     tnoremap <A-l> <C-\><C-n><C-w>l
 
     " Try and make sure to not mangle space items
-    tnoremap <S-Space> <Space>
-    tnoremap <C-Space> <Space>
+    " tnoremap <S-Space> <Space>
+    " tnoremap <C-Space> <Space>
 endif
 
 nnoremap <leader><leader>x :call alpha#save_and_exec()<cr>
