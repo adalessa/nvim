@@ -138,8 +138,6 @@ return require("packer").startup(function(use)
         },
     })
 
-    use({ "noahfrederick/vim-composer" })
-
     use({
         "folke/trouble.nvim",
         requires = "kyazdani42/nvim-web-devicons",

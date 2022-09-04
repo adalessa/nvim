@@ -53,6 +53,7 @@ dap.configurations.php = {
 		name = "Listen for Xdebug",
 		port = 9003,
 		pathMappings = function()
+            -- TODO change this to not depends on the composer
 			local sail = vim.call("composer#query", "require-dev.laravel/sail")
 			if sail == "" then
 				return { ["/app"] = vim.fn.getcwd() }
