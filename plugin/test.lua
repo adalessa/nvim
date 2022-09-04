@@ -3,6 +3,7 @@ local hydra = require("hydra")
 vim.g["test#preserve_screen"] = 1
 
 vim.cmd([[
+    let test#php#pest#executable = './vendor/bin/sail test'
     let test#strategy = 'neovim'
     let test#neovim#term_position = 'vert'
     let g:test#preserve_screen = 1

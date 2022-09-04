@@ -33,6 +33,7 @@ end
 
 local namespace = function()
 	local dir = vim.fn.expand("%:h")
+    -- replace this since I don't want to use this composer
 	local autoloads = vim.call("composer#query", "autoload.psr-4")
 	if autoloads == nil then
 		return (dir:gsub("^%l", string.upper))
