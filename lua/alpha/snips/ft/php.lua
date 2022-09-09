@@ -1,4 +1,5 @@
 local ls = require("luasnip")
+local composer = require("alpha.composer")
 
 local snippet_from_nodes = ls.sn
 local c = ls.choice_node
@@ -33,8 +34,7 @@ end
 
 local namespace = function()
 	local dir = vim.fn.expand("%:h")
-    -- replace this since I don't want to use this composer
-	local autoloads = vim.call("composer#query", "autoload.psr-4")
+    local autoloads = composer.query({"autoload", "psr-4"})
 	if autoloads == nil then
 		return (dir:gsub("^%l", string.upper))
 	end

@@ -1,4 +1,5 @@
 local dap, dapui, dap_go = require("dap"), require("dapui"), require("dap-go")
+local composer = require("alpha.composer")
 
 require("nvim-dap-virtual-text").setup({})
 -- dap.set_log_level('TRACE')
@@ -53,9 +54,7 @@ dap.configurations.php = {
 		name = "Listen for Xdebug",
 		port = 9003,
 		pathMappings = function()
-            -- TODO change this to not depends on the composer
-			local sail = vim.call("composer#query", "require-dev.laravel/sail")
-			if sail == "" then
+			if composer.query({"require-dev", "laravel/sali"}) ~= nil then
 				return { ["/app"] = vim.fn.getcwd() }
 			end
 			return { ["/var/www/html"] = vim.fn.getcwd() }
