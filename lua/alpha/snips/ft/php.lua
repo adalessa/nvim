@@ -34,7 +34,7 @@ end
 
 local namespace = function()
 	local dir = vim.fn.expand("%:h")
-    local autoloads = composer.query({"autoload", "psr-4"})
+	local autoloads = composer.query({ "autoload", "psr-4" })
 	if autoloads == nil then
 		return (dir:gsub("^%l", string.upper))
 	end
@@ -56,22 +56,23 @@ local class_name = function()
 	return vim.fn.expand("%:t:r")
 end
 
-local M = {
-	v = fmt(
-		[[
+local M = {}
+
+M.v = fmt(
+	[[
 /**
  * @var {}
  */
 {} ${};
 ]],
-		{
-			i(1, "type"),
-			visibility(2, "private"),
-			i(3, "var"),
-		}
-	),
-	class = fmt(
-		[[
+	{
+		i(1, "type"),
+		visibility(2, "private"),
+		i(3, "var"),
+	}
+)
+M.class = fmt(
+	[[
 <?php
 
 declare(strict_types=1);
@@ -83,64 +84,63 @@ class {}
     {}
 }}
 ]],
-		{
-			f(namespace),
-			f(class_name),
-			i(0),
-		}
-	),
+	{
+		f(namespace),
+		f(class_name),
+		i(0),
+	}
+)
 
-	pro = fmt([[{} {} ${},]], {
-		visibility(1, "private"),
-		i(2, "Type"),
-		f(function(args)
-			return args[1][1]:gsub("^%u", string.lower)
-		end, { 2 }),
-	}),
+M.pro = fmt([[{} {} ${},]], {
+	visibility(1, "private"),
+	i(2, "Type"),
+	f(function(args)
+		return args[1][1]:gsub("^%u", string.lower)
+	end, { 2 }),
+})
 
-	_c = fmt(
-[[{} function __construct({}) {{
+M._c = fmt(
+	[[{} function __construct({}) {{
     {}
 }}]],
-		{
-			visibility(1, "public"),
-			i(2),
-			i(0),
-		}
-	),
+	{
+		visibility(1, "public"),
+		i(2),
+		i(0),
+	}
+)
 
-	_p = fmt(
-		[[{} function __construct(
+M._p = fmt(
+	[[{} function __construct(
     {}
 ) {{
 }}]],
-		{
-			visibility(1, "public"),
-			i(2),
-		}
-	),
-
-	fn = {
+	{
 		visibility(1, "public"),
-		t(" function "),
-		i(2, "name"),
-		t("("),
-		i(3, "$arg"),
-		t(")"),
-		c(4, {
-			t(""),
-			snippet_from_nodes(nil, {
-				t(": "),
-				i(1, "void"),
-			}),
-		}),
-		newline("{"),
-		newline("\t"),
-		i(0, ""),
-		newline("}"),
-	},
+		i(2),
+	}
+)
 
-	strict = t("declare(strict_types=1);"),
+M.strict = t("declare(strict_types=1);")
+
+M.fn = {
+	visibility(1, "public"),
+	t(" function "),
+	i(2, "name"),
+	t("("),
+	i(3, "$arg"),
+	t(")"),
+	c(4, {
+		t(""),
+		snippet_from_nodes(nil, {
+			t(": "),
+			i(1, "void"),
+		}),
+	}),
+	newline("{"),
+	newline("\t"),
+	i(0, ""),
+	newline("}"),
 }
 
 return M
