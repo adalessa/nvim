@@ -1,18 +1,43 @@
 local telescope_mapper = require("alpha.telescope.mappings")
 
-local format_on_save = function(_)
-	vim.cmd([[
-      augroup lsp_buf_format
-        au! BufWritePre <buffer>
-        autocmd BufWritePre <buffer> :lua vim.lsp.buf.format({ async = true })
-      augroup END
-    ]])
+
+local lsp_formatting = function(bufnr, allowed_clientes)
+    vim.lsp.buf.format({
+        filter = function(client)
+            for _, value in pairs(allowed_clientes) do
+                if client.name == value then
+                    return true
+                end
+            end
+
+            return false
+        end,
+        bufnr = bufnr,
+    })
+end
+
+-- if you want to set up formatting on save, you can use this as a callback
+local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+
+local format_on_save = function (allowed_clients)
+    return function(client, bufnr)
+        if client.supports_method("textDocument/formatting") then
+            vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+            vim.api.nvim_create_autocmd("BufWritePre", {
+                group = augroup,
+                buffer = bufnr,
+                callback = function()
+                    lsp_formatting(bufnr, allowed_clients)
+                end,
+            })
+        end
+    end
 end
 
 local filetype_attach = setmetatable({
-	go = format_on_save,
-	-- php = format_on_save,
-	--    lua = format_on_save,
+	go = format_on_save({"gopls"}),
+    -- php = format_on_save,
+	-- lua = format_on_save,
 
 	gdscript = function(_) end,
 }, {
@@ -30,7 +55,7 @@ vim.keymap.set("n", "<leader>vf", function()
     return vim.lsp.buf.format({ async = true })
 end, {})
 
-local function on_attach(client)
+local function on_attach(client, bufnr)
 	local filetype = vim.api.nvim_buf_get_option(0, "filetype")
 	-- keymaps for lsp
 	vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = 0 })
@@ -48,7 +73,7 @@ local function on_attach(client)
 	vim.bo.omnifunc = "v:lua.vim.lsp.omnifunc"
 
 	-- Attach any filetype specific options to the client
-	filetype_attach[filetype](client)
+	filetype_attach[filetype](client,bufnr)
 end
 
 -- vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
