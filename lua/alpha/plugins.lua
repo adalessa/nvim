@@ -68,7 +68,7 @@ return require("packer").startup(function(use)
         end,
     })
 
-    -- Completition
+    -- Completion
     use({
         "hrsh7th/nvim-cmp",
         requires = {
@@ -93,10 +93,11 @@ return require("packer").startup(function(use)
         "jose-elias-alvarez/null-ls.nvim",
     })
 
-    -- Instalation of LSP/Debuggers/Other
+    -- Installation of LSP/Debuggers/Other
     use({
         "williamboman/mason.nvim",
         "williamboman/mason-lspconfig.nvim",
+        "WhoIsSethDaniel/mason-tool-installer.nvim",
     })
 
     use({
@@ -175,7 +176,7 @@ return require("packer").startup(function(use)
     use("tpope/vim-repeat")
     -- use("tpope/vim-obsession")
 
-    -- usefull for unix functions
+    -- useful for unix functions
     use("tpope/vim-eunuch")
     use("tpope/vim-commentary")
     use("tpope/vim-tbone")
