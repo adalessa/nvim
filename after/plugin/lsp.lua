@@ -55,6 +55,9 @@ vim.keymap.set("n", "<leader>vf", function()
     return vim.lsp.buf.format({ async = true })
 end, {})
 
+vim.keymap.set("n", "<leader>vn", vim.diagnostic.goto_next, { buffer = 0 })
+vim.keymap.set("n", "<leader>vp", vim.diagnostic.goto_prev, { buffer = 0 })
+
 local function on_attach(client, bufnr)
 	local filetype = vim.api.nvim_buf_get_option(0, "filetype")
 	-- keymaps for lsp
@@ -65,8 +68,6 @@ local function on_attach(client, bufnr)
 	    vim.lsp.buf.definition()
 	end, { buffer = 0 })
 	vim.keymap.set("n", "<leader>vrn", vim.lsp.buf.rename, { buffer = 0 })
-	vim.keymap.set("n", "<leader>vn", vim.diagnostic.goto_next, { buffer = 0 })
-	vim.keymap.set("n", "<leader>vp", vim.diagnostic.goto_prev, { buffer = 0 })
 	vim.keymap.set("i", "<c-h>", vim.lsp.buf.signature_help, { buffer = 0 })
 	vim.keymap.set("n", "<leader>vo", ":LspRestart<cr>", { noremap = true })
 
