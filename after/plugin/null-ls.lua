@@ -19,7 +19,9 @@ local sources = {
 	-- null_ls.builtins.formatting.phpcsfixer,
 	-- null_ls.builtins.formatting.pint,
 	null_ls.builtins.diagnostics.golangci_lint,
-	null_ls.builtins.diagnostics.codespell,
+	null_ls.builtins.diagnostics.codespell.with({
+        args = {"--ignore-words", "crate"}
+    }),
 	-- null_ls.builtins.formatting.goimports,
 	null_ls.builtins.formatting.jq,
 	null_ls.builtins.code_actions.gitrebase,
