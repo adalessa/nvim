@@ -55,8 +55,8 @@ vim.keymap.set("n", "<leader>vf", function()
     return vim.lsp.buf.format({ async = true })
 end, {})
 
-vim.keymap.set("n", "<leader>vn", vim.diagnostic.goto_next, { buffer = 0 })
-vim.keymap.set("n", "<leader>vp", vim.diagnostic.goto_prev, { buffer = 0 })
+vim.keymap.set("n", "<leader>vn", vim.diagnostic.goto_next, {})
+vim.keymap.set("n", "<leader>vp", vim.diagnostic.goto_prev, {})
 
 local function on_attach(client, bufnr)
 	local filetype = vim.api.nvim_buf_get_option(0, "filetype")
@@ -81,13 +81,6 @@ local function on_attach(client, bufnr)
 	filetype_attach[filetype](client,bufnr)
 end
 
--- vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
--- 	underline = true,
--- 	update_in_insert = false,
--- 	virtual_text = { spacing = 2, prefix = "●" },
--- 	severity_sort = true,
--- })
-
 vim.diagnostic.config({
   virtual_text = false,
 })
@@ -102,6 +95,8 @@ end
 local lsp_flags = {
 	debounce_text_changes = 150,
 }
+
+-- Server configurations
 
 require("lspconfig")["rust_analyzer"].setup({
 	on_attach = on_attach,

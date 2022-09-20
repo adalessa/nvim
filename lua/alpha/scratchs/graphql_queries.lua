@@ -32,7 +32,6 @@ local function getElements()
 
     local parsers = require("nvim-treesitter.parsers")
     local parser = parsers.get_parser(0)
-    ---@diagnostic disable-next-line: deprecated
     local tree = unpack(parser:parse())
 
     for id, node in query:iter_captures(tree:root(), 0) do

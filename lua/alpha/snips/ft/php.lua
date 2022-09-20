@@ -48,6 +48,9 @@ local namespace = function()
 		end
 	end
 	dir = dir:gsub("/", "\\")
+    if dir == "" then
+        return globalNamespace
+    end
 
 	return string.format("%s\\%s", globalNamespace, dir)
 end
