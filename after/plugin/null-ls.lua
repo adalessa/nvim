@@ -40,11 +40,13 @@ local symonfy_sources = {
     }),
 }
 
-if composer.query({ "require", "symfony/symonfy" }) ~= nil then
+if composer.query({ "require", "symfony/framework-bundle" }) ~= nil then
     for _, source in ipairs(symonfy_sources) do
         table.insert(sources, source)
     end
-else
+end
+
+if composer.query({ "require", "laravel/framework" }) ~= nil then
     for _, source in ipairs(laravel_sources) do
         table.insert(sources, source)
     end

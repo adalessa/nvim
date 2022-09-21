@@ -1,12 +1,23 @@
 local M = {}
 
-M.query = function (path)
-    if vim.fn.findfile("composer.json") == "" then
-        P("did not found the file")
-        return nil
+local function get_composer_file()
+    if vim.fn.findfile("composer.json") ~= "" then
+        return vim.fn.json_decode(vim.fn.readfile(vim.fn.getcwd() .. "/composer.json"))
     end
 
-    local target = vim.fn.json_decode(vim.fn.readfile(vim.fn.getcwd() .. "/composer.json"))
+    if vim.fn.findfile("master/composer.json") ~= "" then
+        return vim.fn.json_decode(vim.fn.readfile(vim.fn.getcwd() .. "/master/composer.json"))
+    end
+
+    return nil
+end
+
+M.query = function (path)
+    local target = get_composer_file()
+
+    if target == nil then
+        return nil
+    end
 
     for _, part in ipairs(path) do
         target = target[part]
