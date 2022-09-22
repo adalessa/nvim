@@ -117,16 +117,26 @@ require("lspconfig")["intelephense"].setup({
 	flags = lsp_flags,
 })
 require("lspconfig").jsonls.setup({
+	on_attach = on_attach,
 	flags = lsp_flags,
 })
 require("lspconfig").html.setup({
+	on_attach = on_attach,
 	flags = lsp_flags,
 })
 require("lspconfig").html.setup({
+	on_attach = on_attach,
 	flags = lsp_flags,
 })
+
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+
 require("lspconfig").emmet_ls.setup({
+	on_attach = on_attach,
 	flags = lsp_flags,
+    capabilities = capabilities,
+    filetypes = { 'html', 'typescriptreact', 'javascriptreact', 'css', 'sass', 'scss', 'less', 'blade' },
 })
 
 require("lspconfig").gopls.setup({
