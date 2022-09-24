@@ -1,5 +1,5 @@
 local ls = require("luasnip")
-local composer = require("alpha.composer")
+local composer = require("composer")
 
 local snippet_from_nodes = ls.sn
 local c = ls.choice_node

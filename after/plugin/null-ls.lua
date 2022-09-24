@@ -3,11 +3,11 @@ if not ok then
 	return
 end
 
-local composer = require("alpha.composer")
+local composer = require("composer")
 local php_actions = require("php-code-actions")
 
 local sources = {
-	null_ls.builtins.code_actions.gitsigns,
+	-- null_ls.builtins.code_actions.gitsigns,
 	null_ls.builtins.formatting.stylua,
 	-- null_ls.builtins.diagnostics.eslint,
 	-- null_ls.builtins.formatting.phpcsfixer,
@@ -20,6 +20,7 @@ local sources = {
 	null_ls.builtins.code_actions.refactoring,
 	null_ls.builtins.formatting.sql_formatter,
 	php_actions.getter_setter,
+    php_actions.file_creator,
 }
 
 -- Maybe sources per type of project

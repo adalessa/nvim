@@ -1,5 +1,5 @@
 local dap, dapui, dap_go = require("dap"), require("dapui"), require("dap-go")
-local composer = require("alpha.composer")
+local composer = require("composer")
 
 require("nvim-dap-virtual-text").setup({})
 -- dap.set_log_level('TRACE')

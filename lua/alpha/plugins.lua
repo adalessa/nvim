@@ -215,6 +215,7 @@ return require("packer").startup(function(use)
 	-- local_use("telescope-laravel.nvim")
 	local_use("php-code-actions.nvim")
 	local_use("laravel.nvim")
+	local_use("composer.nvim")
 
 	use("habamax/vim-godot")
 
@@ -233,4 +234,6 @@ return require("packer").startup(function(use)
 			require("mind").setup()
 		end,
 	})
+
+	use({ "stevearc/dressing.nvim" })
 end)
