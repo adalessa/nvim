@@ -155,6 +155,7 @@ return require("packer").startup(function(use)
 			"rouge8/neotest-rust",
 			"nvim-neotest/neotest-plenary",
 			"nvim-neotest/neotest-vim-test",
+            -- "olimorris/neotest-phpunit",
 		},
 	})
 
@@ -216,6 +217,7 @@ return require("packer").startup(function(use)
 	local_use("php-code-actions.nvim")
 	local_use("laravel.nvim")
 	local_use("composer.nvim")
+	local_use("neotest-phpunit")
 
 	use("habamax/vim-godot")
 
