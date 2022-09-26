@@ -1,11 +1,11 @@
 SHOULD_RELOAD_TELESCOPE = true
 
 local reloader = function()
-	if SHOULD_RELOAD_TELESCOPE then
-		RELOAD("plenary")
-		RELOAD("telescope")
-		RELOAD("alpha.telescope.setup")
-	end
+    if SHOULD_RELOAD_TELESCOPE then
+        RELOAD("plenary")
+        RELOAD("telescope")
+        RELOAD("alpha.telescope.setup")
+    end
 end
 
 local action_state = require("telescope.actions.state")
@@ -15,134 +15,146 @@ local actions = require("telescope.actions")
 local M = {}
 
 function M.project_files()
-	local opts = {show_untracked = true} -- define here if you want to define something
-	local ok = pcall(require("telescope.builtin").git_files, opts)
-	if not ok then
-		require("telescope.builtin").find_files(opts)
-	end
+    local opts = { show_untracked = true } -- define here if you want to define something
+    local ok = pcall(require("telescope.builtin").git_files, opts)
+    if not ok then
+        require("telescope.builtin").find_files(opts)
+    end
 end
 
 function M.branches()
-	require("telescope.builtin").git_branches({
-		attach_mappings = function(_, map)
-			map("i", "<c-j>", actions.git_create_branch)
-			map("n", "<c-j>", actions.git_create_branch)
-			return true
-		end,
-	})
+    require("telescope.builtin").git_branches({
+        attach_mappings = function(_, map)
+            map("i", "<c-j>", actions.git_create_branch)
+            map("n", "<c-j>", actions.git_create_branch)
+            return true
+        end,
+    })
 end
 
 function M.search_config()
-	require("telescope.builtin").git_files({
-		prompt_title = "< Dotfiles >",
-		cwd = "$HOME/.dotfiles",
-        show_untracked = true
-	})
+    require("telescope.builtin").git_files({
+        prompt_title = "< Dotfiles >",
+        cwd = "$HOME/.dotfiles",
+        show_untracked = true,
+    })
 end
 
 function M.grep_string()
-	vim.ui.input({ prompt = "Grep for > " }, function(input)
-		if input == nil then
-			return
-		end
-		require("telescope.builtin").grep_string({ search = input })
-	end)
+    vim.ui.input({ prompt = "Grep for > " }, function(input)
+        if input == nil then
+            return
+        end
+        require("telescope.builtin").grep_string({ search = input })
+    end)
 end
 
 function M.grep_word()
-	require("telescope.builtin").grep_string({ search = vim.fn.expand("<cword>") })
+    require("telescope.builtin").grep_string({ search = vim.fn.expand("<cword>") })
 end
 
 function M.find_symbol()
-	vim.ui.input({ prompt = "Symbol for > " }, function(input)
-		if input == nil then
-			return
-		end
-		require("telescope.builtin").lsp_workspace_symbols({ query = input })
-	end)
+    vim.ui.input({ prompt = "Symbol for > " }, function(input)
+        if input == nil then
+            return
+        end
+        require("telescope.builtin").lsp_workspace_symbols({ query = input })
+    end)
 end
 
 function M.my_plugins()
-	require("telescope.builtin").find_files({
-		cwd = "~/plugins/",
-	})
+    require("telescope.builtin").find_files({
+        cwd = "~/plugins/",
+    })
 end
 
 function M.projectionist()
-	return require("telescope").extensions.projectionist.projectionist()
+    return require("telescope").extensions.projectionist.projectionist()
 end
 
 function M.laravel()
-	return require("telescope").extensions.laravel.laravel()
+    return require("telescope").extensions.laravel.laravel()
 end
 
 function M.worktree()
-	return require("telescope").extensions.git_worktree.git_worktrees()
+    return require("telescope").extensions.git_worktree.git_worktrees()
 end
 
 function M.worktree_create()
-	return require("telescope").extensions.git_worktree.create_git_worktree()
+    return require("telescope").extensions.git_worktree.create_git_worktree()
 end
 
 function M.refactor()
-	return require("telescope").extensions.refactoring.refactors()
+    return require("telescope").extensions.refactoring.refactors()
 end
 
 function M.file_browser_relative()
-	return M.file_browser({ path = "%:p:h" })
+    return M.file_browser({ path = "%:p:h" })
+end
+
+function M.gateway()
+    return require("alpha.php.gateway").graphql_definitions({
+        layout_config = {
+            horizontal = {
+                preview_width = function(_, cols, _)
+                    return math.floor(cols * 0.7)
+                end,
+            },
+        },
+    })
 end
 
 function M.file_browser(opts)
-	opts = opts or {}
+    opts = opts or {}
 
-	opts = {
-		path = opts.path,
-		sorting_strategy = "ascending",
-		scroll_strategy = "cycle",
-		layout_config = {
-			prompt_position = "top",
-		},
+    opts = {
+        path = opts.path,
+        sorting_strategy = "ascending",
+        scroll_strategy = "cycle",
+        layout_config = {
+            prompt_position = "top",
+        },
 
-		attach_mappings = function(prompt_bufnr, map)
-			local current_picker = action_state.get_current_picker(prompt_bufnr)
+        attach_mappings = function(prompt_bufnr, map)
+            local current_picker = action_state.get_current_picker(prompt_bufnr)
 
-			local modify_cwd = function(new_cwd)
-				local finder = current_picker.finder
+            local modify_cwd = function(new_cwd)
+                local finder = current_picker.finder
 
-				finder.path = new_cwd
-				finder.files = true
-				current_picker:refresh(false, { reset_prompt = true })
-			end
+                finder.path = new_cwd
+                finder.files = true
+                current_picker:refresh(false, { reset_prompt = true })
+            end
 
-			map("n", "-", function()
-				modify_cwd(current_picker.cwd .. "/..")
-			end)
+            map("n", "-", function()
+                modify_cwd(current_picker.cwd .. "/..")
+            end)
 
-			map("i", "~", function()
-				modify_cwd(vim.fn.expand("~"))
-			end)
+            map("i", "~", function()
+                modify_cwd(vim.fn.expand("~"))
+            end)
 
-			map("n", "yy", function()
-				local entry = action_state.get_selected_entry()
-				vim.fn.setreg("+", entry.value)
-			end)
+            map("n", "yy", function()
+                local entry = action_state.get_selected_entry()
+                vim.fn.setreg("+", entry.value)
+            end)
 
-			map("i", "<c-y>", fb_actions.create)
+            map("i", "<c-y>", fb_actions.create)
 
-			return true
-		end,
-	}
+            return true
+        end,
+    }
 
-	return require("telescope").extensions.file_browser.file_browser(opts)
+    return require("telescope").extensions.file_browser.file_browser(opts)
 end
 
 return setmetatable({}, {
-	__index = function(_, k)
-		reloader()
-		if M[k] then
-			return M[k]
-		else
-			return require("telescope.builtin")[k]
-		end
-	end,
+    __index = function(_, k)
+        reloader()
+        if M[k] then
+            return M[k]
+        else
+            return require("telescope.builtin")[k]
+        end
+    end,
 })

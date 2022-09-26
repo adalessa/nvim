@@ -42,5 +42,6 @@ map_tele("<leader>fp", "my_plugins")
 map_tele("<leader>rr", "refactor")
 
 map_tele("<leader>pa", "laravel")
+map_tele("<leader>pm", "gateway")
 
 return map_tele

@@ -7,6 +7,7 @@ local d = ls.dynamic_node
 local f = ls.function_node
 local i = ls.insert_node
 local fmt = require("luasnip.extras.fmt").fmt
+local rep = require("luasnip.extras").rep
 
 local M = {
     str = fmt([[{}:
@@ -85,6 +86,31 @@ properties:
             i(1, ""),
             i(2, ""),
         }),
+
+    mut = fmt([[{}:
+    type: "{}"
+    resolve: '@=mutation("App\\GraphQL\\Mutation\\{}::{}", {}, info)'
+    args:
+        {}
+]], {
+            i(1, ""),
+            i(2, ""),
+            i(3, ""),
+            rep(1),
+            i(5, ""),
+            i(6, ""),
+        }),
+
+    input = fmt([[{}:
+  type: input-object
+  config:
+    fields:
+      {}
+]], {
+            i(1, ""),
+            i(2, ""),
+        }),
+    f = fmt([[{}:  {{ type: "{}" }}]], {i(1, ""), i(2, "")}),
 }
 
 return M

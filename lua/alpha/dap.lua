@@ -54,10 +54,10 @@ dap.configurations.php = {
 		name = "Listen for Xdebug",
 		port = 9003,
 		pathMappings = function()
-			if composer.query({"require-dev", "laravel/sali"}) ~= nil then
-				return { ["/app"] = vim.fn.getcwd() }
+			if composer.query({"require-dev", "laravel/sali"}) == nil then
+				return { ["/app"] = "${workspaceFolder}" }
 			end
-			return { ["/var/www/html"] = vim.fn.getcwd() }
+			return { ["/var/www/html"] = "${workspaceFolder}" }
 		end,
 	},
 }
