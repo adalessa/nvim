@@ -146,4 +146,8 @@ M.fn = {
 	newline("}"),
 }
 
+M["then"] = fmt([[->then(function ({}) {{
+    {}
+}})]], {i(1, ""), i(2, "")})
+
 return M
