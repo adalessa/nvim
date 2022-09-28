@@ -1,23 +1,21 @@
 TelescopeMapArgs = TelescopeMapArgs or {}
 
-local map_tele = function(key, f, options, buffer)
-	local map_key = vim.api.nvim_replace_termcodes(key .. f, true, true, true)
+local map_tele = function(key, f, options, buffer, mode)
+	mode = mode or "n"
 
-	TelescopeMapArgs[map_key] = options or {}
-
-	local mode = "n"
-	local rhs = string.format("<cmd>lua R('alpha.telescope')['%s'](TelescopeMapArgs['%s'])<CR>", f, map_key)
+    local rhs = function ()
+        R('alpha.telescope')[f](options or {})
+    end
 
 	local map_options = {
-		noremap = true,
+		remap = false,
 		silent = true,
 	}
+    if buffer then
+        map_options.buffer = buffer
+    end
 
-	if not buffer then
-		vim.api.nvim_set_keymap(mode, key, rhs, map_options)
-	else
-		vim.api.nvim_buf_set_keymap(0, mode, key, rhs, map_options)
-	end
+    vim.keymap.set(mode, key, rhs, map_options)
 end
 
 -- not shure what this line does
@@ -39,7 +37,7 @@ map_tele("<leader>bp", "file_browser")
 map_tele("<leader>gs", "git_status")
 map_tele("<leader>ve", "diagnostics")
 map_tele("<leader>fp", "my_plugins")
-map_tele("<leader>rr", "refactor")
+map_tele("<leader>rr", "refactor", {}, nil, {"n", "v"})
 
 map_tele("<leader>pa", "laravel")
 map_tele("<leader>pm", "gateway")

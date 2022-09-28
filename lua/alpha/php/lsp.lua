@@ -2,15 +2,17 @@ local Path = require("plenary.path")
 
 local lsp = {}
 
-lsp.get_intelephense_buffer = function ()
-    local clients = vim.lsp.get_active_clients({ name = "intelephense" })
+local lsp_server_name = "phpactor"
+
+lsp.get_lsp_buffer = function ()
+    local clients = vim.lsp.get_active_clients({ name = lsp_server_name})
     if #clients == 0 then
         return
     end
 
-    local intelephense = clients[1]
+    local lsp_client = clients[1]
 
-    local attached_buffers = intelephense.attached_buffers
+    local attached_buffers = lsp_client.attached_buffers
 
     for key, val in pairs(attached_buffers) do
         if val then
@@ -22,22 +24,13 @@ lsp.get_intelephense_buffer = function ()
 end
 
 
-local get_index_buffer = function ()
-    local uri = vim.uri_from_fname(vim.fn.getcwd() .. "/public/index.php")
-    local buff = vim.uri_to_bufnr(uri)
-    vim.fn.bufload(buff)
-
-    return buff
-end
-
-
 --- @param search string: fully name to search Class::method
 lsp.find = function (search)
     search = vim.split(search, "::")
-    local class = search[1]
+    local fqn_class = search[1]
     local method = search[2]
 
-    local buffer = lsp.get_intelephense_buffer()
+    local buffer = lsp.get_lsp_buffer()
 
     if buffer == nil then
         -- TODO I want to not require this.
@@ -46,6 +39,21 @@ lsp.find = function (search)
         return
     end
 
+    local class_parts = vim.split(fqn_class, "\\")
+    local class = class_parts[#class_parts]
+
+    -- TODO phpactor does not support FQN search need to de sepparated
+    -- can query get the optiosn, match the full name and type class
+    -- I don't think gives the namespace
+    -- So I will get the full name, not the
+    -- the option is to get the class
+    -- open the buffer, change in the window
+    -- call the vim.lsp.buf_document_symbol({on_list = function (list) end})
+    -- grab the information and move the cursor
+    -- if method does not exist show error but stay in the class
+    -- Can have the code extracted to work with both implementations ?
+    -- Potentially could have a way to create the classes if they don't exist
+    -- With the file creater action
     vim.lsp.buf_request(buffer, "workspace/symbol", { query = class }, function(err, server_result, _, _)
         if err then
             vim.api.nvim_err_writeln("Error when finding workspace symbols: " .. err.message)
@@ -54,11 +62,21 @@ lsp.find = function (search)
 
         local locations = vim.lsp.util.symbols_to_items(server_result or {}, buffer) or {}
         if vim.tbl_isempty(locations) then
-            vim.api.nvim_err_writeln("Empty response looking for class: " .. class)
+            vim.api.nvim_err_writeln("Empty response looking for class: " .. fqn_class)
             return
         end
+        local class_location = nil
+        for idx, location in pairs(locations) do
+            if location.text == string.format("[Class] %s", fqn_class) then
+                class_location = locations[idx]
+                break
+            end
+        end
 
-        local class_location = locations[1]
+        if class_location == nil then
+            P("Did not found any class")
+            return
+        end
 
         vim.lsp.buf_request(
             buffer,
@@ -72,7 +90,7 @@ lsp.find = function (search)
 
                 local method_locations = vim.lsp.util.symbols_to_items(method_server_result or {}, buffer) or {}
                 if vim.tbl_isempty(method_locations) then
-                    P("empty response looking for method")
+                    P(string.format("empty response looking for method %s", method))
                     return
                 end
 

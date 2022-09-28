@@ -1,42 +1,41 @@
 local telescope_mapper = require("alpha.telescope.mappings")
 
-
 local lsp_formatting = function(bufnr, allowed_clientes)
-    vim.lsp.buf.format({
-        filter = function(client)
-            for _, value in pairs(allowed_clientes) do
-                if client.name == value then
-                    return true
-                end
-            end
+	vim.lsp.buf.format({
+		filter = function(client)
+			for _, value in pairs(allowed_clientes) do
+				if client.name == value then
+					return true
+				end
+			end
 
-            return false
-        end,
-        bufnr = bufnr,
-    })
+			return false
+		end,
+		bufnr = bufnr,
+	})
 end
 
 -- if you want to set up formatting on save, you can use this as a callback
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
-local format_on_save = function (allowed_clients)
-    return function(client, bufnr)
-        if client.supports_method("textDocument/formatting") then
-            vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
-            vim.api.nvim_create_autocmd("BufWritePre", {
-                group = augroup,
-                buffer = bufnr,
-                callback = function()
-                    lsp_formatting(bufnr, allowed_clients)
-                end,
-            })
-        end
-    end
+local format_on_save = function(allowed_clients)
+	return function(client, bufnr)
+		if client.supports_method("textDocument/formatting") then
+			vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+			vim.api.nvim_create_autocmd("BufWritePre", {
+				group = augroup,
+				buffer = bufnr,
+				callback = function()
+					lsp_formatting(bufnr, allowed_clients)
+				end,
+			})
+		end
+	end
 end
 
 local filetype_attach = setmetatable({
-	go = format_on_save({"gopls"}),
-    -- php = format_on_save,
+	go = format_on_save({ "gopls" }),
+	-- php = format_on_save,
 	-- lua = format_on_save,
 
 	gdscript = function(_) end,
@@ -46,13 +45,12 @@ local filetype_attach = setmetatable({
 	end,
 })
 
-
 -- Since I use null os this allows to have the format and actions
 -- in all buffers not just configured servers
-vim.keymap.set("n", "<leader>vca", vim.lsp.buf.code_action, {})
+vim.keymap.set({ "n", "v" }, "<leader>vca", vim.lsp.buf.code_action, {})
 
 vim.keymap.set("n", "<leader>vf", function()
-    return vim.lsp.buf.format({ async = true })
+	return vim.lsp.buf.format({ async = true })
 end, {})
 
 vim.keymap.set("n", "<leader>vn", vim.diagnostic.goto_next, {})
@@ -63,9 +61,9 @@ local function on_attach(client, bufnr)
 	-- keymaps for lsp
 	vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = 0 })
 	vim.keymap.set("n", "<c-]>", vim.lsp.buf.definition, { buffer = 0 })
-	vim.keymap.set("n", "<leader><c-]>", function ()
-        vim.cmd("vsp")
-	    vim.lsp.buf.definition()
+	vim.keymap.set("n", "<leader><c-]>", function()
+		vim.cmd("vsp")
+		vim.lsp.buf.definition()
 	end, { buffer = 0 })
 	vim.keymap.set("n", "<leader>vrn", vim.lsp.buf.rename, { buffer = 0 })
 	vim.keymap.set("i", "<c-h>", vim.lsp.buf.signature_help, { buffer = 0 })
@@ -78,11 +76,11 @@ local function on_attach(client, bufnr)
 	vim.bo.omnifunc = "v:lua.vim.lsp.omnifunc"
 
 	-- Attach any filetype specific options to the client
-	filetype_attach[filetype](client,bufnr)
+	filetype_attach[filetype](client, bufnr)
 end
 
 vim.diagnostic.config({
-  virtual_text = false,
+	virtual_text = false,
 })
 
 local signs = { Error = "⛔", Warn = "⚠️", Hint = "💡", Info = "ℹ️" }
@@ -141,8 +139,8 @@ capabilities.textDocument.completion.completionItem.snippetSupport = true
 require("lspconfig").emmet_ls.setup({
 	on_attach = on_attach,
 	flags = lsp_flags,
-    capabilities = capabilities,
-    filetypes = { 'html', 'typescriptreact', 'javascriptreact', 'css', 'sass', 'scss', 'less', 'blade' },
+	capabilities = capabilities,
+	filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less", "blade" },
 })
 
 require("lspconfig").gopls.setup({
