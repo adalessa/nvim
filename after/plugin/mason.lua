@@ -40,6 +40,7 @@ require('mason-tool-installer').setup {
     "stylua",
     "typescript-language-server",
     "vue-language-server",
+    "phpactor",
   },
 
   -- if set to true this will check each tool for updates. If updates

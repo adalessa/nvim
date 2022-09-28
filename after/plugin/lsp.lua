@@ -112,10 +112,16 @@ require("lspconfig").dockerls.setup({
 	flags = lsp_flags,
 })
 
-require("lspconfig")["intelephense"].setup({
+-- require("lspconfig")["intelephense"].setup({
+-- 	on_attach = on_attach,
+-- 	flags = lsp_flags,
+-- })
+
+require("lspconfig")["phpactor"].setup({
 	on_attach = on_attach,
 	flags = lsp_flags,
 })
+
 require("lspconfig").jsonls.setup({
 	on_attach = on_attach,
 	flags = lsp_flags,
