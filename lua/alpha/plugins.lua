@@ -155,7 +155,7 @@ return require("packer").startup(function(use)
 			"rouge8/neotest-rust",
 			"nvim-neotest/neotest-plenary",
 			"nvim-neotest/neotest-vim-test",
-            -- "olimorris/neotest-phpunit",
+			-- "olimorris/neotest-phpunit",
 		},
 	})
 
@@ -234,5 +234,6 @@ return require("packer").startup(function(use)
 		requires = { "nvim-lua/plenary.nvim" },
 	})
 
-	use({ "stevearc/dressing.nvim" })
+	use("stevearc/dressing.nvim")
+	use("voldikss/vim-floaterm")
 end)
