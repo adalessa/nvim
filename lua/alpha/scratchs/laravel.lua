@@ -9,3 +9,8 @@
 -- A select node for the type of relation on the return type
 -- base on that node which function should call
 -- base on the name and type create the name??
+--
+-- Want to have something to do with docker and projects
+--
+-- Problem when I switch project sail is runnin in another one
+--
