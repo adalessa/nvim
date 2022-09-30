@@ -2,40 +2,36 @@ local Path = require("plenary.path")
 
 local lsp = {}
 
-local lsp_server_name = "phpactor"
-
-lsp.get_lsp_buffer = function ()
-    local clients = vim.lsp.get_active_clients({ name = lsp_server_name})
+---Return a buffer id for the given client
+---@param server_name string
+---@return integer|nil
+lsp.get_lsp_buffer = function(server_name)
+    local clients = vim.lsp.get_active_clients({ name = server_name })
     if #clients == 0 then
-        return
+        return nil
     end
 
-    local lsp_client = clients[1]
+    local buffers = vim.lsp.get_buffers_by_client_id(clients[1].id)
 
-    local attached_buffers = lsp_client.attached_buffers
-
-    for key, val in pairs(attached_buffers) do
-        if val then
-            return key
-        end
+    if #buffers == 0 then
+        return nil
     end
 
-    return nil
+    return buffers[1]
 end
 
-
 --- @param search string: fully name to search Class::method
-lsp.find = function (search)
+lsp.find = function(search, client)
     search = vim.split(search, "::")
     local fqn_class = search[1]
     local method = search[2]
 
-    local buffer = lsp.get_lsp_buffer()
+    local buffer = lsp.get_lsp_buffer(client)
 
     if buffer == nil then
         -- TODO I want to not require this.
         -- I can load a buffer but does not start the lsp
-        P("load a php buffer to load the lsp server")
+        vim.api.nvim_err_writeln(string.format("No buffer available for client %s", client))
         return
     end
 

@@ -41,6 +41,7 @@ require('mason-tool-installer').setup {
     "typescript-language-server",
     "vue-language-server",
     "phpactor",
+    "sql-formatter",
   },
 
   -- if set to true this will check each tool for updates. If updates
