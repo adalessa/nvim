@@ -28,6 +28,7 @@ local laravel_sources = {
 	null_ls.builtins.diagnostics.phpstan.with({
 		command = "./vendor/bin/phpstan",
         to_temp_file = false,
+        method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
 	}),
 	null_ls.builtins.formatting.pint,
 	null_ls.builtins.formatting.blade_formatter,
@@ -37,9 +38,11 @@ local symonfy_sources = {
 	null_ls.builtins.diagnostics.phpstan.with({
         command = "./bin/phpstan",
         to_temp_file = false,
+        method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
     }),
 	null_ls.builtins.diagnostics.phpcs.with({
         command = "./bin/phpcs",
+        method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
     }),
 }
 
