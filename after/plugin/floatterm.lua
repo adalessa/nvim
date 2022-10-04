@@ -1,3 +1,3 @@
-vim.keymap.set('n', '``', function ()
+vim.keymap.set({ "n", "t" }, "``", function()
     vim.cmd([[FloatermToggle]])
 end, {})

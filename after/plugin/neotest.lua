@@ -3,8 +3,6 @@ if not ok then
     return
 end
 
-local composer = require("composer")
-
 neotest.setup({
     adapters = {
         require("neotest-go"),
@@ -13,20 +11,7 @@ neotest.setup({
         require("neotest-vim-test")({
             ignore_file_types = { "go", "lua", "rust", "php" },
         }),
-        require("neotest-phpunit")({
-            phpunit_cmd = function()
-                if composer.query({ "require-dev", "laravel/sail" }) ~= nil then
-                    return { "vendor/bin/sail", "phpunit" }
-                end
-                return "vendor/bin/phpunit"
-            end,
-            path_mapping = function ()
-                if composer.query({"require-dev", "laravel/sali"}) ~= nil then
-                    return { ["/app"] = vim.fn.getcwd() }
-                end
-                return { ["/var/www/html"] = vim.fn.getcwd() }
-            end
-        }),
+        require("laravel.neotest"),
     },
 })
 

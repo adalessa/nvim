@@ -102,6 +102,12 @@ M.pro = fmt([[{} {} ${},]], {
 	end, { 2 }),
 })
 
+M.rpro = fmt([[{} readonly {} ${},]], {
+	visibility(1, "public"),
+	i(2, "int"),
+    i(3, ""),
+})
+
 M._c = fmt(
 	[[{} function __construct({}) {{
     {}
@@ -149,5 +155,15 @@ M.fn = {
 M["then"] = fmt([[->then(function ({}) {{
     {}
 }})]], {i(1, ""), i(2, "")})
+
+M.test = fmt([[/**
+ * @test
+ */
+public function it_{}(): void
+{{
+    {}
+}}
+]], {i(1, ""), i(0, "")})
+
 
 return M

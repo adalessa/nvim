@@ -1,0 +1,5 @@
+;; extends
+
+[
+    "readonly"
+] @keyword.function

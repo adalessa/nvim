@@ -60,11 +60,6 @@ local function on_attach(client, bufnr)
     local filetype = vim.api.nvim_buf_get_option(0, "filetype")
     -- keymaps for lsp
     vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = 0 })
-    vim.keymap.set("n", "<c-]>", vim.lsp.buf.definition, { buffer = 0 })
-    vim.keymap.set("n", "<leader><c-]>", function()
-        vim.cmd("vsp")
-        vim.lsp.buf.definition()
-    end, { buffer = 0 })
     vim.keymap.set("n", "<leader>vrn", vim.lsp.buf.rename, { buffer = 0 })
     vim.keymap.set("i", "<c-h>", vim.lsp.buf.signature_help, { buffer = 0 })
     vim.keymap.set("n", "<leader>vo", ":LspRestart<cr>", { noremap = true })
@@ -72,6 +67,7 @@ local function on_attach(client, bufnr)
     telescope_mapper("gr", "lsp_references", nil, true)
     telescope_mapper("<leader>pv", "find_symbol", nil, true)
     telescope_mapper("<leader>pd", "lsp_document_symbols", nil, true)
+    telescope_mapper("<c-]>", "lsp_definitions", nil, true)
 
     vim.bo.omnifunc = "v:lua.vim.lsp.omnifunc"
 
@@ -183,4 +179,25 @@ require("lspconfig")["sumneko_lua"].setup({
             },
         },
     },
+})
+
+local lspconfig = require("lspconfig")
+local configs = require("lspconfig.configs")
+
+configs.blade = {
+    default_config = {
+        cmd = { "laravel-dev-tools", "lsp" },
+        filetypes = { "blade" },
+        root_dir = function(fname)
+            return lspconfig.util.find_git_ancestor(fname)
+        end,
+        settings = {},
+    },
+}
+-- Set it up
+lspconfig.blade.setup({
+    -- Capabilities is specific to my setup.
+    capabilities = capabilities,
+    on_attach = on_attach,
+    flags = lsp_flags,
 })
