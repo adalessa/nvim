@@ -137,7 +137,7 @@ require("lspconfig").emmet_ls.setup({
     on_attach = on_attach,
     flags = lsp_flags,
     capabilities = capabilities,
-    filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less", "blade" },
+    filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less", "blade", "vue" },
 })
 
 require("lspconfig").gopls.setup({
