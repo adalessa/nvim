@@ -19,7 +19,7 @@ local hydra = require("hydra")
 
 local hint = [[
  NeoTest
- _n_: Near test  _f_: Current file   _s_: Toggle Summary ^
+ _n_: Near test  _f_: Current file _l_: Last Test _m_: Run Marked _s_: Toggle Summary ^
  ^ ^                                            _<Esc>_
 ]]
 
@@ -44,6 +44,8 @@ hydra({
                 neotest.run.run(vim.fn.expand("%"))
             end,
         },
+        { "l", neotest.run.run_last },
+        { "m", neotest.summary.run_marked },
         { "s", neotest.summary.toggle },
         { "<Esc>", nil, { exit = true } },
     },
