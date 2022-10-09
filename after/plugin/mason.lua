@@ -40,7 +40,7 @@ require('mason-tool-installer').setup {
     "stylua",
     "typescript-language-server",
     "vue-language-server",
-    "phpactor",
+    -- "phpactor",
     "sql-formatter",
   },
 

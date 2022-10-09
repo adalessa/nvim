@@ -128,7 +128,11 @@ return require("packer").startup(function(use)
 		end,
 	})
 
-	use("feline-nvim/feline.nvim")
+	-- use("feline-nvim/feline.nvim")
+	use({
+		"nvim-lualine/lualine.nvim",
+		requires = { "kyazdani42/nvim-web-devicons", opt = true },
+	})
 
 	use({
 		"mfussenegger/nvim-dap",
@@ -168,7 +172,8 @@ return require("packer").startup(function(use)
 
 	use("rcarriga/nvim-notify")
 
-	use("EdenEast/nightfox.nvim")
+	-- use("EdenEast/nightfox.nvim")
+	use("folke/tokyonight.nvim")
 
 	use("Raimondi/delimitMate")
 	use("tpope/vim-surround")

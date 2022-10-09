@@ -3,11 +3,6 @@ if not ok then
 	return
 end
 
--- vim.cmd("set background=dark")
--- vim.cmd("hi Normal guibg=NONE ctermbg=NONE")
--- vim.cmd("hi EndOfBuffer guibg=NONE ctermbg=NONE")
-
-
 local palettes = {
     all = {
     }
