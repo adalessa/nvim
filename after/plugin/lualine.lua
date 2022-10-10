@@ -3,6 +3,10 @@ if not ok then
 	return
 end
 
+local function sail_status()
+    return [[testing]]
+end
+
 lualine.setup({
 	options = {
 		theme = "tokyonight",
@@ -14,7 +18,7 @@ lualine.setup({
 		lualine_a = { { "mode", upper = true } },
 		lualine_b = { { "branch", icon = "" }, { "db_ui#statusline" }, "diff" },
 		lualine_c = { { "filename", file_status = true, path = 1 } },
-		lualine_x = { "diagnostics" },
+		lualine_x = { "diagnostics", sail_status },
 		lualine_y = { "encoding", "fileformat" },
 		lualine_z = { "filetype" },
 	},
