@@ -16,7 +16,7 @@ mason.setup({
 })
 
 mason_lspconfig.setup({
-	automatic_installation = true,
+	automatic_installation = false,
 })
 
 require('mason-tool-installer').setup {

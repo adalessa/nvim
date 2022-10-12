@@ -36,7 +36,3 @@ options.laststatus = 3
 options.cmdheight = 1
 options.updatetime = 50
 options.signcolumn = "yes"
-
-vim.g.neovide_transparency = 0.9
-options.guifont="JetbrainsMono Nerd Font:h14"
-vim.g.neovide_hide_mouse_when_typing = true

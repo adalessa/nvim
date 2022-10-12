@@ -1,4 +1,6 @@
 local telescope_mapper = require("alpha.telescope.mappings")
+local lspconfig = require("lspconfig")
+local configs = require("lspconfig.configs")
 
 local lsp_formatting = function(bufnr, allowed_clientes)
 	vim.lsp.buf.format({
@@ -92,7 +94,7 @@ local lsp_flags = {
 
 -- Server configurations
 
-require("lspconfig")["rust_analyzer"].setup({
+lspconfig["rust_analyzer"].setup({
 	on_attach = on_attach,
 	flags = lsp_flags,
 	-- Server-specific settings...
@@ -101,31 +103,31 @@ require("lspconfig")["rust_analyzer"].setup({
 	},
 })
 
-require("lspconfig").dockerls.setup({
+lspconfig.dockerls.setup({
 	on_attach = on_attach,
 	flags = lsp_flags,
 })
 
--- require("lspconfig")["intelephense"].setup({
+-- lspconfig["intelephense"].setup({
 -- 	on_attach = on_attach,
 -- 	flags = lsp_flags,
 -- })
 
-require("lspconfig")["phpactor"].setup({
+lspconfig["phpactor"].setup({
 	on_attach = on_attach,
 	flags = lsp_flags,
 	filetypes = { "php", "cucumber" },
 })
 
-require("lspconfig").jsonls.setup({
+lspconfig.jsonls.setup({
 	on_attach = on_attach,
 	flags = lsp_flags,
 })
-require("lspconfig").html.setup({
+lspconfig.html.setup({
 	on_attach = on_attach,
 	flags = lsp_flags,
 })
-require("lspconfig").html.setup({
+lspconfig.html.setup({
 	on_attach = on_attach,
 	flags = lsp_flags,
 })
@@ -133,34 +135,34 @@ require("lspconfig").html.setup({
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
-require("lspconfig").emmet_ls.setup({
+lspconfig.emmet_ls.setup({
 	on_attach = on_attach,
 	flags = lsp_flags,
 	capabilities = capabilities,
 	filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less", "blade", "vue" },
 })
 
-require("lspconfig").gopls.setup({
+lspconfig.gopls.setup({
 	on_attach = on_attach,
 	flags = lsp_flags,
 })
 
-require("lspconfig").gdscript.setup({
+lspconfig.gdscript.setup({
 	on_attach = on_attach,
 	flags = lsp_flags,
 })
 
-require("lspconfig").tsserver.setup({
+lspconfig.tsserver.setup({
 	on_attach = on_attach,
 	flags = lsp_flags,
 })
 
-require("lspconfig").volar.setup({
+lspconfig.volar.setup({
     on_attach = on_attach,
     flags = lsp_flags,
 })
 
-require("lspconfig")["sumneko_lua"].setup({
+lspconfig["sumneko_lua"].setup({
 	on_attach = on_attach,
 	flags = lsp_flags,
 	settings = {
@@ -180,9 +182,6 @@ require("lspconfig")["sumneko_lua"].setup({
 		},
 	},
 })
-
-local lspconfig = require("lspconfig")
-local configs = require("lspconfig.configs")
 
 configs.blade = {
 	default_config = {
