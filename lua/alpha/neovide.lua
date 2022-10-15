@@ -1,8 +1,7 @@
-local default_font = "JetbrainsMono Nerd Font"
+local default_font = "VictorMono Nerd Font:b"
 local default_size = 14;
 
 vim.g.neovide_transparency = 0.9
-vim.o.guifont="JetbrainsMono Nerd Font:h20"
 vim.g.neovide_hide_mouse_when_typing = true
 
 local function set_font(font, size)
@@ -18,9 +17,9 @@ local maps = {
     f0 = 14,
     f1 = 15,
     f2 = 16,
-    f3 = 17,
-    f4 = 18,
-    f5 = 19,
+    f3 = 18,
+    f4 = 20,
+    f5 = 22,
 }
 
 for key, value in pairs(maps) do

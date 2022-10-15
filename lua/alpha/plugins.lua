@@ -172,8 +172,9 @@ return require("packer").startup(function(use)
 
 	use("rcarriga/nvim-notify")
 
-	-- use("EdenEast/nightfox.nvim")
+	use("EdenEast/nightfox.nvim")
 	use("folke/tokyonight.nvim")
+	use("wuelnerdotexe/vim-enfocado")
 
 	use("Raimondi/delimitMate")
 	use("tpope/vim-surround")
