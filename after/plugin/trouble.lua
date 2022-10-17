@@ -4,6 +4,8 @@ if not ok then
     return
 end
 
-trouble.setup {}
+trouble.setup({
+    mode = "document_diagnostics",
+})
 
---vim.keymap.set('n', '<leader>tt', ':TroubleToggle<cr>')
+vim.keymap.set('n', '<leader>oo', ':TroubleToggle<cr>')
