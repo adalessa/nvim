@@ -70,14 +70,23 @@ lsp.find = function(search, client)
         end
 
         if class_location == nil then
-            P("Did not found any class")
+            P("Did not found any class: " .. class)
             return
         end
 
+        local command = "edit"
+        local filename = class_location.filename
+
+        if vim.api.nvim_buf_get_name(0) ~= filename or command ~= "edit" then
+            filename = Path:new(vim.fn.fnameescape(filename)):normalize(vim.loop.cwd())
+            pcall(vim.cmd, string.format("%s %s", command, filename))
+        end
+
+        local params = vim.lsp.util.make_position_params(0)
         vim.lsp.buf_request(
-            buffer,
-            "workspace/symbol",
-            { query = method },
+            0,
+            "textDocument/documentSymbol",
+            params,
             function(method_err, method_server_result, _, _)
                 if err then
                     vim.api.nvim_err_writeln("Error when finding workspace symbols: " .. method_err.message)
@@ -92,7 +101,7 @@ lsp.find = function(search, client)
 
                 local method_location = nil
                 for _, value in ipairs(method_locations) do
-                    if value.filename == class_location.filename then
+                    if value.text == string.format("[Method] %s", method) then
                         method_location = value
                         break
                     end
@@ -102,15 +111,8 @@ lsp.find = function(search, client)
                     return
                 end
 
-                local command = "edit"
-                local filename = method_location.filename
                 local row = method_location.lnum
                 local col = method_location.col - 1
-
-                if vim.api.nvim_buf_get_name(0) ~= filename or command ~= "edit" then
-                    filename = Path:new(vim.fn.fnameescape(filename)):normalize(vim.loop.cwd())
-                    pcall(vim.cmd, string.format("%s %s", command, filename))
-                end
 
                 if row and col then
                     local ok, err_msg = pcall(vim.api.nvim_win_set_cursor, 0, { row, col })
