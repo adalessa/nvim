@@ -76,6 +76,13 @@ function M.laravel()
     return require("telescope").extensions.laravel.laravel()
 end
 
+function M.api_specs()
+    require("telescope.builtin").git_files({
+        cwd = "./api-specification",
+        show_untracked = true,
+    })
+end
+
 function M.worktree()
     return require("telescope").extensions.git_worktree.git_worktrees()
 end
