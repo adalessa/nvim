@@ -1,8 +1,8 @@
 vim.g.mapleader = " "
 vim.g.snippets = "luasnip"
 
-vim.g.alpha_color = "enfocado"
-vim.g.alpha_lualine_color = "enfocado"
+vim.g.alpha_color = "tokyonight"
+vim.g.alpha_lualine_color = "tokyonight"
 
 local options = vim.o
 
