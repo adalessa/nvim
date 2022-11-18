@@ -44,7 +44,7 @@ local open_resolver = function (resolver)
     fqn = string.gsub(fqn, "\\\\", "\\")
     -- P(fqn)
 
-    R("alpha.php.lsp").find(fqn)
+    R("alpha.php.lsp").find(fqn, 'phpactor')
 end
 
 --- @param bufnr integer Buff id

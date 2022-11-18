@@ -20,9 +20,9 @@ lsp.get_lsp_buffer = function(server_name)
     return buffers[1]
 end
 
---- @param search string: fully name to search Class::method
-lsp.find = function(search, client)
-    search = vim.split(search, "::")
+--- @param fqn string: fully name to search Class::method
+lsp.find = function(fqn, client)
+    local search = vim.split(fqn, "::")
     local fqn_class = search[1]
     local method = search[2]
 
