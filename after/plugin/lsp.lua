@@ -81,7 +81,7 @@ vim.diagnostic.config({
 	virtual_text = false,
 })
 
-local signs = { Error = "⛔", Warn = "⚠️", Hint = "💡", Info = "ℹ️" }
+local signs = { Error = "", Warn = "", Hint = "", Info = "" }
 for type, icon in pairs(signs) do
 	local hl = "DiagnosticSign" .. type
 	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
@@ -183,20 +183,20 @@ lspconfig["sumneko_lua"].setup({
 	},
 })
 
-configs.blade = {
-	default_config = {
-		cmd = { "laravel-dev-tools", "lsp" },
-		filetypes = { "blade" },
-		root_dir = function(fname)
-			return lspconfig.util.find_git_ancestor(fname)
-		end,
-		settings = {},
-	},
-}
--- Set it up
-lspconfig.blade.setup({
-	-- Capabilities is specific to my setup.
-	capabilities = capabilities,
-	on_attach = on_attach,
-	flags = lsp_flags,
-})
+-- configs.blade = {
+-- 	default_config = {
+-- 		cmd = { "laravel-dev-tools", "lsp" },
+-- 		filetypes = { "blade" },
+-- 		root_dir = function(fname)
+-- 			return lspconfig.util.find_git_ancestor(fname)
+-- 		end,
+-- 		settings = {},
+-- 	},
+-- }
+-- -- Set it up
+-- lspconfig.blade.setup({
+-- 	-- Capabilities is specific to my setup.
+-- 	capabilities = capabilities,
+-- 	on_attach = on_attach,
+-- 	flags = lsp_flags,
+-- })
