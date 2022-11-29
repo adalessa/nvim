@@ -81,7 +81,7 @@ return require("packer").startup(function(use)
 			"rcarriga/cmp-dap",
 			"saadparwaiz1/cmp_luasnip",
 			"onsails/lspkind-nvim",
-			"L3MON4D3/LuaSnip",
+            {"L3MON4D3/LuaSnip", tag = "v1.*"},
 			"windwp/nvim-autopairs",
 		},
 	})

@@ -4,7 +4,7 @@ local composer = require("composer")
 local snippet_from_nodes = ls.sn
 local c = ls.choice_node
 local t = ls.text_node
--- local d = ls.dynamic_node
+local d = ls.dynamic_node
 local f = ls.function_node
 local i = ls.insert_node
 local fmt = require("luasnip.extras.fmt").fmt
@@ -18,7 +18,7 @@ local newline = function(text)
 end
 
 local visibility = function(position, default)
-	local possibles = { "private", "public" }
+	local possibles = { "private", "protected", "public" }
 	local options = {}
 
 	for _, value in pairs(possibles) do
@@ -48,9 +48,9 @@ local namespace = function()
 		end
 	end
 	dir = dir:gsub("/", "\\")
-    if dir == "" then
-        return globalNamespace
-    end
+	if dir == "" then
+		return globalNamespace
+	end
 
 	return string.format("%s\\%s", globalNamespace, dir)
 end
@@ -94,18 +94,27 @@ class {}
 	}
 )
 
-M.pro = fmt([[{} {} ${},]], {
+M.pro = fmt([[{} {}{} ${},]], {
 	visibility(1, "private"),
-	i(2, "Type"),
-	f(function(args)
-		return args[1][1]:gsub("^%u", string.lower)
-	end, { 2 }),
+	c(2, {
+		t(""),
+		t("readonly "),
+	}),
+	i(3, "Type"),
+	d(4, function(args)
+		return snippet_from_nodes(nil, {
+			i(1, args[1][1]:gsub("^%u", string.lower) or ""),
+		})
+	end, { 3 }),
 })
 
-M.rpro = fmt([[{} readonly {} ${},]], {
-	visibility(1, "public"),
-	i(2, "int"),
-    i(3, ""),
+M.arg = fmt([[{} ${}]], {
+	i(1, "Type"),
+	d(2, function(args)
+		return snippet_from_nodes(nil, {
+			i(1, args[1][1]:gsub("^%u", string.lower) or ""),
+		})
+	end, { 1 }),
 })
 
 M._c = fmt(
@@ -137,7 +146,7 @@ M.fn = {
 	t(" function "),
 	i(2, "name"),
 	t("("),
-	i(3, "$arg"),
+	i(3),
 	t(")"),
 	c(4, {
 		t(""),
@@ -152,18 +161,23 @@ M.fn = {
 	newline("}"),
 }
 
-M["then"] = fmt([[->then(function ({}) {{
+M["then"] = fmt(
+	[[->then(function ({}) {{
     {}
-}})]], {i(1, ""), i(2, "")})
+}})]],
+	{ i(1, ""), i(2, "") }
+)
 
-M.test = fmt([[/**
+M.test = fmt(
+	[[/**
  * @test
  */
 public function it_{}(): void
 {{
     {}
 }}
-]], {i(1, ""), i(0, "")})
-
+]],
+	{ i(1, ""), i(0, "") }
+)
 
 return M
