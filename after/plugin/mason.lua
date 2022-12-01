@@ -25,14 +25,12 @@ require('mason-tool-installer').setup {
   -- start; they should be the names Mason uses for each tool
   ensure_installed = {
     "blade-formatter",
-    "codespell",
     "dockerfile-language-server",
     "emmet-ls",
     "go-debug-adapter",
     "golangci-lint",
     "gopls",
     "html-lsp",
-    "intelephense",
     "json-lsp",
     "lua-language-server",
     "php-debug-adapter",
@@ -40,7 +38,7 @@ require('mason-tool-installer').setup {
     "stylua",
     "typescript-language-server",
     "vue-language-server",
-    -- "phpactor",
+    "phpactor",
     "sql-formatter",
   },
 
