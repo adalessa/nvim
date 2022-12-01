@@ -127,10 +127,6 @@ lspconfig.html.setup({
 	on_attach = on_attach,
 	flags = lsp_flags,
 })
-lspconfig.html.setup({
-	on_attach = on_attach,
-	flags = lsp_flags,
-})
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
