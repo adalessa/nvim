@@ -128,7 +128,6 @@ return require("packer").startup(function(use)
 		end,
 	})
 
-	-- use("feline-nvim/feline.nvim")
 	use({
 		"nvim-lualine/lualine.nvim",
 		requires = { "kyazdani42/nvim-web-devicons", opt = true },
@@ -172,6 +171,7 @@ return require("packer").startup(function(use)
 
 	use("rcarriga/nvim-notify")
 
+    -- Themes
 	use("EdenEast/nightfox.nvim")
 	use("folke/tokyonight.nvim")
 	use("wuelnerdotexe/vim-enfocado")
@@ -188,6 +188,7 @@ return require("packer").startup(function(use)
 	use("tpope/vim-commentary")
 	use("tpope/vim-tbone")
 	use("tpope/vim-dispatch")
+
 	use("junegunn/vim-easy-align")
 
 	use("jwalton512/vim-blade")
@@ -213,7 +214,7 @@ return require("packer").startup(function(use)
 		requires = { "nvim-lua/plenary.nvim" },
 	})
 
-	use({ "vimwiki/vimwiki", opt = true, cmd = { "VimwikiIndex" } })
+	-- use({ "vimwiki/vimwiki", opt = true, cmd = { "VimwikiIndex" } })
 
 	-- use({ "hkupty/iron.nvim" })
 
@@ -224,8 +225,6 @@ return require("packer").startup(function(use)
 	local_use("laravel.nvim")
 	local_use("composer.nvim")
 	local_use("neotest-phpunit")
-
-	use("habamax/vim-godot")
 
 	use({
 		"anuvyklack/hydra.nvim",

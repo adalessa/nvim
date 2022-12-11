@@ -12,11 +12,11 @@ lualine.setup({
 	extensions = { "quickfix", "fugitive" },
 	sections = {
 		lualine_a = { { "mode", upper = true } },
-		lualine_b = { { "branch", icon = "" }, { "db_ui#statusline" }, "diff" },
+		lualine_b = { { "branch", icon = "" }, "db_ui#statusline" },
 		lualine_c = { { "filename", file_status = true, path = 1 } },
-		lualine_x = { "diagnostics" },
-		lualine_y = { "encoding", "fileformat" },
-		lualine_z = { "filetype" },
+		lualine_x = { "diagnostics", "diff" },
+		lualine_y = { "filetype" },
+		lualine_z = { "location" },
 	},
 	winbar = {
 		lualine_a = {},

@@ -7,7 +7,6 @@ local composer = require("composer")
 local php_actions = require("php-code-actions")
 local laravel_actions = require("laravel.code-actions")
 
-
 local sources = {
     -- null_ls.builtins.code_actions.gitsigns,
     null_ls.builtins.formatting.stylua,
@@ -53,12 +52,19 @@ if composer.query({ "require", "symfony/framework-bundle" }) ~= nil then
     for _, source in ipairs(symonfy_sources) do
         table.insert(sources, source)
     end
-end
-
-if composer.query({ "require", "laravel/framework" }) ~= nil then
+elseif composer.query({ "require", "laravel/framework" }) ~= nil then
     for _, source in ipairs(laravel_sources) do
         table.insert(sources, source)
     end
+else
+    table.insert(
+        sources,
+        null_ls.builtins.diagnostics.phpstan.with({
+            command = "./vendor/bin/phpstan",
+            to_temp_file = false,
+            method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
+        })
+    )
 end
 
 -- Only for development to reload sources

@@ -14,3 +14,6 @@
 --
 -- Problem when I switch project sail is runnin in another one
 --
+local artisan = R("laravel.artisan")
+
+P(artisan.commands(true))
