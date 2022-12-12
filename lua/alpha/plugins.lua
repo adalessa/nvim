@@ -169,21 +169,22 @@ return require("packer").startup(function(use)
 		end,
 	})
 
-	use("rcarriga/nvim-notify")
-
     -- Themes
 	use("EdenEast/nightfox.nvim")
 	use("folke/tokyonight.nvim")
 	use("wuelnerdotexe/vim-enfocado")
+
+	use("voldikss/vim-floaterm")
+
+	use("stevearc/dressing.nvim")
+	use("rcarriga/nvim-notify")
+	use("xiyaowong/nvim-transparent")
 
 	use("Raimondi/delimitMate")
 	use("tpope/vim-surround")
 	use("tpope/vim-dotenv")
 	use("tpope/vim-fugitive")
 	use("tpope/vim-repeat")
-	-- use("tpope/vim-obsession")
-
-	-- useful for unix functions
 	use("tpope/vim-eunuch")
 	use("tpope/vim-commentary")
 	use("tpope/vim-tbone")
@@ -214,9 +215,16 @@ return require("packer").startup(function(use)
 		requires = { "nvim-lua/plenary.nvim" },
 	})
 
-	-- use({ "vimwiki/vimwiki", opt = true, cmd = { "VimwikiIndex" } })
+	use({
+		"anuvyklack/hydra.nvim",
+		requires = "anuvyklack/keymap-layer.nvim", -- needed only for pink hydras
+	})
 
-	-- use({ "hkupty/iron.nvim" })
+	use({
+		"phaazon/mind.nvim",
+		branch = "v2.2",
+		requires = { "nvim-lua/plenary.nvim" },
+	})
 
 	-- Local plugins can be included
 	local_use("telescope-projectionist.nvim")
@@ -225,20 +233,4 @@ return require("packer").startup(function(use)
 	local_use("laravel.nvim")
 	local_use("composer.nvim")
 	local_use("neotest-phpunit")
-
-	use({
-		"anuvyklack/hydra.nvim",
-		requires = "anuvyklack/keymap-layer.nvim", -- needed only for pink hydras
-	})
-
-	use({ "xiyaowong/nvim-transparent" })
-
-	use({
-		"phaazon/mind.nvim",
-		branch = "v2.2",
-		requires = { "nvim-lua/plenary.nvim" },
-	})
-
-	use("stevearc/dressing.nvim")
-	use("voldikss/vim-floaterm")
 end)

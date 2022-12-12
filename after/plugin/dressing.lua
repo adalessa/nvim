@@ -33,7 +33,6 @@ dressing.setup({
 		-- min_width = {20, 0.2} means "the greater of 20 columns or 20% of total"
 		max_width = { 140, 0.9 },
 		min_width = { 20, 0.2 },
-
 		win_options = {
 			-- Window transparency (0-100)
 			winblend = 10,
