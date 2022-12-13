@@ -38,15 +38,11 @@ vim.fn.sign_define("DapLogPoint", { text = "💬", texthl = "", linehl = "", num
 
 -- vim.cmd("au FileType dap-repl lua require('dap.ext.autocompl').attach()")
 
--- TODO replace with mason for check if installed and get the path
--- the binary does not work
-local php_debug_adapter = vim.fn.stdpath("data") .. "/mason/packages/php-debug-adapter/extension/out/phpDebug.js"
-
 dap.adapters.php = {
 	type = "executable",
-	command = "node",
-	args = { php_debug_adapter },
+	command = "php-debug-adapter",
 }
+
 dap.configurations.php = {
 	{
 		type = "php",

@@ -6,6 +6,7 @@ vim.g.alpha_lualine_color = "tokyonight"
 
 local options = vim.o
 
+options.mouse = false
 options.number = true
 options.relativenumber = true
 
