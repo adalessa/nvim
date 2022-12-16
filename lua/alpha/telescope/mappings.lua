@@ -40,7 +40,7 @@ map_tele("<leader>fp", "my_plugins")
 map_tele("<leader>rr", "refactor", {}, nil, {"n", "v"})
 map_tele("<leader>po", "api_specs")
 
-map_tele("<leader>pa", "laravel")
+map_tele("<leader>pa", "laravel_commands")
 map_tele("<leader>pm", "gateway")
 
 return map_tele
