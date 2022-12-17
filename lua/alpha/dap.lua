@@ -1,8 +1,9 @@
 local dap, dapui, dap_go = require("dap"), require("dapui"), require("dap-go")
-local composer = require("composer")
 
 require("nvim-dap-virtual-text").setup({})
 -- dap.set_log_level('TRACE')
+
+dap_go.setup()
 
 dapui.setup({
 	icons = { expanded = "▾", collapsed = "▸" },
@@ -28,15 +29,11 @@ dapui.setup({
 	},
 })
 
-dap_go.setup()
-
 vim.fn.sign_define("DapBreakpoint", { text = "🛑", texthl = "", linehl = "", numhl = "" })
 vim.fn.sign_define("DapStopped", { text = "▶", texthl = "", linehl = "", numhl = "" })
 vim.fn.sign_define("DapBreakpointRejected", { text = "🚫", texthl = "", linehl = "", numhl = "" })
 vim.fn.sign_define("DapBreakpointCondition", { text = "❓", texthl = "", linehl = "", numhl = "" })
 vim.fn.sign_define("DapLogPoint", { text = "💬", texthl = "", linehl = "", numhl = "" })
-
--- vim.cmd("au FileType dap-repl lua require('dap.ext.autocompl').attach()")
 
 dap.adapters.php = {
 	type = "executable",
@@ -47,32 +44,91 @@ dap.configurations.php = {
 	{
 		type = "php",
 		request = "launch",
-		name = "Listen for Xdebug",
+		name = "Laravel",
 		port = 9003,
-		pathMappings = function()
-			if composer.query({"require-dev", "laravel/sali"}) == nil then
-				return { ["/app"] = "${workspaceFolder}" }
-			end
-			return { ["/var/www/html"] = "${workspaceFolder}" }
-		end,
+		pathMappings = {
+			["/var/www/html"] = "${workspaceFolder}",
+		},
+	},
+	{
+		type = "php",
+		request = "launch",
+		name = "Symfony",
+		port = 9003,
+		pathMappings = {
+			["/app"] = "${workspaceFolder}",
+		},
 	},
 }
 
+require("dap-vscode-js").setup({
+	-- node_path = "node", -- Path of node executable. Defaults to $NODE_PATH, and then "node"
+	-- debugger_path = "(runtimedir)/site/pack/packer/opt/vscode-js-debug", -- Path to vscode-js-debug installation.
+	debugger_cmd = { "js-debug-adapter" }, -- Command to use to launch the debug server. Takes precedence over `node_path` and `debugger_path`.
+	adapters = { "pwa-node", "pwa-chrome", "pwa-msedge", "node-terminal", "pwa-extensionHost" }, -- which adapters to register in nvim-dap
+	-- log_file_path = "(stdpath cache)/dap_vscode_js.log" -- Path for file logging
+	-- log_file_level = false -- Logging level for output to file. Set to false to disable file logging.
+	-- log_console_level = vim.log.levels.ERROR -- Logging level for output to console. Set to false to disable console output.
+})
+
+for _, language in ipairs({ "typescript", "javascript" }) do
+	require("dap").configurations[language] = {
+		{
+			type = "pwa-node",
+			request = "launch",
+			name = "Launch file",
+			program = "${file}",
+			cwd = "${workspaceFolder}",
+		},
+		{
+			type = "pwa-node",
+			request = "attach",
+			name = "Attach",
+			processId = require("dap.utils").pick_process,
+			cwd = "${workspaceFolder}",
+		},
+	}
+end
+
+for _, language in ipairs({ "typescriptreact", "javascriptreact" }) do
+	require("dap").configurations[language] = {
+		{
+			type = "pwa-chrome",
+			name = "Attach - Remote Debugging",
+			request = "attach",
+			program = "${file}",
+			cwd = vim.fn.getcwd(),
+			sourceMaps = true,
+			protocol = "inspector",
+			port = 9222,
+			webRoot = "${workspaceFolder}",
+		},
+		{
+			type = "pwa-chrome",
+			name = "Launch Chrome",
+			request = "launch",
+			url = "http://localhost:3000",
+		},
+	}
+end
+
 -- Events Listeners
--- dap.listeners.after.event_initialized["dapui_config"] = function()
--- 	dapui.open({})
--- end
+dap.listeners.after.event_initialized["dapui_config"] = function()
+	dapui.open({})
+end
 
 local hydra = require("hydra")
 local hint = [[
  Nvim DAP
  _d_: Start/Continue  _j_: StepOver _k_: StepOut _l_: StepInto ^
  _bp_: Toogle Breakpoint  _bc_: Conditional Breakpoint ^
- _c_: Run To Cursor  _tt_: Go Debug Test
- _h_: Show information of the variable under the cursor _?_ log point
- _s_: Start         _x_: Stop Debbuging
+ _?_: log point ^
+ _c_: Run To Cursor ^
+ _h_: Show information of the variable under the cursor ^
+ _x_: Stop Debbuging ^
  ^^                                                      _<Esc>_
 ]]
+
 hydra({
 	name = "dap",
 	hint = hint,
@@ -88,20 +144,12 @@ hydra({
 	body = "<leader>d",
 	heads = {
 		{ "d", dap.continue },
-		{
-			"s",
-			function()
-				dap.continue()
-				dapui.open({})
-			end,
-		},
 		{ "bp", dap.toggle_breakpoint },
 		{ "l", dap.step_into },
 		{ "j", dap.step_over },
 		{ "k", dap.step_out },
 		{ "h", dapui.eval },
 		{ "c", dap.run_to_cursor },
-		{ "tt", dap_go.debug_test },
 		{
 			"bc",
 			function()

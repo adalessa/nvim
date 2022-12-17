@@ -139,6 +139,7 @@ return require("packer").startup(function(use)
 			"theHamsta/nvim-dap-virtual-text",
 			"rcarriga/nvim-dap-ui",
 			"leoluz/nvim-dap-go",
+            "mxsdev/nvim-dap-vscode-js",
 		},
 	})
 
