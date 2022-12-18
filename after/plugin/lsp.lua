@@ -1,6 +1,5 @@
 local telescope_mapper = require("alpha.telescope.mappings")
 local lspconfig = require("lspconfig")
-local configs = require("lspconfig.configs")
 
 local lsp_formatting = function(bufnr, allowed_clientes)
 	vim.lsp.buf.format({
@@ -55,8 +54,6 @@ vim.keymap.set("n", "<leader>vf", function()
 	return vim.lsp.buf.format({ async = true })
 end, {})
 
-vim.keymap.set("n", "<leader>vn", vim.diagnostic.goto_next, {})
-vim.keymap.set("n", "<leader>vp", vim.diagnostic.goto_prev, {})
 
 local function on_attach(client, bufnr)
 	local filetype = vim.api.nvim_buf_get_option(0, "filetype")
@@ -75,16 +72,6 @@ local function on_attach(client, bufnr)
 
 	-- Attach any filetype specific options to the client
 	filetype_attach[filetype](client, bufnr)
-end
-
-vim.diagnostic.config({
-	virtual_text = false,
-})
-
-local signs = { Error = "", Warn = "", Hint = "", Info = "" }
-for type, icon in pairs(signs) do
-	local hl = "DiagnosticSign" .. type
-	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
 end
 
 -- Actual configs
@@ -108,7 +95,7 @@ lspconfig.dockerls.setup({
 	flags = lsp_flags,
 })
 
-lspconfig["phpactor"].setup({
+lspconfig.phpactor.setup({
 	on_attach = on_attach,
 	flags = lsp_flags,
 	filetypes = { "php", "cucumber" },
@@ -173,21 +160,3 @@ lspconfig["sumneko_lua"].setup({
 		},
 	},
 })
-
--- configs.blade = {
--- 	default_config = {
--- 		cmd = { "laravel-dev-tools", "lsp" },
--- 		filetypes = { "blade" },
--- 		root_dir = function(fname)
--- 			return lspconfig.util.find_git_ancestor(fname)
--- 		end,
--- 		settings = {},
--- 	},
--- }
--- -- Set it up
--- lspconfig.blade.setup({
--- 	-- Capabilities is specific to my setup.
--- 	capabilities = capabilities,
--- 	on_attach = on_attach,
--- 	flags = lsp_flags,
--- })

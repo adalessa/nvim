@@ -1,3 +1,7 @@
+if require("alpha.packer_install")() then
+	return
+end
+
 vim.cmd.packadd("packer.nvim")
 vim.cmd([[autocmd BufWritePost plugins.lua source <afile> | PackerCompile]])
 
@@ -81,7 +85,7 @@ return require("packer").startup(function(use)
 			"rcarriga/cmp-dap",
 			"saadparwaiz1/cmp_luasnip",
 			"onsails/lspkind-nvim",
-            {"L3MON4D3/LuaSnip", tag = "v1.*"},
+			{ "L3MON4D3/LuaSnip", tag = "v1.*" },
 			"windwp/nvim-autopairs",
 		},
 	})
@@ -139,7 +143,7 @@ return require("packer").startup(function(use)
 			"theHamsta/nvim-dap-virtual-text",
 			"rcarriga/nvim-dap-ui",
 			"leoluz/nvim-dap-go",
-            "mxsdev/nvim-dap-vscode-js",
+			"mxsdev/nvim-dap-vscode-js",
 		},
 	})
 
@@ -170,26 +174,32 @@ return require("packer").startup(function(use)
 		end,
 	})
 
-    -- Themes
+	-- Themes
 	use("EdenEast/nightfox.nvim")
 	use("folke/tokyonight.nvim")
 	use("wuelnerdotexe/vim-enfocado")
 
-	use("voldikss/vim-floaterm")
+	-- use("voldikss/vim-floaterm")
 
+	-- Style
 	use("stevearc/dressing.nvim")
 	use("rcarriga/nvim-notify")
 	use("xiyaowong/nvim-transparent")
 
 	use("Raimondi/delimitMate")
+	use("lukas-reineke/indent-blankline.nvim")
+
 	use("tpope/vim-surround")
-	use("tpope/vim-dotenv")
-	use("tpope/vim-fugitive")
 	use("tpope/vim-repeat")
+	use("tpope/vim-fugitive")
+	use("tpope/vim-rhubarb")
+	use("tpope/vim-dotenv")
 	use("tpope/vim-eunuch")
-	use("tpope/vim-commentary")
-	use("tpope/vim-tbone")
-	use("tpope/vim-dispatch")
+
+	use({"numToStr/Comment.nvim", config = function ()
+		require('Comment').setup()
+	end})
+	use("tpope/vim-sleuth")
 
 	use("junegunn/vim-easy-align")
 
@@ -202,6 +212,7 @@ return require("packer").startup(function(use)
 		},
 	})
 
+    -- Database client
 	use({
 		"kristijanhusak/vim-dadbod-ui",
 		requires = {
@@ -211,6 +222,7 @@ return require("packer").startup(function(use)
 		},
 	})
 
+    -- Rest client
 	use({
 		"NTBBloodbath/rest.nvim",
 		requires = { "nvim-lua/plenary.nvim" },
@@ -227,9 +239,22 @@ return require("packer").startup(function(use)
 		requires = { "nvim-lua/plenary.nvim" },
 	})
 
+	use({
+		"jackMort/ChatGPT.nvim",
+		config = function()
+			require("chatgpt").setup({
+				-- optional configuration
+			})
+		end,
+		requires = {
+			"MunifTanjim/nui.nvim",
+			"nvim-lua/plenary.nvim",
+			"nvim-telescope/telescope.nvim",
+		},
+	})
+
 	-- Local plugins can be included
 	local_use("telescope-projectionist.nvim")
-	-- local_use("telescope-laravel.nvim")
 	local_use("php-code-actions.nvim")
 	local_use("laravel.nvim")
 	local_use("composer.nvim")

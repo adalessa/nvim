@@ -30,7 +30,6 @@ options.scrolloff = 4
 options.sidescrolloff = 4
 options.showmode = false
 options.clipboard = "unnamedplus"
--- set completeopt=menuone,noinsert,noselect
 options.splitbelow = true
 options.splitright = true
 options.autowrite = true

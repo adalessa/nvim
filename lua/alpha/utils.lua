@@ -1,41 +1,24 @@
-local ts_utils = require("nvim-treesitter.ts_utils")
+local utils = {}
 
-local M = {}
+utils.save_and_exec = function()
+	local source_commands = {
+		lua = "luafi %",
+		vim = "source %",
+	}
 
-M.ucfirst = function(str)
-    return (str:gsub("^%l", string.upper))
+	local ft = vim.api.nvim_buf_get_option(0, "filetype")
+	local command = source_commands[ft]
+	if command == nil then
+		vim.notify("This type cant not be sourced", vim.log.levels.ERROR)
+		return
+	end
+
+	-- Save and source
+	vim.api.nvim_command("silent w")
+	vim.api.nvim_command(command)
+
+	local current_file_name = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ":t")
+	vim.notify(string.format("File %s Sourced", current_file_name), vim.log.levels.INFO)
 end
 
-M.get_master_node = function()
-    local node = ts_utils.get_node_at_cursor()
-    if node == nil then
-        error("No treesitter parser found.")
-    end
-
-    local start_row = node:start()
-
-    local parent = node:parent()
-    while (parent ~= nil and parent:start() == start_row) do
-        node = parent
-        parent = node:parent()
-    end
-
-    return node
-end
-
-M.get_root_node = function ()
-    local node = ts_utils.get_node_at_cursor()
-    if node == nil then
-        error("No treesitter parser found.")
-    end
-
-    local parent = node:parent()
-    while (parent ~= nil) do
-        node = parent
-        parent = node:parent()
-    end
-
-    return node
-end
-
-return M
+return utils
