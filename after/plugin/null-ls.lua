@@ -27,7 +27,6 @@ local sources = {
 -- Maybe sources per type of project
 local laravel_sources = {
     null_ls.builtins.diagnostics.phpstan.with({
-        command = "./vendor/bin/phpstan",
         to_temp_file = false,
         method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
     }),
@@ -38,12 +37,10 @@ local laravel_sources = {
 
 local symonfy_sources = {
     null_ls.builtins.diagnostics.phpstan.with({
-        command = "./bin/phpstan",
         to_temp_file = false,
         method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
     }),
     null_ls.builtins.diagnostics.phpcs.with({
-        command = "./bin/phpcs",
         method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
     }),
 }
@@ -60,7 +57,6 @@ else
     table.insert(
         sources,
         null_ls.builtins.diagnostics.phpstan.with({
-            command = "./vendor/bin/phpstan",
             to_temp_file = false,
             method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
         })

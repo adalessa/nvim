@@ -239,20 +239,6 @@ return require("packer").startup(function(use)
 		requires = { "nvim-lua/plenary.nvim" },
 	})
 
-	use({
-		"jackMort/ChatGPT.nvim",
-		config = function()
-			require("chatgpt").setup({
-				-- optional configuration
-			})
-		end,
-		requires = {
-			"MunifTanjim/nui.nvim",
-			"nvim-lua/plenary.nvim",
-			"nvim-telescope/telescope.nvim",
-		},
-	})
-
 	-- Local plugins can be included
 	local_use("telescope-projectionist.nvim")
 	local_use("php-code-actions.nvim")
