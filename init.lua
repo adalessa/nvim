@@ -1,8 +1,7 @@
-pcall(require, "impatient")
-
 require("alpha.settings")
+require("alpha.lazy")
+
 require("alpha.keybindings")
-require("alpha.plugins")
 
 require("alpha.globals")
 require("alpha.disable_builtin")
