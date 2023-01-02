@@ -196,14 +196,19 @@ return require("packer").startup(function(use)
 	use("tpope/vim-dotenv")
 	use("tpope/vim-eunuch")
 
-	use({"numToStr/Comment.nvim", config = function ()
-		require('Comment').setup()
-	end})
+	use({
+		"numToStr/Comment.nvim",
+		config = function()
+			require("Comment").setup()
+		end,
+	})
 	use("tpope/vim-sleuth")
 
 	use("junegunn/vim-easy-align")
 
 	use("jwalton512/vim-blade")
+
+	use("jghauser/mkdir.nvim")
 
 	use({
 		"lewis6991/gitsigns.nvim",
@@ -212,7 +217,7 @@ return require("packer").startup(function(use)
 		},
 	})
 
-    -- Database client
+	-- Database client
 	use({
 		"kristijanhusak/vim-dadbod-ui",
 		requires = {
@@ -222,7 +227,7 @@ return require("packer").startup(function(use)
 		},
 	})
 
-    -- Rest client
+	-- Rest client
 	use({
 		"NTBBloodbath/rest.nvim",
 		requires = { "nvim-lua/plenary.nvim" },
