@@ -97,7 +97,7 @@ return {
 			{ "nvim-telescope/telescope-file-browser.nvim" },
 			{ "nvim-telescope/telescope-dap.nvim" },
 			{ "nvim-telescope/telescope-ui-select.nvim" },
-			{ "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
+			{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 		},
 	},
 
@@ -117,7 +117,7 @@ return {
 
 	{
 		"nvim-lualine/lualine.nvim",
-		dependencies = { "kyazdani42/nvim-web-devicons", opt = true },
+		dependencies = { "kyazdani42/nvim-web-devicons" },
 	},
 
 	{
@@ -218,4 +218,5 @@ return {
 
 	"adalessa/composer.nvim",
 	"adalessa/php-code-actions.nvim",
+    "jwalton512/vim-blade",
 }
