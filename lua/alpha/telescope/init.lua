@@ -73,7 +73,7 @@ function M.projectionist()
 end
 
 function M.laravel_commands()
-    return require("telescope").extensions.laravel.commands()
+    return require("telescope").extensions.laravel.laravel()
 end
 
 function M.api_specs()

@@ -7,19 +7,26 @@ local composer = require("composer")
 local php_actions = require("php-code-actions")
 local laravel_actions = require("laravel.code-actions")
 
+
+-- format and code actions for non lsp buffers
+vim.keymap.set({ "n", "v" }, "<leader>vca", vim.lsp.buf.code_action, {})
+vim.keymap.set("n", "<leader>vf", function()
+	return vim.lsp.buf.format({ async = true })
+end, {})
+
 local sources = {
-    -- null_ls.builtins.code_actions.gitsigns,
-    null_ls.builtins.formatting.stylua,
+    null_ls.builtins.code_actions.gitsigns,
+    -- null_ls.builtins.formatting.stylua,
     -- null_ls.builtins.diagnostics.eslint,
     -- null_ls.builtins.formatting.phpcsfixer,
-    null_ls.builtins.diagnostics.golangci_lint,
+    -- null_ls.builtins.diagnostics.golangci_lint,
     -- null_ls.builtins.diagnostics.codespell.with({
     -- 	args = { "--ignore-words-list", "crate" },
     -- }),
     null_ls.builtins.formatting.jq,
-    null_ls.builtins.code_actions.gitrebase,
+    -- null_ls.builtins.code_actions.gitrebase,
     null_ls.builtins.code_actions.refactoring,
-    null_ls.builtins.formatting.sql_formatter,
+    -- null_ls.builtins.formatting.sql_formatter,
     php_actions.getter_setter,
     php_actions.file_creator,
 }

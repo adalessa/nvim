@@ -1,8 +1,4 @@
-local ok, cmp = pcall(require, "cmp")
-if not ok then
-	return
-end
-
+local cmp = require("cmp")
 local lspkind = require("lspkind")
 local luasnip = require("luasnip")
 local cmp_autopairs = require("nvim-autopairs.completion.cmp")
@@ -130,11 +126,4 @@ cmp.setup.filetype({ "dap-repl", "dapui_watches" }, {
 	}, {
 		{ name = "buffer" },
 	}),
-})
-
--- Setup lspconfig.
-local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
--- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
-require("lspconfig")["emmet_ls"].setup({
-	capabilities = capabilities,
 })

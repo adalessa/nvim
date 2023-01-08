@@ -18,8 +18,8 @@ return require("packer").startup(function(use)
 			home = first
 		end
 
-		if vim.fn.isdirectory(vim.fn.expand("~/plugins/" .. plug_path)) == 1 then
-			opts[1] = "~/plugins/" .. plug_path
+		if vim.fn.isdirectory(vim.fn.expand("~/code/plugins/" .. plug_path)) == 1 then
+			opts[1] = "~/code/plugins/" .. plug_path
 		else
 			opts[1] = string.format("%s/%s", home, plug_path)
 		end
@@ -29,6 +29,8 @@ return require("packer").startup(function(use)
 
 	use("wbthomason/packer.nvim")
 	use("lewis6991/impatient.nvim")
+
+	use("jwalton512/vim-blade")
 
 	use({
 		"ThePrimeagen/refactoring.nvim",
@@ -85,23 +87,23 @@ return require("packer").startup(function(use)
 			"rcarriga/cmp-dap",
 			"saadparwaiz1/cmp_luasnip",
 			"onsails/lspkind-nvim",
+			"hrsh7th/cmp-nvim-lsp-signature-help",
 			{ "L3MON4D3/LuaSnip", tag = "v1.*" },
 			"windwp/nvim-autopairs",
 		},
-	})
-
-	-- LSP
-	use({
-		"neovim/nvim-lspconfig",
-		"hrsh7th/cmp-nvim-lsp-signature-help",
-		"jose-elias-alvarez/null-ls.nvim",
 	})
 
 	-- Installation of LSP/Debuggers/Other
 	use({
 		"williamboman/mason.nvim",
 		"williamboman/mason-lspconfig.nvim",
+		"neovim/nvim-lspconfig",
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
+	})
+
+	-- Null ls
+	use({
+		"jose-elias-alvarez/null-ls.nvim",
 	})
 
 	use({
@@ -206,7 +208,6 @@ return require("packer").startup(function(use)
 
 	use("junegunn/vim-easy-align")
 
-	use("jwalton512/vim-blade")
 
 	use("jghauser/mkdir.nvim")
 
