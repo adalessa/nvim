@@ -10,3 +10,5 @@ require('mason-lspconfig').setup_handlers({
 		lspconfig[server_name].setup(setups[server_name]())
 	end
 })
+
+require('alpha.lsp.null-ls')
