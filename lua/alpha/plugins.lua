@@ -232,6 +232,10 @@ return require("packer").startup(function(use)
 	use({
 		"NTBBloodbath/rest.nvim",
 		requires = { "nvim-lua/plenary.nvim" },
+		ft = "http",
+		config = function ()
+			require("alpha.rest")
+		end,
 	})
 
 	use({

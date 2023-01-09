@@ -1,7 +1,4 @@
-local ok, rest_nvim = pcall(require, "rest-nvim")
-if not ok then
-	return
-end
+local rest_nvim = require("rest-nvim")
 
 rest_nvim.setup({
 	-- Open request results in a horizontal split
