@@ -1,11 +1,12 @@
 return {
+	"emmet_ls",
+	"gopls",
+	"html",
+	"jsonls",
+	"marksman",
 	"phpactor",
 	"rust_analyzer",
-	"gopls",
 	"sumneko_lua",
-	"emmet_ls",
-	"jsonls",
-	"html",
 	"tsserver",
 	"volar",
 }

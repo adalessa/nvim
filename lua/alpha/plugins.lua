@@ -152,6 +152,12 @@ return require("packer").startup(function(use)
 	use({
 		"folke/trouble.nvim",
 		requires = "kyazdani42/nvim-web-devicons",
+		config = function ()
+			require('trouble').setup({mode = "document_diagnostics"})
+			vim.keymap.set('n', '<leader>oo', ':TroubleToggle<cr>')
+		end,
+		cmd = {"Trouble", "TroubleToggle"},
+		keys = "<leader>oo",
 	})
 
 	use("vim-test/vim-test")
@@ -185,7 +191,12 @@ return require("packer").startup(function(use)
 
 	-- Style
 	use("stevearc/dressing.nvim")
-	use("rcarriga/nvim-notify")
+	use({
+		"rcarriga/nvim-notify",
+		config = function ()
+			require('notify').setup({background_colour = "#000000"})
+		end
+	})
 	use("xiyaowong/nvim-transparent")
 
 	use("Raimondi/delimitMate")
@@ -226,6 +237,11 @@ return require("packer").startup(function(use)
 			"kristijanhusak/vim-dadbod-completion",
 			"tpope/vim-dotenv",
 		},
+		cmd = "DBUI",
+		keys = "<leader><leader>db",
+		config = function ()
+			require('alpha.database')
+		end
 	})
 
 	-- Rest client
@@ -247,7 +263,17 @@ return require("packer").startup(function(use)
 		"phaazon/mind.nvim",
 		branch = "v2.2",
 		requires = { "nvim-lua/plenary.nvim" },
-		cmd = { "MindOpenMain", "MindOpenProject" }
+		cmd = { "MindOpenMain", "MindOpenProject" },
+		config = function ()
+			local dirs = {}
+			if vim.fn.isdirectory("/mnt/nas/alpha/mind/data") then
+				dirs = {
+					state_path = "/mnt/nas/alpha/mind/mind.json",
+					data_dir = "/mnt/nas/alpha/mind/data",
+				}
+			end
+			require('mind').setup({ persistence = dirs})
+		end
 	})
 
 	use {
