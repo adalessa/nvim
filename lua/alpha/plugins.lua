@@ -233,7 +233,7 @@ return require("packer").startup(function(use)
 		"NTBBloodbath/rest.nvim",
 		requires = { "nvim-lua/plenary.nvim" },
 		ft = "http",
-		config = function ()
+		config = function()
 			require("alpha.rest")
 		end,
 	})
@@ -247,7 +247,17 @@ return require("packer").startup(function(use)
 		"phaazon/mind.nvim",
 		branch = "v2.2",
 		requires = { "nvim-lua/plenary.nvim" },
+		cmd = { "MindOpenMain", "MindOpenProject" }
 	})
+
+	use {
+		"danymat/neogen",
+		config = function()
+			require('neogen').setup({ snippet_engine = "luasnip" })
+		end,
+		cmd = "Neogen",
+		requires = "nvim-treesitter/nvim-treesitter",
+	}
 
 	-- Local plugins can be included
 	local_use("telescope-projectionist.nvim")
