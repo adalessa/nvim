@@ -266,7 +266,7 @@ return require("packer").startup(function(use)
 		cmd = { "MindOpenMain", "MindOpenProject" },
 		config = function ()
 			local dirs = {}
-			if vim.fn.isdirectory("/mnt/nas/alpha/mind/data") then
+			if vim.fn.isdirectory("/mnt/nas/alpha/mind/data") ~= 0 then
 				dirs = {
 					state_path = "/mnt/nas/alpha/mind/mind.json",
 					data_dir = "/mnt/nas/alpha/mind/data",
