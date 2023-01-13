@@ -2,6 +2,7 @@ local cmp = require("cmp")
 local lspkind = require("lspkind")
 local luasnip = require("luasnip")
 local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+local compare = require('cmp.config.compare')
 
 if cmp == nil then
     return
@@ -76,6 +77,14 @@ cmp.setup({
 				["vim-dadbod-completion"] = "[DB]",
 			},
 		}),
+	},
+
+	sorting = {
+		priority_weight = 2,
+		comparators = {
+			compare.kind,
+			compare.sort_text,
+		}
 	},
 
 	experimental = {
