@@ -12,4 +12,6 @@ require("alpha.lsp")
 require("alpha.completition")
 require("alpha.dap")
 require("alpha.colors")
+require("alpha.status_line")
+
 require("alpha.diagnostic")
