@@ -292,7 +292,11 @@ return require("packer").startup(function(use)
 	-- Local plugins can be included
 	local_use("telescope-projectionist.nvim")
 	local_use("php-code-actions.nvim")
-	local_use("laravel.nvim")
+	local_use("laravel.nvim", nil, {
+		config = function ()
+			require('alpha.laravel')
+		end,
+	})
 	local_use("composer.nvim")
 	local_use("neotest-phpunit")
 end)

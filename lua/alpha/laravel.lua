@@ -1,8 +1,4 @@
-local ok, laravel = pcall(require, "laravel")
-if not ok then
-	return
-end
-
+local laravel = require("laravel")
 local artisan = require("laravel.artisan")
 local notify = require("notify")
 
