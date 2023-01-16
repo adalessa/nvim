@@ -18,10 +18,9 @@ for i = 1, quick_binds do
 end
 
 M.setup = function()
-	require('harpoon').setup({})
+	require('harpoon').setup()
 
-	vim.keymap.set('n', '<leader>ss', require("harpoon.ui").toggle_quick_menu,
-		{ noremap = true, silent = true, expr = false })
+	vim.keymap.set('n', '<leader>ss', require("harpoon.ui").toggle_quick_menu, { noremap = true, silent = true, expr = false })
 	vim.keymap.set('n', '<leader>sa', require("harpoon.mark").add_file, { noremap = true, silent = true, expr = false })
 
 	for i = 1, terms do
