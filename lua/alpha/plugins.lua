@@ -132,13 +132,6 @@ return require("packer").startup(function(use)
 	})
 
 	use({
-		"norcalli/nvim-colorizer.lua",
-		config = function()
-			require("colorizer").setup({})
-		end,
-	})
-
-	use({
 		"nvim-lualine/lualine.nvim",
 		requires = { "kyazdani42/nvim-web-devicons", opt = true },
 	})
