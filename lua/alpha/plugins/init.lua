@@ -13,7 +13,6 @@ return {
             require("nvim-projectconfig").setup()
         end,
     },
-    "rcarriga/nvim-notify",
     "Raimondi/delimitMate",
     "lukas-reineke/indent-blankline.nvim",
     "tpope/vim-surround",

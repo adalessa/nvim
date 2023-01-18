@@ -4,7 +4,7 @@ return {
         "rcarriga/nvim-notify",
         "adalessa/composer.nvim",
     },
-    cmd = {"Sali", "Artisan", "Composer"},
+    cmd = {"Sail", "Artisan", "Composer"},
     keys = {{"<leader>pa", function ()
         require("telescope").extensions.laravel.laravel()
     end}},
