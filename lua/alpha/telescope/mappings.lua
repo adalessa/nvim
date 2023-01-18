@@ -23,8 +23,6 @@ vim.api.nvim_set_keymap("c", "<c-r><c-r>", "<Plug>(TelescopeFuzzyCommandSearch)"
 
 map_tele("<leader>pp", "project_files")
 map_tele("<leader>gc", "branches")
-map_tele("<leader>gt", "worktree")
-map_tele("<leader>gn", "worktree_create")
 map_tele("<leader>pw", "grep_word")
 map_tele("<leader>ps", "grep_string")
 map_tele("<leader>pf", "projectionist")
@@ -37,10 +35,7 @@ map_tele("<leader>bp", "file_browser")
 map_tele("<leader>gs", "git_status")
 map_tele("<leader>ve", "diagnostics")
 map_tele("<leader>fp", "my_plugins")
-map_tele("<leader>rr", "refactor", {}, nil, {"n", "v"})
 map_tele("<leader>po", "api_specs")
-
-map_tele("<leader>pa", "laravel_commands")
 map_tele("<leader>pm", "gateway")
 
 return map_tele

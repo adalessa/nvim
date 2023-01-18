@@ -1,6 +1,7 @@
 return {
     "NTBBloodbath/rest.nvim",
     dependencies = { "nvim-lua/plenary.nvim" },
+    ft = "http",
     config = function()
         local rest_nvim = require("rest-nvim")
 

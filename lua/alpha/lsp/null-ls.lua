@@ -1,7 +1,7 @@
 local null_ls = require("null-ls")
 local composer = require("composer")
 local php_actions = require("php-code-actions")
-local laravel_actions = require("laravel.code-actions")
+-- local laravel_actions = require("laravel.code-actions")
 
 local sources = {
 	null_ls.builtins.code_actions.gitsigns,
@@ -23,7 +23,7 @@ if composer.query({ "require", "symfony/framework-bundle" }) ~= nil then
 	}))
 elseif composer.query({ "require", "laravel/framework" }) ~= nil then
 	table.insert(sources, null_ls.builtins.formatting.pint)
-	table.insert(sources, laravel_actions.relationships)
+	-- table.insert(sources, laravel_actions.relationships)
 end
 
 null_ls.setup({

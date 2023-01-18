@@ -5,7 +5,8 @@ return {
         "kristijanhusak/vim-dadbod-completion",
         "tpope/vim-dotenv",
     },
-    config = function ()
+    keys = {{"<leader><leader>db", ':tab DBUI<cr>'}},
+    init = function ()
         require("alpha.database")
     end
 }

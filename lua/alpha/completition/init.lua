@@ -128,11 +128,3 @@ cmp.setup.filetype({ "sql", "mysql", "plsql" }, {
 		{ name = "buffer" },
 	}),
 })
-
-cmp.setup.filetype({ "dap-repl", "dapui_watches" }, {
-	sources = cmp.config.sources({
-		{ name = "dap" },
-	}, {
-		{ name = "buffer" },
-	}),
-})

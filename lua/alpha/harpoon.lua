@@ -5,16 +5,16 @@ local terms = vim.g.harpoon_terms or 3
 local quick_binds = vim.g.harpoon_quick_binds or 5
 
 M.keymaps = {
-	"<leader>ss",
-	"<leader>sa",
+    {"<leader>ss"},
+	{"<leader>sa"},
 }
 
 for i = 1, terms do
-	table.insert(M.keymaps, string.format("<leader><leader>%s", i))
+	table.insert(M.keymaps, {string.format("<leader><leader>%s", i)})
 end
 
 for i = 1, quick_binds do
-	table.insert(M.keymaps, string.format("<leader>%s", i))
+	table.insert(M.keymaps, {string.format("<leader>%s", i)})
 end
 
 M.setup = function()

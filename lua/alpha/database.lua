@@ -41,9 +41,3 @@ vim.g.db_ui_icons = {
     connection_ok = '✓',
     connection_error = '✕',
 }
-
--- opening it in a new tab
-vim.keymap.set('n', '<leader><leader>db', ':tab DBUI<cr>', {})
-
--- just close the tab, but context related of the keybinding
-vim.keymap.set('n', '<leader><leader>tq', ':tabclose<cr>')
