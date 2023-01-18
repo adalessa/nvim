@@ -20,4 +20,5 @@ return {
     "tpope/vim-rhubarb",
     "tpope/vim-dotenv",
     "tpope/vim-eunuch",
+    "adalessa/composer.nvim",
 }
