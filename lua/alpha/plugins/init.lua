@@ -13,6 +13,10 @@ return {
             require("nvim-projectconfig").setup()
         end,
     },
+    {
+        "tpope/vim-dispatch",
+        cmd = {"Make", "Dispatch"}
+    },
     "Raimondi/delimitMate",
     "lukas-reineke/indent-blankline.nvim",
     "tpope/vim-surround",

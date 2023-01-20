@@ -13,9 +13,13 @@ return {
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
         {
             "j-hui/fidget.nvim",
-            config = function()
-                require("fidget").setup()
-            end,
+            opts = {
+                sources = {
+                    ["null-ls"] = {
+                        ignore = true
+                    }
+                }
+            },
         },
     },
     config = function ()
