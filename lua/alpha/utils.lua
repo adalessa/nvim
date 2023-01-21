@@ -1,9 +1,4 @@
 local utils = {}
--- TODO check to add to the notify configuration
-local ok, notify = pcall(require, "notify")
-if ok then
-    vim.notify = notify.notify
-end
 
 utils.save_and_exec = function()
 	local source_commands = {

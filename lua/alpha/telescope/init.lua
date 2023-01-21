@@ -11,6 +11,7 @@ end
 local action_state = require("telescope.actions.state")
 local fb_actions = require("telescope").extensions.file_browser.actions
 local actions = require("telescope.actions")
+local my_actions = require("alpha.telescope.actions")
 
 local M = {}
 
@@ -52,11 +53,9 @@ M.find_nvim_plugin = function()
         prompt_title = "< Plugins >",
         cwd = "$HOME/.config/nvim/lua/alpha/plugins/",
         attach_mappings = function(_, map)
-            map("i", "<C-t>", function(prompt_bufnr)
-                local new_plugin = action_state.get_current_line()
-                actions.close(prompt_bufnr)
-                vim.cmd(string.format("edit ~/.config/nvim/lua/alpha/plugins/%s.lua", new_plugin))
-            end)
+            map("i", "<C-t>", my_actions.create_plugin)
+            map("i", "<C-d>", my_actions.disable_plugin)
+            map("i", "<C-e>", my_actions.enable_plugin)
 
             return true
         end,
