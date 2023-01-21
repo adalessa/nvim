@@ -1,14 +1,29 @@
-function reverse_current_word()
-    local line = vim.fn.getline('.')
-    local current_word = vim.fn.expand('<cword>')
-    local start_index = vim.fn.col('.') - #current_word + 1
-    local reversed_word = current_word:reverse()
+local M = {}
 
-    local reversed_line = line:sub(1, start_index -1)..reversed_word..line:sub(start_index+#current_word)
-    P(reversed_line)
-    vim.fn.setline('.', reversed_line)
+local action_state = require("telescope.actions.state")
+local actions = require('telescope.actions')
+
+M.find_config = function()
+    require("telescope.builtin").find_files({
+        prompt_title = "< Neovim >",
+        cwd = "$HOME/.config/nvim/",
+    })
 end
 
-vim.api.nvim_command('command! -range=% ReverseWord :<line1>,<line2>lua reverse_current_word()')
+M.find_plugin = function()
+    require("telescope.builtin").find_files({
+        prompt_title = "< Plugins >",
+        cwd = "$HOME/.config/nvim/lua/alpha/plugins/",
+        attach_mappings = function(_, map)
+            map("i", "<C-t>", function(prompt_bufnr)
+                local new_plugin = action_state.get_current_line()
+                actions.close(prompt_bufnr)
+                vim.cmd(string.format("edit ~/.config/nvim/lua/alpha/plugins/%s.lua", new_plugin))
+            end)
 
--- testing
+            return true
+        end,
+    })
+end
+
+M.find_plugin()

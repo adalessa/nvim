@@ -57,4 +57,11 @@ end]],
             i(1)
         }
 	),
+
+    plugin = fmt(
+[[return {{
+    "{}"
+}}]], {
+        i(1, "plugin")
+    }),
 }

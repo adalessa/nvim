@@ -40,6 +40,29 @@ function M.search_config()
     })
 end
 
+M.find_nvim_config = function()
+    require("telescope.builtin").find_files({
+        prompt_title = "< Neovim >",
+        cwd = "$HOME/.config/nvim/",
+    })
+end
+
+M.find_nvim_plugin = function()
+    require("telescope.builtin").find_files({
+        prompt_title = "< Plugins >",
+        cwd = "$HOME/.config/nvim/lua/alpha/plugins/",
+        attach_mappings = function(_, map)
+            map("i", "<C-t>", function(prompt_bufnr)
+                local new_plugin = action_state.get_current_line()
+                actions.close(prompt_bufnr)
+                vim.cmd(string.format("edit ~/.config/nvim/lua/alpha/plugins/%s.lua", new_plugin))
+            end)
+
+            return true
+        end,
+    })
+end
+
 function M.grep_string()
     vim.ui.input({ prompt = "Grep for > " }, function(input)
         if input == nil then
