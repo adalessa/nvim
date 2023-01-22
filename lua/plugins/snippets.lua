@@ -130,6 +130,7 @@ end
 return {
     "L3MON4D3/LuaSnip",
     version = "v1.*",
+    event = "VeryLazy",
     config = function()
         config()
         vim.keymap.set("n", "<leader><leader>s", config)

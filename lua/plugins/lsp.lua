@@ -22,6 +22,7 @@ return {
             },
         },
     },
+    event = "VeryLazy",
     config = function ()
         require("alpha.lsp")
     end
