@@ -51,7 +51,7 @@ end
 M.find_nvim_plugin = function()
     require("telescope.builtin").find_files({
         prompt_title = "< Plugins >",
-        cwd = "$HOME/.config/nvim/lua/alpha/plugins/",
+        cwd = "$HOME/.config/nvim/lua/plugins/",
         attach_mappings = function(_, map)
             map("i", "<C-t>", my_actions.create_plugin)
             map("i", "<C-d>", my_actions.disable_plugin)

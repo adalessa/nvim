@@ -43,3 +43,6 @@ map("n", "<leader>ee", ":vsp .env<CR>")
 
 -- quick save and exec
 map("n", "<leader><leader>x", require("alpha.utils").save_and_exec)
+
+map("n", "<leader>vn", vim.diagnostic.goto_next, {})
+map("n", "<leader>vp", vim.diagnostic.goto_prev, {})

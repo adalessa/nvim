@@ -1,6 +1,3 @@
-vim.keymap.set("n", "<leader>vn", vim.diagnostic.goto_next, {})
-vim.keymap.set("n", "<leader>vp", vim.diagnostic.goto_prev, {})
-
 vim.diagnostic.config({
 	virtual_text = false,
 })

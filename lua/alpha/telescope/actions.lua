@@ -2,12 +2,11 @@ local M = {}
 
 local action_state = require("telescope.actions.state")
 local actions = require("telescope.actions")
-local get_node_text = vim.treesitter.get_node_text
 
 M.create_plugin = function(prompt_bufnr)
     local new_plugin = action_state.get_current_line()
     actions.close(prompt_bufnr)
-    vim.cmd(string.format("edit ~/.config/nvim/lua/alpha/plugins/%s.lua", new_plugin))
+    vim.cmd(string.format("edit ~/.config/nvim/lua/plugins/%s.lua", new_plugin))
 end
 
 local get_disable_stm_node = function(bufnr, tree)
