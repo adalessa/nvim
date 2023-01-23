@@ -85,8 +85,12 @@ function M.find_symbol()
 end
 
 function M.my_plugins()
+    if vim.fn.isdirectory("~/code/plugins/") == 0 then
+        vim.notify("Directory ~/code/plugins does not exists", vim.log.levels.WARN, { title = "Telescope Mappings" })
+        return
+    end
     require("telescope.builtin").find_files({
-        cwd = "~/plugins/",
+        cwd = "~/code/plugins/",
     })
 end
 
@@ -99,6 +103,10 @@ function M.laravel_commands()
 end
 
 function M.api_specs()
+    if vim.fn.isdirectory("./api-specification") == 0 then
+        vim.notify("Directory api-specification does not exists", vim.log.levels.WARN, { title = "Telescope Mappings" })
+        return
+    end
     require("telescope.builtin").git_files({
         cwd = "./api-specification",
         show_untracked = true,
