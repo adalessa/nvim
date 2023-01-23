@@ -11,6 +11,7 @@ return {
         "onsails/lspkind-nvim",
         { "L3MON4D3/LuaSnip", version = "v1.*" },
         "windwp/nvim-autopairs",
+		"hrsh7th/cmp-nvim-lsp-signature-help",
     },
     event = "VeryLazy",
     config = function ()

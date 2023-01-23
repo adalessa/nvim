@@ -1,7 +1,6 @@
 return {
     "neovim/nvim-lspconfig",
     dependencies = {
-		"hrsh7th/cmp-nvim-lsp-signature-help",
         {
             "jose-elias-alvarez/null-ls.nvim",
             dependencies = {
