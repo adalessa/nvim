@@ -1,5 +1,6 @@
 return {
     "tpope/vim-fugitive",
+    enabled = false,
     keys = {
         { "<leader>ga", ":Git fetch --all -p<cr>" },
         { "<leader>gl", ":Git pull<cr>" },

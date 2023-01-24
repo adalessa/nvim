@@ -7,10 +7,22 @@ return {
         { "kyazdani42/nvim-web-devicons" },
         { "nvim-telescope/telescope-file-browser.nvim" },
         { "nvim-telescope/telescope-ui-select.nvim" },
-        { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+        {
+            "nvim-telescope/telescope-fzf-native.nvim",
+            build = "make",
+            dependencies = {
+                "junegunn/fzf.vim",
+                dependencies = {
+                    {
+                        "tpope/vim-dispatch",
+                        cmd = { "Make", "Dispatch" }
+                    },
+                },
+            }
+        },
     },
     event = "VeryLazy",
-    config = function ()
+    config = function()
         require("alpha.telescope.setup")
         require("alpha.telescope.mappings")
     end
