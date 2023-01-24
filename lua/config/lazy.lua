@@ -15,7 +15,10 @@ require("lazy").setup({
     spec = {
         { import = "plugins" },
     },
-    checker = { enabled = true },
+    checker = { enabled = true, notify = false },
+    dev = {
+        path = "~/code/plugins"
+    },
     performance = {
         rtp = {
             disabled_plugins = {
