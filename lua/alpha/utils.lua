@@ -21,4 +21,8 @@ utils.save_and_exec = function()
     vim.notify(string.format("File %s Sourced", current_file_name), vim.log.levels.INFO, { title = "Alpha Developer" })
 end
 
+utils.use_local = function (plugin_name)
+    return vim.fn.isdirectory(vim.fn.expand("~/code/plugins/").. plugin_name) == 1
+end
+
 return utils
