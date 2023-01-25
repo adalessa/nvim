@@ -8,7 +8,7 @@ return {
     keys = {
         {"<leader>pa", ":Artisan<cr>"},
     },
-    dev = require('alpha.utils').use_local("laravel.nvim"),
+    dev = require('config.utils').use_local("laravel.nvim"),
     config = function()
         require("laravel").setup()
         require("telescope").load_extension("laravel")
