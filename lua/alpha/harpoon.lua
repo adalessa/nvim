@@ -24,7 +24,7 @@ M.setup = function()
 	vim.keymap.set('n', '<leader>sa', require("harpoon.mark").add_file, { noremap = true, silent = true, expr = false })
 
 	for i = 1, terms do
-		vim.keymap.set('n', string.format('<leader><leader>%s', i), function() require("harpoon.term").gotoTerminal(1) end,
+		vim.keymap.set('n', string.format('<leader><leader>%s', i), function() require("harpoon.term").gotoTerminal(i) end,
 			{ noremap = true, silent = true, expr = false })
 	end
 
