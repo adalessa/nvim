@@ -17,7 +17,8 @@ require("lazy").setup({
     },
     checker = { enabled = true, notify = false },
     dev = {
-        path = "~/code/plugins"
+        path = "~/code/plugins",
+        fallback = true,
     },
     performance = {
         rtp = {
