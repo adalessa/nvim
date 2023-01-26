@@ -8,7 +8,6 @@ return {
     keys = {
         {"<leader>pa", ":Artisan<cr>"},
     },
-    dev = true,
     config = function()
         require("laravel").setup()
         require("telescope").load_extension("laravel")

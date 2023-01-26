@@ -19,6 +19,7 @@ require("lazy").setup({
     dev = {
         path = "~/code/plugins",
         fallback = true,
+        patterns = {"adalessa"},
     },
     performance = {
         rtp = {
