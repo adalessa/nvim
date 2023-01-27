@@ -62,7 +62,7 @@ Definiendo especificamente `lazy = true`, la cual le dice a lazy que no la inclu
 La ultima es definiendo por eventos. Los eventos son señales que neovim envia y que en este caso vamos a estar utilizando para triggerear la carga del plugin. En mi configuracion el que utilizo es `VeryLazy` que es un evento de Lazy que indica que ya se cargo neovim y el usuario gano control. Entonces en ese momento se dispara la carga de otros plugins por detras.
 Lo utilizo en mis configuraciones como telescope, lsp, dressing, snippets y completition.
 
-## Colorschem y fuentes
+## Colorscheme y fuentes
 Para colorschem uso [Tokyo Night](https://github.com/folke/tokyonight.nvim)
 Como fuente utilizo [Victor Mono](https://rubjo.github.io/victor-mono)
 Utilizo el mismo theme para mi terminal Kitty, y la configuracion de la fuente esta en kitty
