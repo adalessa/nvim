@@ -8,7 +8,7 @@ El objetivo de mi configuracion es ayudarme en mi trabajo cotidiano convirtiendo
 ## Neovim
 Utilizo siempre la ultima version de Neovim, hago el build desde el source code una vez por semana (quizas aveces mas si estoy aburrido jaja).
 
-## TODO add screenshot
+![](Neovim.png)
 
 ## Opciones, Autocomandos y Keymaps
 
