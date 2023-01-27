@@ -12,7 +12,7 @@ Utilizo siempre la ultima version de Neovim, hago el build desde el source code 
 
 ## Opciones, Autocomandos y Keymaps
 
-Opciones relacionadas al editor se encuentran en [options.lua](nvim/blob/main/lua/config/options.lua)
+Opciones relacionadas al editor se encuentran en `./lua/config/options.lua`
 Configuraciones relacionadas a keymaps relacionadas al editor y no a plugins se encuentran en `./lua/config/keymaps.lua`
 Autocomandos que quiero registrar se encuentran en `./lua/config/autocmds.lua`
 En el mismo directorio se encuentra la configuracion para "Diagnostic" donde configuro los iconos a mostrar para los errores que pueden ser por LSP u otras herramientas, dado que neovim lo maneja como un modulo aparte me gusta tenerlo por serparado.
