@@ -105,8 +105,8 @@ M.disable_plugin = function(prompt_bufnr)
 
     local parsers = require("nvim-treesitter.parsers")
     local parser = parsers.get_parser(bufnr)
-    if type(parser:parse()) == "table" then
-        vim.notify("Expected number but got table ???", vim.log.levels.ERROR, {})
+    if type(parser:parse()) ~= "table" then
+        vim.notify("Expected table but got something else ???", vim.log.levels.ERROR, {})
         P(parser:parse())
         return
     end

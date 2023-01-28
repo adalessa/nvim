@@ -1,4 +1,4 @@
-# Configuration Para Neovim
+# Configuracion Para Neovim
 
 Esta es mi configuracion para neovim.
 La uso todos los dias, puede ser visto en mis videos de [youtube](https://youtube.com/@Alpha_Dev) y directos en [twtich](https://twitch.tv/theAlphaDeveloper)
