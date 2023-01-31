@@ -1,4 +1,4 @@
 return {
-    "lukas-reineke/indent-blankline.nvim",
-    config = true,
+  "lukas-reineke/indent-blankline.nvim",
+  config = true,
 }

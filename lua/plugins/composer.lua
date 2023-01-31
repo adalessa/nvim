@@ -1,4 +1,4 @@
 return {
-    "adalessa/composer.nvim",
-    lazy = true,
+  "adalessa/composer.nvim",
+  lazy = true,
 }

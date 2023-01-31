@@ -21,7 +21,7 @@ map("v", ">", ">gv")
 -- symbols to add undo points
 local symbols = { ",", ".", "!", "?", "$", ">", "<" }
 for _, symbol in pairs(symbols) do
-	map("i", symbol, symbol .. "<c-g>u")
+  map("i", symbol, symbol .. "<c-g>u")
 end
 
 -- search result focus

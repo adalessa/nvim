@@ -17,7 +17,7 @@ opt.errorbells = false
 opt.wrap = false
 opt.swapfile = false
 opt.undofile = true
-opt.undodir = os.getenv("HOME") .. "/.cache/nvim/undodir"
+opt.undodir = os.getenv "HOME" .. "/.cache/nvim/undodir"
 opt.hlsearch = false
 opt.incsearch = true
 opt.ignorecase = true
@@ -37,7 +37,7 @@ opt.cmdheight = 1
 opt.updatetime = 50
 opt.signcolumn = "yes"
 
-if vim.fn.has("nvim-0.9.0") == 1 then
+if vim.fn.has "nvim-0.9.0" == 1 then
   opt.splitkeep = "screen"
   opt.shortmess = "filnxtToOFWIcC"
 end

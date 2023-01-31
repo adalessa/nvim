@@ -1,4 +1,4 @@
 return {
-    "windwp/nvim-projectconfig",
-    config = true,
+  "windwp/nvim-projectconfig",
+  config = true,
 }

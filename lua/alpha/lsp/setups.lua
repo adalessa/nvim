@@ -1,74 +1,78 @@
-local lsp_attach = require("alpha.lsp.attach")
+local lsp_attach = require "alpha.lsp.attach"
 
 local lsp_flags = {
-    debounce_text_changes = 150,
+  debounce_text_changes = 150,
 }
 
 return setmetatable({
-    rust_analyzer = function()
-        return {
-            on_attach = lsp_attach,
-            flags = lsp_flags,
-            settings = {
-                ["rust-analyzer"] = {
-                    checkOnSave = {
-                        allFeatures = true,
-                        overrideCommand = {
-                            'cargo', 'clippy', '--workspace', '--message-format=json',
-                            '--all-targets', '--all-features'
-                        }
-                    }
-                },
+  rust_analyzer = function()
+    return {
+      on_attach = lsp_attach,
+      flags = lsp_flags,
+      settings = {
+        ["rust-analyzer"] = {
+          checkOnSave = {
+            allFeatures = true,
+            overrideCommand = {
+              "cargo",
+              "clippy",
+              "--workspace",
+              "--message-format=json",
+              "--all-targets",
+              "--all-features",
             },
-        }
-    end,
-    phpactor = function()
-        return {
-            on_attach = lsp_attach,
-            flags = lsp_flags,
-            filetypes = { "php", "cucumber" },
-        }
-    end,
-    emmet_ls = function()
-        local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
+          },
+        },
+      },
+    }
+  end,
+  phpactor = function()
+    return {
+      on_attach = lsp_attach,
+      flags = lsp_flags,
+      filetypes = { "php", "cucumber" },
+    }
+  end,
+  emmet_ls = function()
+    local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
-        return {
-            on_attach = lsp_attach,
-            flags = lsp_flags,
-            capabilities = capabilities,
-            filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less", "blade", "vue" },
-        }
-    end,
-    sumneko_lua = function()
-        return {
-            on_attach = lsp_attach,
-            flags = lsp_flags,
-            settings = {
-                Lua = {
-                    runtime = {
-                        version = "LuaJIT",
-                    },
-                    diagnostics = {
-                        globals = { "vim" },
-                    },
-                    workspace = {
-                        library = vim.api.nvim_get_runtime_file("", true),
-                        checkThirdParty = false,
-                    },
-                    telemetry = {
-                        enable = false,
-                    },
-                },
-            },
-        }
-    end,
+    return {
+      on_attach = lsp_attach,
+      flags = lsp_flags,
+      capabilities = capabilities,
+      filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less", "blade", "vue" },
+    }
+  end,
+  sumneko_lua = function()
+    return {
+      on_attach = lsp_attach,
+      flags = lsp_flags,
+      settings = {
+        Lua = {
+          runtime = {
+            version = "LuaJIT",
+          },
+          diagnostics = {
+            globals = { "vim" },
+          },
+          workspace = {
+            library = vim.api.nvim_get_runtime_file("", true),
+            checkThirdParty = false,
+          },
+          telemetry = {
+            enable = false,
+          },
+        },
+      },
+    }
+  end,
 }, {
-    __index = function()
-        return function()
-            return {
-                on_attach = lsp_attach,
-                flags = lsp_flags,
-            }
-        end
-    end,
+  __index = function()
+    return function()
+      return {
+        on_attach = lsp_attach,
+        flags = lsp_flags,
+      }
+    end
+  end,
 })

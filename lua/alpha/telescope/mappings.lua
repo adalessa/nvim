@@ -1,21 +1,21 @@
 TelescopeMapArgs = TelescopeMapArgs or {}
 
 local map_tele = function(key, f, options, buffer, mode)
-	mode = mode or "n"
+  mode = mode or "n"
 
-    local rhs = function ()
-        R('alpha.telescope')[f](options or {})
-    end
+  local rhs = function()
+    R("alpha.telescope")[f](options or {})
+  end
 
-	local map_options = {
-		remap = false,
-		silent = true,
-	}
-    if buffer then
-        map_options.buffer = buffer
-    end
+  local map_options = {
+    remap = false,
+    silent = true,
+  }
+  if buffer then
+    map_options.buffer = buffer
+  end
 
-    vim.keymap.set(mode, key, rhs, map_options)
+  vim.keymap.set(mode, key, rhs, map_options)
 end
 
 -- not shure what this line does

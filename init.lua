@@ -1,2 +1,2 @@
-require("config")
-require("alpha.globals")
+require "config"
+require "alpha.globals"

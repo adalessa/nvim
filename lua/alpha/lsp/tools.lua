@@ -1,4 +1,4 @@
 return {
-	"go-debug-adapter",
-	"php-debug-adapter",
+  "go-debug-adapter",
+  "php-debug-adapter",
 }
