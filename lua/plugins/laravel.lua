@@ -4,7 +4,7 @@ return {
         "rcarriga/nvim-notify",
         "nvim-telescope/telescope.nvim",
     },
-    cmd = { "Sail", "Artisan", "Composer" },
+    cmd = { "Sail", "Artisan", "Composer", "Npm" },
     keys = {
         { "<leader>pa", ":Artisan<cr>" },
     },
