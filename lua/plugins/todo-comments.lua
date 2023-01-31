@@ -5,7 +5,7 @@ return {
   },
   config = true,
   lazy = false,
-  cmds = { "TodoTrouble", "TodoTelescope", "TodoQuickFix" },
+  cmd = { "TodoTrouble", "TodoTelescope", "TodoQuickFix" },
   keys = {
     {
       "]t",

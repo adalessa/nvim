@@ -14,6 +14,18 @@
 --
 -- Problem when I switch project sail is runnin in another one
 --
-local artisan = R "laravel.artisan"
+-- local artisan = R "laravel.artisan"
+--
+-- P(artisan.commands(true))
 
-P(artisan.commands(true))
+-- local keys = vim.api.nvim_replace_termcodes("<c-c>", true, false, true)
+-- vim.api.nvim_chan_send(63, keys)
+-- vim.cmd([[call chansend(23, "\<c-c>")]])
+
+-- P(require("laravel.app").jobs)
+
+local keys = vim.api.nvim_replace_termcodes("<c-c>", true, false, true)
+-- foreach open task do this
+for _, job in ipairs(require("laravel.app").jobs) do
+  vim.api.nvim_chan_send(job, keys)
+end

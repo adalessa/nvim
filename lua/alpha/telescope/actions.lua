@@ -98,12 +98,7 @@ M.disable_plugin = function(prompt_bufnr)
 
   local parsers = require "nvim-treesitter.parsers"
   local parser = parsers.get_parser(bufnr)
-  if type(parser:parse()) ~= "table" then
-    vim.notify("Expected table but got something else ???", vim.log.levels.ERROR, {})
-    P(parser:parse())
-    return
-  end
-  local tree = unpack(parser:parse())
+  local tree = parser:parse()[1]
 
   local disabled_stm_node = get_disable_stm_node(bufnr, tree)
   if disabled_stm_node ~= nil then
@@ -131,7 +126,7 @@ M.disable_plugin = function(prompt_bufnr)
     end_line = start_line + 1
   end
 
-  vim.api.nvim_buf_set_lines(bufnr, start_line, end_line, false, { "    enabled = false," })
+  vim.api.nvim_buf_set_lines(bufnr, start_line, end_line, false, { "  enabled = false," })
   vim.notify("Plugin " .. entry[1] .. " Disabled", vim.log.levels.INFO, {})
   actions.close(prompt_bufnr)
   vim.api.nvim_buf_call(bufnr, function()
@@ -148,12 +143,7 @@ M.enable_plugin = function(prompt_bufnr)
   local parsers = require "nvim-treesitter.parsers"
   local parser = parsers.get_parser(bufnr)
 
-  if type(parser:parse()) == "table" then
-    vim.notify("Expected number but got table ???", vim.log.levels.ERROR, {})
-    P(parser:parse())
-    return
-  end
-  local tree = unpack(parser:parse())
+  local tree = parser:parse()[1]
 
   local disabled_stm_node = get_disable_stm_node(bufnr, tree)
   if disabled_stm_node == nil then

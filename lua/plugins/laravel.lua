@@ -8,7 +8,7 @@ return {
   keys = {
     { "<leader>pa", ":Artisan<cr>" },
   },
-  events = { "VeryLazy" },
+  event = { "VeryLazy" },
   config = function()
     require("laravel").setup()
     require("telescope").load_extension "laravel"
