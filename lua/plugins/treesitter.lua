@@ -9,19 +9,21 @@ return {
   config = function()
     require("nvim-treesitter.configs").setup {
       ensure_installed = {
-        "php",
-        "phpdoc",
-        "vim",
+        "css",
         "go",
         "gomod",
-        "css",
         "html",
         "javascript",
         "lua",
-        "typescript",
-        "yaml",
-        "query",
         "markdown",
+        "markdown_inline",
+        "php",
+        "phpdoc",
+        "query",
+        "rust",
+        "typescript",
+        "vim",
+        "yaml",
       },
       highlight = {
         enable = true,
@@ -31,7 +33,7 @@ return {
         enable = true,
       },
       incremental_selection = {
-        enable = true,
+        enable = false,
         keymaps = {
           init_selection = "gnn",
           node_incremental = "grn",
@@ -42,7 +44,7 @@ return {
       refactor = {
         highlight_definitions = { enable = true },
         smart_rename = {
-          enable = true,
+          enable = false,
           keymaps = {
             smart_rename = "trr",
           },
