@@ -26,7 +26,7 @@ local get_all_definitions = function()
   return mutations_definitions
 end
 
--- "'@=mutation(\"App\\\\GraphQL\\\\Mutation\\\\ImageMutation::deleteVehicleImage\", args[\"inspectionId\"], args[\"url\"], info)'",
+-- "'@=mutation(\"App\\\\GraphQL\\\\Mutations\\\\Mutation::action\", ...)'",
 local open_resolver = function(resolver)
   -- need to parse to get this values
   local args = string.match(resolver, "'@=mutation%((.+)%)'")
@@ -44,7 +44,7 @@ local open_resolver = function(resolver)
   fqn = string.gsub(fqn, "\\\\", "\\")
   -- P(fqn)
 
-  R("alpha.php.lsp").find(fqn, "phpactor")
+  require("alpha.php.lsp").find(fqn, "phpactor")
 end
 
 --- @param bufnr integer Buff id
@@ -75,7 +75,7 @@ gateway.get_graphql_definitions = function(bufnr)
 
   local parsers = require "nvim-treesitter.parsers"
   local parser = parsers.get_parser(bufnr)
-  local tree = unpack(parser:parse())
+  local tree = parser:parse()[1]
 
   for id, node in query:iter_captures(tree:root(), bufnr) do
     if query.captures[id] == "mutation" then
@@ -104,7 +104,7 @@ gateway.graphql_definitions = function(opts)
         entry_maker = function(entry)
           -- buffer = 43,
           -- lnum = 82,
-          -- resolver = "'@=mutation(\"App\\\\GraphQL\\\\Mutation\\\\ImageMutation::deleteVehicleImage\", args[\"inspectionId\"], args[\"url\"], info)'",
+          -- resolver = "'@=mutation(\"App\\\\GraphQL\\\\Mutation\\\\Mutation::action\", ...)'",
           -- value = "deleteVehicleImage"
           return {
             value = entry,
