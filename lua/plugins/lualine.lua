@@ -4,7 +4,7 @@ return {
   config = function()
     require("lualine").setup {
       options = {
-        theme = vim.g.alpha_lualine_color,
+        theme = "tokyonight",
         icons_enabled = true,
         globalstatus = true,
       },
