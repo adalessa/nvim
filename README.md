@@ -67,3 +67,5 @@ Para colorschem uso [Tokyo Night](https://github.com/folke/tokyonight.nvim)
 Como fuente utilizo [Victor Mono](https://rubjo.github.io/victor-mono)
 Utilizo el mismo theme para mi terminal Kitty, y la configuracion de la fuente esta en kitty
 Para symbolos utilizo como complemento los symbolos de [NerdFonts](https://www.nerdfonts.com/)
+
+## LSP soportando lenguajes
