@@ -13,6 +13,9 @@ return {
     {
       "j-hui/fidget.nvim",
       opts = {
+        window = {
+          blend = 0,
+        },
         sources = {
           ["null-ls"] = {
             ignore = true,
