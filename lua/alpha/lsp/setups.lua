@@ -43,7 +43,7 @@ return setmetatable({
       filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less", "blade", "vue" },
     }
   end,
-  sumneko_lua = function()
+  lua_ls = function()
     return {
       on_attach = lsp_attach,
       flags = lsp_flags,

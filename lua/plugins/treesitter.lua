@@ -21,6 +21,7 @@ return {
         "phpdoc",
         "query",
         "rust",
+        "svelte",
         "typescript",
         "vim",
         "yaml",
