@@ -69,3 +69,5 @@ Utilizo el mismo theme para mi terminal Kitty, y la configuracion de la fuente e
 Para symbolos utilizo como complemento los symbolos de [NerdFonts](https://www.nerdfonts.com/)
 
 ## LSP soportando lenguajes
+Neovim implementa un cliente de LSP (language server protocol). Esto nos permite una mayor interaccion con distintos lenguajes sin requerir distintos plugins para cada lenaguaje individual.
+Neovim en si no sabe nada de los lenguajes que le digamos, neovim simplemente save como actual como cliente, esta en nosotros intalar el servidor correspondiente al lenguaje correspondiente y decirle a neovim como queremos interactuar.
