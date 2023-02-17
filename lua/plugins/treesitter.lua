@@ -14,6 +14,7 @@ return {
         "gomod",
         "html",
         "javascript",
+        "json",
         "lua",
         "markdown",
         "markdown_inline",
