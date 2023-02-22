@@ -6,6 +6,7 @@ return {
   config = function()
     local gitsigns = require "gitsigns"
     gitsigns.setup {
+      signcolumn = false,
       numhl = true,
       trouble = false,
       on_attach = function(bufnr)

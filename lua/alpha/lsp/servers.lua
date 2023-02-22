@@ -9,6 +9,7 @@ return {
   "phpactor",
   "rust_analyzer",
   "svelte",
+  "tailwindcss",
   "tsserver",
   "volar",
 }
