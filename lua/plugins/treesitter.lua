@@ -19,6 +19,7 @@ return {
         "lua",
         "markdown",
         "markdown_inline",
+        "nix",
         "php",
         "phpdoc",
         "query",
