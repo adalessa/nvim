@@ -2,13 +2,13 @@
 
 -- install servers and tools
 require "alpha.lsp.mason"
-local setups = require "alpha.lsp.setups"
 
 local lspconfig = require "lspconfig"
-require("mason-lspconfig").setup_handlers {
-  function(server_name)
-    lspconfig[server_name].setup(setups[server_name]())
-  end,
-}
+local servers = R "alpha.lsp.servers"
+
+
+for server, setup in pairs(servers) do
+    lspconfig[server].setup(setup())
+end
 
 require "alpha.lsp.null-ls"
