@@ -4,7 +4,7 @@
 require "alpha.lsp.mason"
 
 local lspconfig = require "lspconfig"
-local servers = R "alpha.lsp.servers"
+local servers = require "alpha.lsp.servers"
 
 
 for server, setup in pairs(servers) do

@@ -126,6 +126,7 @@ local config = function()
     end
   end)
 end
+
 return {
   "L3MON4D3/LuaSnip",
   version = "v1.*",

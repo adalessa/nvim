@@ -71,3 +71,23 @@ Para symbolos utilizo como complemento los symbolos de [NerdFonts](https://www.n
 ## LSP soportando lenguajes
 Neovim implementa un cliente de LSP (language server protocol). Esto nos permite una mayor interaccion con distintos lenguajes sin requerir distintos plugins para cada lenaguaje individual.
 Neovim en si no sabe nada de los lenguajes que le digamos, neovim simplemente save como actual como cliente, esta en nosotros intalar el servidor correspondiente al lenguaje correspondiente y decirle a neovim como queremos interactuar.
+Mi configuracion esta separada en las siguientes partes
+
+- `./lua/plugins/lsp.lua`: Aca es donde tengo definidos los paquetes que utilizo relacionado a lsp
+- `./lua/alpha/lsp`: en este directorio esta mi configuracion en relacion a esto
+- `./lua/alpha/lsp/init.lua`: es el primer archivo en cargar. en este configuro mason quien se va a encargar de instalarlos servidores de lsp necesarios.
+Luego aplico la configuracion particular para cada server.
+Idealmente este archivo no necesesita ser modificado.
+- `./lua/alpha/lsp/attach.lua`: este ya es un archivo mas interesante, donde configuro los mappings relacionados a lsp
+estos solamente van a registrarse para buffers que tengan asociado un servidor de lsp.
+Aca se pueden cambiar los keybindings o registrar nuevas funciones
+- `./lua/alpha/lsp/servers.lua`: aca llegamos al mas importante donde registramos los servidores con los mismos nombres que *lspconfig* [ref](https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md). En este archivo tenemos una lista que la clave es el nombre del server y como valor es la funcion de registro, para la mayoria podemos utilizar el default, pero algunos servidores tienen una configuracion adicional para esto se puede registrar un callback que debera devolver una tabla con los parametros necesarios.
+
+
+## Completition
+Como motor de completition utilizo `nvim/cmp`. este provee todas las funcionalidas que necesito.
+la configuration se puede encontrar en `./lua/alpha/completition/init.lua` donde defino los keymaps y se configura la integracion con las distintas fuentes como lsp, path, luasnip y otros plugins.
+
+## Snippets
+Para snippets utilizo *LuaSnip*, el cual la configuracion la mantengo en `./lua/plugins/snippets.lua`.
+Pero en este archivo no mantengo los snippets en si mismos, en este solamente tengo la configuracion de como interactua, los snippets se encuentran en `./lua/alpha/snips/ft/` cual carpeta contiene un archivo por cada file type y se registran automaticamente cuando agrego un nuevo archivo (recargar con `<leader><leader>s`, o reiniciar neovim).
