@@ -32,13 +32,21 @@ local visibility = function(position, default)
   return c(position, options)
 end
 
+-- FIX: This logic does not work properly
 local namespace = function()
   local dir = vim.fn.expand "%:h"
   local autoloads = composer.query { "autoload", "psr-4" }
+  local dev_autoloads = composer.query { "autoload-dev", "psr-4" }
+
   if autoloads == nil then
     return (dir:gsub("^%l", string.upper))
   end
 
+  for index, value in pairs(dev_autoloads) do
+    autoloads[index] = value
+  end
+
+  P(dir)
   local globalNamespace
   for key, value in pairs(autoloads) do
     if string.starts(dir, value:sub(1, -2)) then
@@ -97,8 +105,8 @@ class {}
 M.pro = fmt([[{} {}{} ${},]], {
   visibility(1, "private"),
   c(2, {
-    t "",
     t "readonly ",
+    t "",
   }),
   i(3, "Type"),
   d(4, function(args)
@@ -106,6 +114,15 @@ M.pro = fmt([[{} {}{} ${},]], {
       i(1, args[1][1]:gsub("^%u", string.lower) or ""),
     })
   end, { 3 }),
+})
+
+M.op = fmt("private {}|ObjectProphecy ${};", {
+  i(1, "Type"),
+  d(2, function(args)
+    return snippet_from_nodes(nil, {
+      i(1, args[1][1]:gsub("^%u", string.lower) or ""),
+    })
+  end, { 1 }),
 })
 
 M.arg = fmt([[{} ${}]], {
@@ -141,30 +158,20 @@ M._p = fmt(
 
 M.strict = t "declare(strict_types=1);"
 
-M.fn = {
-  visibility(1, "public"),
-  t " function ",
-  i(2, "name"),
-  t "(",
-  i(3),
-  t ")",
-  c(4, {
-    t "",
-    snippet_from_nodes(nil, {
-      t ": ",
-      i(1, "void"),
-    }),
-  }),
-  newline "{",
-  newline "\t",
-  i(0, ""),
-  newline "}",
-}
+M["fn"] = fmt(
+  [[{} function {}({}): {}
+{{
+  {}
+}}]],
+  { visibility(1, "public"), i(2), i(3), i(4, "void"), i(0) }
+)
 
 M["then"] = fmt(
-  [[->then(function ({}) {{
+  [[->then(
+  function ({}) {{
     {}
-}})]],
+  }}
+)]],
   { i(1, ""), i(2, "") }
 )
 
