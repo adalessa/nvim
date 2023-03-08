@@ -10,6 +10,7 @@ return {
   },
   event = { "VeryLazy" },
   config = function()
+    vim.g.laravel_log_level = "debug"
     require("laravel").setup()
     require("telescope").load_extension "laravel"
   end,

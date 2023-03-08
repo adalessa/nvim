@@ -1,6 +1,5 @@
 vim.g.mapleader = " "
 vim.g.snippets = "luasnip"
-vim.g.laravel_log_level = "debug"
 
 local opt = vim.o
 
