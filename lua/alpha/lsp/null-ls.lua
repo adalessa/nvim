@@ -20,14 +20,14 @@ local sources = {
   },
 }
 
-if composer.query { "require", "symfony/framework-bundle" } ~= nil then
+if composer.query_composer_file { "require", "symfony/framework-bundle" } ~= nil then
   table.insert(
     sources,
     null_ls.builtins.diagnostics.phpcs.with {
       method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
     }
   )
-elseif composer.query { "require", "laravel/framework" } ~= nil then
+elseif composer.query_composer_file { "require", "laravel/framework" } ~= nil then
   table.insert(sources, null_ls.builtins.formatting.pint)
   -- table.insert(sources, laravel_actions.relationships)
 end

@@ -28,37 +28,6 @@ local visibility = function(position, default)
   return c(position, options)
 end
 
--- FIX: This logic does not work properly
-local namespace = function()
-  local dir = vim.fn.expand "%:h"
-  local autoloads = composer.query { "autoload", "psr-4" }
-  local dev_autoloads = composer.query { "autoload-dev", "psr-4" }
-
-  if autoloads == nil then
-    return (dir:gsub("^%l", string.upper))
-  end
-
-  for index, value in pairs(dev_autoloads) do
-    autoloads[index] = value
-  end
-
-  P(dir)
-  local globalNamespace
-  for key, value in pairs(autoloads) do
-    if string.starts(dir, value:sub(1, -2)) then
-      globalNamespace = key:sub(1, -2)
-      dir = dir:sub(#key + 1)
-      break
-    end
-  end
-  dir = dir:gsub("/", "\\")
-  if dir == "" then
-    return globalNamespace
-  end
-
-  return string.format("%s\\%s", globalNamespace, dir)
-end
-
 local class_name = function()
   return vim.fn.expand "%:t:r"
 end
@@ -92,7 +61,7 @@ class {}
 }}
 ]],
   {
-    f(namespace),
+    f(composer.resolve_php_namespace),
     f(class_name),
     i(0),
   }
