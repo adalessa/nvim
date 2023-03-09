@@ -84,7 +84,13 @@ return {
     }
   end,
   ["svelte"] = default,
-  ["tailwindcss"] = default,
+  ["tailwindcss"] = function ()
+    return {
+      on_attach = lsp_attach,
+      flags = lsp_flags,
+      filetypes = { "blade", "html", "svelte" },
+    }
+  end,
   ["tsserver"] = default,
   ["volar"] = default,
 }
