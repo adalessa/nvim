@@ -2,7 +2,7 @@ local map = vim.keymap.set
 
 map("v", "<leader>p", '"_dp')
 
-map("n", "bd", ":bd!<CR>")
+map("n", "<leader>bd", ":bd!<CR>")
 
 -- lists navigation
 map("n", "<leader>j", ":cnext<CR>zz")
