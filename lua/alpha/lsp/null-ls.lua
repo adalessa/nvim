@@ -1,39 +1,28 @@
 local null_ls = require "null-ls"
-local composer = require "composer"
 local php_actions = require "php-code-actions"
 -- local laravel_actions = require("laravel.code-actions")
 
-local sources = {
-  null_ls.builtins.code_actions.gitsigns,
-  null_ls.builtins.formatting.jq,
-  null_ls.builtins.code_actions.refactoring,
-  null_ls.builtins.formatting.alejandra,
-  null_ls.builtins.diagnostics.luacheck,
-  null_ls.builtins.formatting.stylua,
+null_ls.setup {
+  sources = {
+    null_ls.builtins.code_actions.gitsigns,
+    null_ls.builtins.formatting.jq,
+    null_ls.builtins.code_actions.refactoring,
+    null_ls.builtins.formatting.alejandra,
+    null_ls.builtins.diagnostics.luacheck,
+    null_ls.builtins.formatting.stylua,
 
-  php_actions.getter_setter,
-  php_actions.file_creator,
+    php_actions.getter_setter,
+    php_actions.file_creator,
 
-  null_ls.builtins.diagnostics.phpstan.with {
-    to_temp_file = false,
-    method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
-  },
-}
-
-if composer.query_composer_file { "require", "symfony/framework-bundle" } ~= nil then
-  table.insert(
-    sources,
+    null_ls.builtins.diagnostics.phpstan.with {
+      to_temp_file = false,
+      method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
+    },
     null_ls.builtins.diagnostics.phpcs.with {
       method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
-    }
-  )
-elseif composer.query_composer_file { "require", "laravel/framework" } ~= nil then
-  table.insert(sources, null_ls.builtins.formatting.pint)
-  -- table.insert(sources, laravel_actions.relationships)
-end
-
-null_ls.setup {
-  sources = sources,
+    },
+    null_ls.builtins.formatting.pint,
+  },
 }
 
 vim.keymap.set({ "n", "v" }, "<leader>vca", vim.lsp.buf.code_action, {})
