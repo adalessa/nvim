@@ -6,7 +6,8 @@ return {
   },
   cmd = { "Sail", "Artisan", "Composer", "Npm" },
   keys = {
-    { "<leader>pa", ":Artisan<cr>" },
+    { "<leader>la", ":Artisan<cr>" },
+    { "<leader>lr", ":Routes<cr>" },
   },
   event = { "VeryLazy" },
   config = function()
