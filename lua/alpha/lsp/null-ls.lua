@@ -17,6 +17,10 @@ null_ls.setup {
     null_ls.builtins.diagnostics.phpstan.with {
       to_temp_file = false,
       method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
+      command = "./vendor/bin/phpstan",
+      condition = function ()
+        return vim.fn.findfile("vendor/bin/phpstan") ~= ""
+      end
     },
     null_ls.builtins.diagnostics.phpcs.with {
       method = null_ls.methods.DIAGNOSTICS_ON_SAVE,

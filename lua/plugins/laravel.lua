@@ -4,10 +4,10 @@ return {
     "rcarriga/nvim-notify",
     "nvim-telescope/telescope.nvim",
   },
-  cmd = { "Sail", "Artisan", "Composer", "Npm" },
+  cmd = { "Sail", "Artisan", "Composer", "Npm", "Laravel" },
   keys = {
-    { "<leader>la", ":Artisan<cr>" },
-    { "<leader>lr", ":Routes<cr>" },
+    { "<leader>la", ":Laravel artisan<cr>" },
+    { "<leader>lr", ":Laravel routes<cr>" },
   },
   event = { "VeryLazy" },
   config = function()
