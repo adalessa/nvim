@@ -5,11 +5,11 @@ local lsp_flags = {
 }
 
 local default = function()
-    return {
-      on_attach = lsp_attach,
-      flags = lsp_flags,
-    }
-  end
+  return {
+    on_attach = lsp_attach,
+    flags = lsp_flags,
+  }
+end
 
 return {
   ["emmet_ls"] = function()
@@ -49,6 +49,9 @@ return {
           telemetry = {
             enable = false,
           },
+          hint = {
+            enable = true,
+          }
         },
       },
     }
@@ -84,13 +87,42 @@ return {
     }
   end,
   ["svelte"] = default,
-  ["tailwindcss"] = function ()
+  ["tailwindcss"] = function()
     return {
       on_attach = lsp_attach,
       flags = lsp_flags,
       filetypes = { "blade", "html", "svelte" },
     }
   end,
-  ["tsserver"] = default,
+  ["tsserver"] = function()
+    return {
+      on_attach = lsp_attach,
+      flags = lsp_flags,
+      settings = {
+        typescript = {
+          inlayHints = {
+            includeInlayParameterNameHints = "all",
+            includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+            includeInlayFunctionParameterTypeHints = true,
+            includeInlayVariableTypeHints = true,
+            includeInlayPropertyDeclarationTypeHints = true,
+            includeInlayFunctionLikeReturnTypeHints = true,
+            includeInlayEnumMemberValueHints = true,
+          },
+        },
+        javascript = {
+          inlayHints = {
+            includeInlayParameterNameHints = "all",
+            includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+            includeInlayFunctionParameterTypeHints = true,
+            includeInlayVariableTypeHints = true,
+            includeInlayPropertyDeclarationTypeHints = true,
+            includeInlayFunctionLikeReturnTypeHints = true,
+            includeInlayEnumMemberValueHints = true,
+          },
+        },
+      },
+    }
+  end,
   ["volar"] = default,
 }
