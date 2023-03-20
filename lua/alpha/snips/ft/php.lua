@@ -9,10 +9,6 @@ local f = ls.function_node
 local i = ls.insert_node
 local fmt = require("luasnip.extras.fmt").fmt
 
-function string.starts(String, Start)
-  return string.sub(String, 1, string.len(Start)) == Start
-end
-
 local visibility = function(position, default)
   local possibles = { "private", "protected", "public" }
   local options = {}
@@ -28,6 +24,12 @@ local visibility = function(position, default)
   return c(position, options)
 end
 
+local var_name = function(args)
+  return snippet_from_nodes(nil, {
+    i(1, args[1][1]:gsub("^%u", string.lower):gsub("Interface", "")  or ""),
+  })
+end
+
 local class_name = function()
   return vim.fn.expand "%:t:r"
 end
@@ -39,14 +41,16 @@ M.v = fmt(
 /**
  * @var {}
  */
-{} ${};
+{} {} ${};
 ]],
   {
     i(1, "type"),
     visibility(2, "private"),
-    i(3, "var"),
+    i(3, "Type"),
+    i(4, "var"),
   }
 )
+
 M.class = fmt(
   [[
 <?php
@@ -74,29 +78,25 @@ M.pro = fmt([[{} {}{} ${},]], {
     t "",
   }),
   i(3, "Type"),
-  d(4, function(args)
-    return snippet_from_nodes(nil, {
-      i(1, args[1][1]:gsub("^%u", string.lower) or ""),
-    })
-  end, { 3 }),
+  d(4, var_name, { 3 }),
 })
 
-M.op = fmt("private {}|ObjectProphecy ${};", {
-  i(1, "Type"),
-  d(2, function(args)
-    return snippet_from_nodes(nil, {
-      i(1, args[1][1]:gsub("^%u", string.lower) or ""),
-    })
-  end, { 1 }),
-})
+M.op = fmt(
+  [[
+    /**
+     * @var ObjectProphecy<{}>
+     */
+    private ObjectProphecy ${};
+]],
+  {
+    i(1, "Type"),
+    d(2, var_name, { 1 }),
+  }
+)
 
 M.arg = fmt([[{} ${}]], {
   i(1, "Type"),
-  d(2, function(args)
-    return snippet_from_nodes(nil, {
-      i(1, args[1][1]:gsub("^%u", string.lower) or ""),
-    })
-  end, { 1 }),
+  d(2, var_name, { 1 }),
 })
 
 M._c = fmt(
