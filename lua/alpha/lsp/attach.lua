@@ -17,7 +17,7 @@ return function(client, bufnr)
     return vim.lsp.buf.format {
       async = true,
       filter = function(cli)
-        return cli.name ~= "sumneko_lua"
+        return cli.name ~= "lua_ls"
       end,
     }
   end, {})
