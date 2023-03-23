@@ -19,7 +19,7 @@ return {
         elseif current_mode == "V" then
           vim.api.nvim_set_hl(0, "SmoothCursor", { fg = "#bf616a" })
           vim.fn.sign_define("smoothcursor", { text = "" })
-        elseif current_mode == "�" then
+        elseif current_mode == "\22" then
           vim.api.nvim_set_hl(0, "SmoothCursor", { fg = "#bf616a" })
           vim.fn.sign_define("smoothcursor", { text = "" })
         elseif current_mode == "i" then
