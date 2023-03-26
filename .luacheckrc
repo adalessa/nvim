@@ -13,9 +13,9 @@ ignore = {
 }
 
 globals = {
-  "P",
   "R",
   "Reload",
+  "dump",
 }
 
 -- Global objects defined by the C code

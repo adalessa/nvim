@@ -160,4 +160,10 @@ M.enable_plugin = function(prompt_bufnr)
   end)
 end
 
+M.create_scratch_file = function(prompt_bufnr)
+  local new_scratch = action_state.get_current_line()
+  actions.close(prompt_bufnr)
+  vim.cmd(string.format("edit ~/.config/nvim/lua/scratchs/%s.lua", new_scratch))
+end
+
 return M

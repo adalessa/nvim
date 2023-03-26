@@ -8,7 +8,6 @@ local reloader = function()
   end
 end
 
-local action_state = require "telescope.actions.state"
 local fb_actions = require("telescope").extensions.file_browser.actions
 local actions = require "telescope.actions"
 local my_actions = require "alpha.telescope.actions"
@@ -91,6 +90,19 @@ function M.my_plugins()
   end
   require("telescope.builtin").find_files {
     cwd = "~/code/plugins/",
+  }
+end
+
+function M.scratchs()
+  require("telescope.builtin").find_files {
+    prompt_title = "Scratchs",
+    no_ignore = true,
+    cwd = "~/.config/nvim/lua/scratchs/",
+    attach_mappings = function (_, map)
+      map("i", "<c-t>", my_actions.create_scratch_file)
+
+      return true
+    end
   }
 end
 
