@@ -9,7 +9,6 @@ return {
     { "<leader>la", ":Laravel artisan<cr>" },
     { "<leader>lr", ":Laravel routes<cr>" },
   },
-  event = { "VeryLazy" },
   config = function()
     vim.g.laravel_log_level = "debug"
     require("laravel").setup()
