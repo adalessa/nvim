@@ -94,6 +94,14 @@ M.op = fmt(
   }
 )
 
+M.iop = fmt(
+  [[$this->{} = $this->prophesize({}::class);]],
+  {
+    i(1, ""),
+    i(2, ""),
+  }
+)
+
 M.arg = fmt([[{} ${}]], {
   i(1, "Type"),
   d(2, var_name, { 1 }),
