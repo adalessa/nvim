@@ -6,8 +6,8 @@ return {
   },
   cmd = { "Sail", "Artisan", "Composer", "Npm", "Laravel" },
   keys = {
-    { "<leader>la", ":Laravel artisan<cr>" },
-    { "<leader>lr", ":Laravel routes<cr>" },
+    { "<leader>la", ":Laravel artisan<cr>", desc = "Laravel Application Commands" },
+    { "<leader>lr", ":Laravel routes<cr>", desc = "Laravel Application Routes" },
   },
   config = function()
     vim.g.laravel_log_level = "debug"

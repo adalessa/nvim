@@ -7,6 +7,7 @@ table.insert(keys, {
   function()
     require("harpoon.ui").toggle_quick_menu()
   end,
+  desc = "Harpoon Menu",
 })
 
 table.insert(keys, {
@@ -14,15 +15,17 @@ table.insert(keys, {
   function()
     require("harpoon.mark").add_file()
   end,
+  desc = "Harpoon Add file",
 })
 
 table.insert(keys, {
   "<leader>st",
-  function ()
-    vim.api.nvim_command([[vsplit]])
+  function()
+    vim.api.nvim_command [[vsplit]]
     require("harpoon.term").gotoTerminal(1)
-    vim.api.nvim_command([[startinsert]])
-  end
+    vim.api.nvim_command [[startinsert]]
+  end,
+  desc = "Harpoon quick split Terminal",
 })
 
 for i = 1, terms do
@@ -31,6 +34,7 @@ for i = 1, terms do
     function()
       require("harpoon.term").gotoTerminal(i)
     end,
+    desc = "Harpoon go to terminal " .. i,
   })
 end
 
@@ -40,6 +44,7 @@ for i = 1, binds do
     function()
       require("harpoon.ui").nav_file(i)
     end,
+    desc = "Harpoon go to file " .. i,
   })
 end
 

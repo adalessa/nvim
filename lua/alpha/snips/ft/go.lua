@@ -13,11 +13,6 @@ local ts_utils = require "nvim-treesitter.ts_utils"
 
 local get_node_text = vim.treesitter.get_node_text
 
-if vim.fn.has "nvim-0.9.0" ~= 1 then
-  vim.treesitter.query.get = vim.treesitter.get_query
-  vim.treesitter.query.set = vim.treesitter.set_query
-end
-
 vim.treesitter.query.set(
   "go",
   "LuaSnip_Result",
@@ -88,7 +83,7 @@ local function go_result_type(info)
     end
   end
 
-  local query = vim.treesitter.query.get_query("go", "LuaSnip_Result")
+  local query = vim.treesitter.query.get("go", "LuaSnip_Result")
   for _, node in query:iter_captures(function_node, 0) do
     if handlers[node:type()] then
       return handlers[node:type()](node, info)

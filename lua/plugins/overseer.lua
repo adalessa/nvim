@@ -1,5 +1,5 @@
 return {
   "stevearc/overseer.nvim",
-    enabled = false,
+  enabled = false,
   config = true,
 }

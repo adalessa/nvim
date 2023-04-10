@@ -9,8 +9,9 @@ M.create_plugin = function(prompt_bufnr)
   vim.cmd(string.format("edit ~/.config/nvim/lua/plugins/%s.lua", new_plugin))
 end
 
+
 local get_disable_stm_node = function(bufnr, tree)
-  vim.treesitter.set_query(
+  vim.treesitter.query.set(
     "lua",
     "alpha_plugin_is_disabled",
     [[
@@ -27,7 +28,7 @@ local get_disable_stm_node = function(bufnr, tree)
         ]]
   )
 
-  local query = vim.treesitter.get_query("lua", "alpha_plugin_is_disabled")
+  local query = vim.treesitter.query.get("lua", "alpha_plugin_is_disabled")
 
   for id, node in query:iter_captures(tree:root(), bufnr) do
     if query.captures[id] == "enabled" then
@@ -39,7 +40,7 @@ local get_disable_stm_node = function(bufnr, tree)
 end
 
 local get_enabled_node = function(bufnr, tree)
-  vim.treesitter.set_query(
+  vim.treesitter.query.set(
     "lua",
     "alpha_plugin_has_enable_property",
     [[
@@ -55,7 +56,7 @@ local get_enabled_node = function(bufnr, tree)
         ]]
   )
 
-  local query = vim.treesitter.get_query("lua", "alpha_plugin_has_enable_property")
+  local query = vim.treesitter.query.get("lua", "alpha_plugin_has_enable_property")
 
   for id, node in query:iter_captures(tree:root(), bufnr) do
     if query.captures[id] == "enabled" then
@@ -67,7 +68,7 @@ local get_enabled_node = function(bufnr, tree)
 end
 
 local get_return_node = function(bufnr, tree)
-  vim.treesitter.set_query(
+  vim.treesitter.query.set(
     "lua",
     "alpha_plugin_return_table_constructor",
     [[
@@ -79,7 +80,7 @@ local get_return_node = function(bufnr, tree)
         ]]
   )
 
-  local query = vim.treesitter.get_query("lua", "alpha_plugin_return_table_constructor")
+  local query = vim.treesitter.query.get("lua", "alpha_plugin_return_table_constructor")
 
   for id, node in query:iter_captures(tree:root(), bufnr) do
     if query.captures[id] == "table_constructor" then

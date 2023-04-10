@@ -9,7 +9,7 @@ return {
     "nvim-telescope/telescope-dap.nvim",
     "rcarriga/cmp-dap",
   },
-  keys = { { "<leader>d" } },
+  keys = { { "<leader>d", desc = "Open Debug menu" } },
   config = function()
     require "alpha.dap"
     local ok_telescope, telescope = pcall(require, "telescope")

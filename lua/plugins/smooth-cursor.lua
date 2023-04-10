@@ -1,7 +1,7 @@
 return {
   "gen740/SmoothCursor.nvim",
   config = function()
-    require("smoothcursor").setup({cursor = ""})
+    require("smoothcursor").setup { cursor = "" }
 
     vim.api.nvim_set_hl(0, "SmoothCursor", { fg = "#8a9baa" })
 

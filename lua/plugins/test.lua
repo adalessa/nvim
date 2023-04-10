@@ -1,6 +1,6 @@
 return {
   "vim-test/vim-test",
-  keys = { { "<leader>t" } },
+  keys = { { "<leader>t", desc = "Open Test menu" } },
   dependencies = {
     "anuvyklack/hydra.nvim",
   },

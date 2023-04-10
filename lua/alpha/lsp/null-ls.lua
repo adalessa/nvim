@@ -4,7 +4,7 @@ local php_actions = require "php-code-actions"
 
 null_ls.setup {
   sources = {
-    null_ls.builtins.code_actions.gitsigns,
+    -- null_ls.builtins.code_actions.gitsigns,
     null_ls.builtins.formatting.jq,
     null_ls.builtins.code_actions.refactoring,
     null_ls.builtins.formatting.alejandra,
@@ -32,7 +32,7 @@ null_ls.setup {
   },
 }
 
-vim.keymap.set({ "n", "v" }, "<leader>vca", vim.lsp.buf.code_action, {})
+vim.keymap.set({ "n", "v" }, "<leader>vca", vim.lsp.buf.code_action, {desc = "LSP (null ls) Code actions"})
 vim.keymap.set("n", "<leader>vf", function()
   return vim.lsp.buf.format { async = true }
-end, {})
+end, {desc = "LSP (null ls) Format file"})

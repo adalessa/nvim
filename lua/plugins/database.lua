@@ -5,7 +5,7 @@ return {
     "kristijanhusak/vim-dadbod-completion",
     "tpope/vim-dotenv",
   },
-  keys = { { "<leader><leader>db", ":tab DBUI<cr>" } },
+  keys = { { "<leader><leader>db", ":tab DBUI<cr>", desc = "Open Database client" } },
   init = function()
     require "alpha.database"
   end,

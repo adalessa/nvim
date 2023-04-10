@@ -84,7 +84,7 @@ function M.find_symbol()
 end
 
 function M.my_plugins()
-  if vim.fn.isdirectory "~/code/plugins/" == 0 then
+  if vim.fn.isdirectory(vim.fn.getenv "HOME" .. "/code/plugins/") == 0 then
     vim.notify("Directory ~/code/plugins does not exists", vim.log.levels.WARN, { title = "Telescope Mappings" })
     return
   end
@@ -98,11 +98,11 @@ function M.scratchs()
     prompt_title = "Scratchs",
     no_ignore = true,
     cwd = "~/.config/nvim/lua/scratchs/",
-    attach_mappings = function (_, map)
+    attach_mappings = function(_, map)
       map("i", "<c-t>", my_actions.create_scratch_file)
 
       return true
-    end
+    end,
   }
 end
 

@@ -32,11 +32,21 @@ return {
       pattern = "http",
       callback = function()
         local buff = tonumber(vim.fn.expand "<abuf>", 10)
-        vim.keymap.set("n", "<leader>rn", rest_nvim.run, { noremap = true, buffer = buff })
-        vim.keymap.set("n", "<leader>rl", rest_nvim.last, { noremap = true, buffer = buff })
-        vim.keymap.set("n", "<leader>rp", function()
+        vim.keymap.set(
+          "n",
+          "<leader>hn",
+          rest_nvim.run,
+          { noremap = true, buffer = buff, desc = "Run near http request" }
+        )
+        vim.keymap.set(
+          "n",
+          "<leader>hl",
+          rest_nvim.last,
+          { noremap = true, buffer = buff, desc = "Run last http resquest" }
+        )
+        vim.keymap.set("n", "<leader>hp", function()
           rest_nvim.run(true)
-        end, { noremap = true, buffer = buff })
+        end, { noremap = true, buffer = buff, desc = "Preview http curl" })
       end,
     })
   end,

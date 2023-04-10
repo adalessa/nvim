@@ -133,6 +133,6 @@ return {
   event = "VeryLazy",
   config = function()
     config()
-    vim.keymap.set("n", "<leader><leader>s", config)
+    vim.keymap.set("n", "<leader><leader>s", config, { desc = "Reload snippets" })
   end,
 }
