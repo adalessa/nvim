@@ -34,8 +34,6 @@ local open_resolver = function(resolver)
     args = string.match(resolver, "'@=query%((.+)%)'")
   end
   if args == nil then
-    P "error resolver"
-    P(resolver)
     return
   end
 

@@ -165,7 +165,7 @@ function M.file_browser(opts)
     },
 
     attach_mappings = function(_, map)
-      map("i", "<c-y>", fb_actions.create)
+      map("i", "<c-y>", fb_actions.create_from_prompt)
 
       return true
     end,
