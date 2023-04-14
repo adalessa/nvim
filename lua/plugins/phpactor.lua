@@ -8,8 +8,8 @@ return {
     install = {
       bin = vim.fn.stdpath("data") .. "/mason/bin/phpactor",
     },
-    lsp_config = {
-      enable = false,
+    lspconfig = {
+      enabled = false,
     },
   },
 }
