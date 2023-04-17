@@ -1,5 +1,6 @@
 return {
   "NTBBloodbath/rest.nvim",
+  enabled = false,
   dependencies = { "nvim-lua/plenary.nvim" },
   ft = "http",
   config = function()
@@ -10,6 +11,7 @@ return {
       result_split_horizontal = false,
       -- Skip SSL verification, useful for unknown certificates
       skip_ssl_verification = false,
+      encode_url = false,
       -- Highlight request on run
       highlight = {
         enabled = true,
