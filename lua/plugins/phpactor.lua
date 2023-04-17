@@ -1,5 +1,5 @@
 return {
-  "gbprod/phpactor.nvim",
+  "adalessa/phpactor.nvim",
   cmd = { "PhpActor" },
   dependencies = {
     "nvim-lua/plenary.nvim",

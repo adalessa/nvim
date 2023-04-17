@@ -17,6 +17,10 @@ return {
             "tpope/vim-dispatch",
             cmd = { "Make", "Dispatch" },
           },
+          {
+            "junegunn/fzf",
+            build = ":call fzf#install()",
+          }
         },
       },
     },
