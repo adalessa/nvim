@@ -27,7 +27,12 @@ local map_tele = function(key, f, opts)
 end
 
 -- not shure what this line does
-vim.api.nvim_set_keymap("c", "<c-r><c-r>", "<Plug>(TelescopeFuzzyCommandSearch)", { noremap = false, nowait = true })
+vim.api.nvim_set_keymap(
+  "c",
+  "<c-r><c-r>",
+  "<Plug>(TelescopeFuzzyCommandSearch)",
+  { noremap = false, nowait = true, desc = "In comand look for previous commands" }
+)
 
 map_tele("<leader>pp", "project_files", { desc = "Open Project files" })
 map_tele("<leader>gc", "branches", { desc = "Git Branches selector" })
