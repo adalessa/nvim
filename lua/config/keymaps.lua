@@ -8,6 +8,10 @@ end, { desc = "Special paste, paste without replacing copy register content" })
 
 map("n", "<leader>bd", ":bd!<CR>", { desc = "Deletes the current buffer" })
 
+map("n", "<leader>fz", function ()
+  vim.cmd [[normal zfaf]]
+end, { desc = "Fold the function" })
+
 -- lists navigation
 map("n", "<C-j>", ":cnext<CR>zz", { desc = "Goes to the next item in the quickfixlist and center to the screen" })
 map("n", "<C-k>", ":cprev<CR>zz", { desc = "Goes to the previous item in the quickfixlist and center to the screen" })

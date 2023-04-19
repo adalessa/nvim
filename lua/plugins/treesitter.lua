@@ -39,7 +39,7 @@ return {
         enable = true,
       },
       incremental_selection = {
-        enable = false,
+        enable = true,
         keymaps = {
           init_selection = "gnn",
           node_incremental = "grn",
