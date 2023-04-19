@@ -7,7 +7,14 @@ return {
         "adalessa/php-code-actions.nvim",
       },
     },
-    "williamboman/mason.nvim",
+    {
+      "williamboman/mason.nvim",
+      opts = {
+        ui = {
+          border = "rounded",
+        },
+      },
+    },
     "williamboman/mason-lspconfig.nvim",
     "WhoIsSethDaniel/mason-tool-installer.nvim",
     {

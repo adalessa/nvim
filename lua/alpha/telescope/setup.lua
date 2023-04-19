@@ -153,13 +153,20 @@ require("telescope").setup {
     },
 
     ["ui-select"] = {
-      require("telescope.themes").get_cursor {
-        -- even more opts
+      require("telescope.themes").get_dropdown {
+        borderchars = {
+          prompt = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
+          results = { "─", "│", "─", "│", "╭", "╮", "┤", "├" },
+          preview = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
+        },
+        width = 0.8,
+        previewer = false,
       },
     },
   },
 }
-_ = require("telescope").load_extension "notify"
-_ = require("telescope").load_extension "file_browser"
-_ = require("telescope").load_extension "ui-select"
-_ = require("telescope").load_extension "fzf"
+
+require("telescope").load_extension "notify"
+require("telescope").load_extension "file_browser"
+require("telescope").load_extension "ui-select"
+require("telescope").load_extension "fzf"
