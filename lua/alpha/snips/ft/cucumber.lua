@@ -9,6 +9,13 @@ local M = {
   all = t [[And all stubs should be matched]],
   status_code = fmt([[Then the response status code should be {}]], { i(1, "200") }),
   no_error = t [[And the JSON path expression errors should not have result]],
+  json_data = fmt([[And the JSON path expression "data" should be equal to:
+"""
+{{
+  {}
+}}
+"""
+  ]], {i(1)}),
   feature = fmt(
     [[Feature: {}
 

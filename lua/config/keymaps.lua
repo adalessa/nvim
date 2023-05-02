@@ -6,9 +6,22 @@ map("v", "<leader>p", function()
   vim.fn.setreg('"', val)
 end, { desc = "Special paste, paste without replacing copy register content" })
 
+map("n", "<leader>mm", function()
+  local items =
+    vim.fn.systemlist "make -qp | awk -F':' '/^[a-zA-Z0-9][^$#\\/\t=]*:([^=]|$)/ {split($1,A,/ /);print A[1]}'"
+
+  vim.ui.select(items, { promt = "Make command" }, function(choice)
+    if not choice then
+      return
+    end
+
+    require("harpoon.term").sendCommand(1, "make " .. choice)
+  end)
+end)
+
 map("n", "<leader>bd", ":bd!<CR>", { desc = "Deletes the current buffer" })
 
-map("n", "<leader>fz", function ()
+map("n", "<leader>fz", function()
   vim.cmd [[normal zfaf]]
 end, { desc = "Fold the function" })
 
