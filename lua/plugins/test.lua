@@ -12,7 +12,7 @@ return {
     let test#strategy = 'harpoon'
     let test#neovim#term_position = 'vert'
     let g:test#preserve_screen = 0
-    let g:test#harpoon_term = 3
+    let g:test#harpoon_term = 1
     let g:test#harpoon#gototerminal= 0
 ]]
 
