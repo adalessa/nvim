@@ -1,9 +1,9 @@
 local map = vim.keymap.set
 
 map("v", "<leader>p", function()
-  local val = vim.fn.getreg '"'
+  local val = vim.fn.getreg '+'
   vim.api.nvim_command [[normal! p]]
-  vim.fn.setreg('"', val)
+  vim.fn.setreg('+', val)
 end, { desc = "Special paste, paste without replacing copy register content" })
 
 map("n", "<leader>mm", function()
