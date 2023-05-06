@@ -30,8 +30,7 @@ local config = require("lspconfig").phpactor
 config.root_dir = vim.fn.getcwd()
 local client_id = vim.lsp.start(config)
 
-local client = vim.lsp.get_client_by_id(client_id)
-P(client)
+vim.lsp.get_client_by_id(client_id)
 -- use client.request or request_sync
 -- look for the direct of the symbol
 return {
