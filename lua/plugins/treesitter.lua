@@ -28,6 +28,7 @@ return {
         "sql",
         "svelte",
         "typescript",
+        "regex",
         "vim",
         "yaml",
       },
