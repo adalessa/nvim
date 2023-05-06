@@ -30,7 +30,7 @@ require("telescope").setup {
           if cols > 200 then
             return math.floor(cols * 0.5)
           else
-            return math.floor(cols * 0.6)
+            return math.floor(cols * 0.3)
           end
         end,
       },
