@@ -13,11 +13,11 @@ dump = function(...)
   return unpack(args)
 end
 
-RELOAD = function(...)
+Reload = function(...)
   return require("plenary.reload").reload_module(...)
 end
 
 R = function(name)
-  RELOAD(name)
+  Reload(name)
   return require(name)
 end

@@ -1,16 +1,16 @@
-SHOULD_RELOAD_TELESCOPE = true
+local SHOULD_RELOAD_TELESCOPE = true
 
 local reloader = function()
   if SHOULD_RELOAD_TELESCOPE then
-    RELOAD "plenary"
-    RELOAD "telescope"
-    RELOAD "alpha.telescope.setup"
+    Reload "plenary"
+    Reload "telescope"
+    Reload "alpha.telescope.setup"
   end
 end
 
 local fb_actions = require("telescope").extensions.file_browser.actions
 local actions = require "telescope.actions"
-local my_actions = require "alpha.telescope.actions"
+local my_actions = require "alpha.telescope.my_actions"
 
 local M = {}
 
