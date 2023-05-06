@@ -38,6 +38,7 @@ return {
     },
     {
       "j-hui/fidget.nvim",
+      enabled = false,
       opts = {
         window = {
           blend = 0,
