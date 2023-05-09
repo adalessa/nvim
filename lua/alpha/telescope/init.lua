@@ -52,8 +52,8 @@ M.find_nvim_plugin = function()
     prompt_title = "< Plugins >",
     cwd = "$HOME/.config/nvim/lua/plugins/",
     attach_mappings = function(_, map)
-      map("i", "<C-t>", my_actions.create_plugin)
-      map("i", "<C-d>", my_actions.disable_plugin)
+      map("i", "<C-y>", my_actions.create_plugin)
+      map("i", "<C-w>", my_actions.disable_plugin)
       map("i", "<C-e>", my_actions.enable_plugin)
 
       return true
