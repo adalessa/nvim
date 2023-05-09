@@ -32,7 +32,16 @@ return {
         filter = {
           cmdline = "G",
         },
-        opts = { enter = true, render = "plain", format = { "{message}" }, replace = true },
+        opts = {
+          enter = true,
+          render = "plain",
+          format = { "{message}" },
+          replace = true,
+          close = {
+            events = { "BufLeave" },
+            keys = { "q" },
+          },
+        },
       },
       {
         view = "mini",
@@ -43,7 +52,6 @@ return {
       {
         view = "mini",
         filter = {
-          event = "msg_show",
           find = "Config Change Detected. Reloading...",
         },
       },
