@@ -32,13 +32,14 @@ return {
         filter = {
           cmdline = "G",
         },
+        opts = { enter = true, render = "plain", format = { "{message}" }, replace = true },
       },
       {
         filter = {
           event = "msg_show",
           cmdline = "write",
         },
-        opts = {skip = true},
+        opts = { skip = true },
       },
     },
   },
