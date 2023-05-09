@@ -32,13 +32,34 @@ return {
         filter = {
           cmdline = "G",
         },
+        opts = { enter = true, render = "plain", format = { "{message}" }, replace = true },
       },
       {
+        view = "mini",
+        filter = {
+          cmdline = "w",
+        },
+      },
+      {
+        view = "mini",
         filter = {
           event = "msg_show",
-          cmdline = "write",
+          find = "Config Change Detected. Reloading...",
         },
-        opts = {skip = true},
+      },
+      {
+        view = "mini",
+        filter = {
+          event = "msg_show",
+          find = "lines yanked",
+        },
+      },
+      {
+        view = "mini",
+        filter = {
+          event = "msg_show",
+          find = "more lines",
+        },
       },
     },
   },
