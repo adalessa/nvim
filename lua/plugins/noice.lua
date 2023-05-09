@@ -27,13 +27,18 @@ return {
       enable = true,
     },
     routes = {
-      written = {
+      {
+        view = "split",
+        filter = {
+          cmdline = "G",
+        },
+      },
+      {
         filter = {
           event = "msg_show",
-          cmdline = "w",
-          kind = "",
+          cmdline = "write",
         },
-        opts = { skip = true },
+        opts = {skip = true},
       },
     },
   },
