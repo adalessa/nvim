@@ -52,7 +52,7 @@ return {
   },
   opts = {
     install = {
-      bin = vim.fn.exepath "phpactor",
+      bin = vim.fn.stdpath("data") .. '/mason/bin/phpactor'
     },
     lspconfig = {
       enabled = false,
