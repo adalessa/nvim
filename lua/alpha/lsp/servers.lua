@@ -124,5 +124,5 @@ return {
       },
     }
   end,
-  ["volar"] = default,
+  ["vuels"] = default,
 }

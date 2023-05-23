@@ -40,7 +40,7 @@ cmp.setup {
     { name = "nvim_lsp" },
     { name = "path" },
     { name = "luasnip" },
-    { name = "nvim_lsp_signature_help" },
+    -- { name = "nvim_lsp_signature_help" },
     {
       name = "buffer",
       keyword_length = 4,

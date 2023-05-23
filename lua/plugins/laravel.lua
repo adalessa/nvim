@@ -3,8 +3,9 @@ return {
   dependencies = {
     "rcarriga/nvim-notify",
     "nvim-telescope/telescope.nvim",
+    "MunifTanjim/nui.nvim",
   },
-  cmd = { "Sail", "Artisan", "Composer", "Npm", "Laravel", "LaraTest" },
+  cmd = { "Sail", "Artisan", "Composer", "Npm", "Laravel", "LaravelInfo" },
   keys = {
     { "<leader>la", ":Laravel artisan<cr>", desc = "Laravel Application Commands" },
     { "<leader>lr", ":Laravel routes<cr>", desc = "Laravel Application Routes" },
