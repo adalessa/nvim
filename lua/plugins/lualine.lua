@@ -4,7 +4,7 @@ return {
   config = function()
     require("lualine").setup {
       options = {
-        theme = "enfocado",
+        theme = "auto",
         icons_enabled = true,
         globalstatus = true,
       },
