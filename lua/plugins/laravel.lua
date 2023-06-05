@@ -20,7 +20,11 @@ return {
   },
   config = function()
     vim.g.laravel_log_level = "debug"
-    require("laravel").setup()
+    require("laravel").setup({
+      route_info = {
+        position = "top",
+      }
+    })
     require("telescope").load_extension "laravel"
   end,
 }

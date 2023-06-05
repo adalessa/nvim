@@ -44,6 +44,22 @@ return {
         },
       },
       {
+        view = "split",
+        filter = {
+          cmdline = "Notifications",
+        },
+        opts = {
+          enter = true,
+          render = "plain",
+          format = { "{message}" },
+          replace = true,
+          close = {
+            events = { "BufLeave" },
+            keys = { "q" },
+          },
+        },
+      },
+      {
         view = "mini",
         filter = {
           cmdline = "w",
