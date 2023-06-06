@@ -69,3 +69,5 @@ map(
 
 map("n", "<leader>vn", vim.diagnostic.goto_next, { desc = "Goes to next diagnostic error" })
 map("n", "<leader>vp", vim.diagnostic.goto_prev, { desc = "Goes to prev diagnostic error" })
+
+map("v", "<leader>q", require('alpha.select_to_quickfix').handle)
