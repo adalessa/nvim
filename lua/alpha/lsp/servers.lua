@@ -65,6 +65,7 @@ return {
       filetypes = { "php", "cucumber" },
     }
   end,
+  ["pyright"] = default,
   ["rust_analyzer"] = function()
     return {
       on_attach = lsp_attach,

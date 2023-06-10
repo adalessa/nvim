@@ -3,7 +3,7 @@ vim.g.snippets = "luasnip"
 
 local opt = vim.o
 
-opt.mouse = false
+opt.mouse = ""
 opt.number = true
 opt.relativenumber = true
 opt.conceallevel = 3
@@ -37,8 +37,5 @@ opt.cmdheight = 1
 opt.updatetime = 50
 opt.signcolumn = "yes"
 opt.equalalways = false
-
-if vim.fn.has "nvim-0.9.0" == 1 then
-  opt.splitkeep = "screen"
-  opt.shortmess = "filnxtToOFWIcC"
-end
+opt.splitkeep = "screen"
+opt.shortmess = "filnxtToOFWIcC"
