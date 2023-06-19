@@ -19,16 +19,16 @@ null_ls.setup {
     null_ls.builtins.diagnostics.phpstan.with {
       to_temp_file = false,
       method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
-      command = "./bin/phpstan",
-      condition = function ()
-        return vim.fn.findfile("bin/phpstan") ~= ""
-      end
+      -- command = "./bin/phpstan",
+      -- condition = function ()
+      --   return vim.fn.findfile("bin/phpstan") ~= ""
+      -- end
     },
     null_ls.builtins.diagnostics.phpcs.with {
       method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
-      condition = function(utils)
-        return utils.root_has_file "phpcs.xml"
-      end,
+      -- condition = function(utils)
+      --   return utils.root_has_file "phpcs.xml"
+      -- end,
     },
     null_ls.builtins.formatting.pint,
   },

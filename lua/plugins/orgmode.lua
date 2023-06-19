@@ -1,5 +1,6 @@
 return {
   "nvim-orgmode/orgmode",
+  enabled = false,
   keys = {
     { "<Leader>oa" },
     { "<Leader>oc" },
