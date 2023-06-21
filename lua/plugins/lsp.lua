@@ -19,6 +19,7 @@ return {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
     {
       "lvimuser/lsp-inlayhints.nvim",
+      enabled = false,
       config = function()
         require("lsp-inlayhints").setup()
         vim.api.nvim_create_augroup("LspAttach_inlayhints", {})
