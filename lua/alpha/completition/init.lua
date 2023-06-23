@@ -36,10 +36,11 @@ cmp.setup {
     ["<c-space>"] = cmp.mapping.complete(),
   },
   sources = {
-    { name = "nvim_lua" },
+    { name = "nvim_lua", group_index = 2 },
     { name = "nvim_lsp" },
     { name = "path" },
-    { name = "luasnip" },
+    { name = "luasnip", group_index = 2 },
+    { name = "copilot", group_index = 2 },
     -- { name = "nvim_lsp_signature_help" },
     {
       name = "buffer",
@@ -49,7 +50,7 @@ cmp.setup {
           local bufs = {}
           for _, win in ipairs(vim.api.nvim_list_wins()) do
             local bufnr = vim.api.nvim_win_get_buf(win)
-            if vim.api.nvim_buf_get_option(bufnr, 'buftype') ~= 'terminal' then
+            if vim.api.nvim_buf_get_option(bufnr, "buftype") ~= "terminal" then
               bufs[bufnr] = true
             end
           end
@@ -74,6 +75,7 @@ cmp.setup {
         nvim_lua = "[api]",
         path = "[path]",
         luasnip = "[snip]",
+        copilot = "[ﮧ ]",
         ["vim-dadbod-completion"] = "[DB]",
       },
     },
@@ -93,6 +95,8 @@ cmp.setup {
     ghost_text = false,
   },
 }
+
+vim.api.nvim_set_hl(0, "CmpItemKindCopilot", {fg ="#6CC644"})
 
 -- Set configuration for specific filetype.
 cmp.setup.filetype("gitcommit", {

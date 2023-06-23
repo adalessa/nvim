@@ -11,6 +11,19 @@ return {
     "onsails/lspkind-nvim",
     { "L3MON4D3/LuaSnip", version = "v1.*" },
     "windwp/nvim-autopairs",
+    {
+      "zbirenbaum/copilot-cmp",
+      dependencies = {
+        "zbirenbaum/copilot.lua",
+        cmd = { "Copilot" },
+        event = { "VeryLazy" },
+        opts = {
+          suggestion = { enabled = false },
+          panel = { enabled = false },
+        },
+      },
+      config = true,
+    },
     -- "hrsh7th/cmp-nvim-lsp-signature-help",
   },
   event = "VeryLazy",
