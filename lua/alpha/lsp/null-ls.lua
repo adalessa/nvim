@@ -38,3 +38,16 @@ vim.keymap.set({ "n", "v" }, "<leader>vca", vim.lsp.buf.code_action, {desc = "LS
 vim.keymap.set("n", "<leader>vf", function()
   return vim.lsp.buf.format { async = true }
 end, {desc = "LSP (null ls) Format file"})
+
+-- function to toogle and possible restart it
+vim.api.nvim_create_user_command("NullLsToggle", function()
+  local sources = vim.tbl_map(function(el)
+    return el.name
+  end, null_ls.get_sources())
+  vim.ui.select(sources, {}, function(selected)
+    if not selected then
+      return
+    end
+    null_ls.toggle(selected)
+  end)
+end, {})
