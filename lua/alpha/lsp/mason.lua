@@ -7,9 +7,8 @@ mason.setup()
 
 local mason_servers = {}
 
--- TODO: can be improve checking the setup function to see if sets the cmd
 for server, _ in pairs(servers) do
-  local cmd = lspconfig[server].document_config.default_config.cmd[1]
+  local cmd = lspconfig[server].cmd[1]
   if vim.fn.executable(cmd) == 0 then
     table.insert(mason_servers, server)
   end

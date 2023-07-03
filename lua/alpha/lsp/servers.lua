@@ -28,8 +28,28 @@ return {
       flags = lsp_flags,
     }
   end,
-  ["html"] = default,
-  ["jsonls"] = default,
+  ["html"] = function ()
+    local config = {
+      on_attach = lsp_attach,
+      flags = lsp_flags,
+    }
+    if vim.fn.executable("html-languageserver") == 1 then
+      config.cmd = { "html-languageserver", "--stdio" }
+    end
+
+    return config
+  end,
+  ["jsonls"] = function ()
+    local config = {
+      on_attach = lsp_attach,
+      flags = lsp_flags,
+    }
+    if vim.fn.executable("json-languageserver") == 1 then
+      config.cmd = { "json-languageserver", "--stdio" }
+    end
+
+    return config
+  end,
   ["lua_ls"] = function()
     return {
       on_attach = lsp_attach,
