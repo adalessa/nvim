@@ -1,6 +1,7 @@
 return {
   "vimwiki/vimwiki",
   cmd = { "VimwikiIndex" },
+  enabled = false,
   init = function()
     vim.g.vimwiki_list = {{
       path = "/mnt/nas/alpha/wiki",

@@ -3,7 +3,7 @@ return {
   build = ":TSUpdate",
   dependencies = {
     "nvim-treesitter/playground",
-    "nvim-treesitter/nvim-treesitter-refactor",
+    { "nvim-treesitter/nvim-treesitter-refactor", enabled = false },
     "nvim-treesitter/nvim-treesitter-textobjects",
   },
   config = function()
@@ -48,15 +48,15 @@ return {
           node_decremental = "grm",
         },
       },
-      refactor = {
-        highlight_definitions = { enable = true },
-        smart_rename = {
-          enable = false,
-          keymaps = {
-            smart_rename = "trr",
-          },
-        },
-      },
+      -- refactor = {
+      --   highlight_definitions = { enable = true },
+      --   smart_rename = {
+      --     enable = false,
+      --     keymaps = {
+      --       smart_rename = "trr",
+      --     },
+      --   },
+      -- },
       textobjects = {
         select = {
           enable = true,
