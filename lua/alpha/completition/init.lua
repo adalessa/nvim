@@ -36,12 +36,11 @@ cmp.setup {
     ["<c-space>"] = cmp.mapping.complete(),
   },
   sources = {
-    { name = "nvim_lua", group_index = 2 },
+    { name = "nvim_lua" },
     { name = "nvim_lsp" },
     { name = "path" },
-    { name = "luasnip", group_index = 2 },
+    { name = "luasnip" },
     { name = "copilot", group_index = 2 },
-    -- { name = "nvim_lsp_signature_help" },
     {
       name = "buffer",
       keyword_length = 4,
@@ -71,7 +70,7 @@ cmp.setup {
       with_text = true,
       menu = {
         buffer = "[buf]",
-        nvim_lsp = "[LSP]",
+        nvim_lsp = "[ ]",
         nvim_lua = "[api]",
         path = "[path]",
         luasnip = "[snip]",

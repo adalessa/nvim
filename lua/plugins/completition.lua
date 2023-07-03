@@ -24,7 +24,6 @@ return {
       },
       config = true,
     },
-    -- "hrsh7th/cmp-nvim-lsp-signature-help",
   },
   event = "VeryLazy",
   config = function()
