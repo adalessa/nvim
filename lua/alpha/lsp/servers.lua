@@ -51,7 +51,7 @@ return {
           },
           hint = {
             enable = true,
-          }
+          },
         },
       },
     }
@@ -63,6 +63,11 @@ return {
       on_attach = lsp_attach,
       flags = lsp_flags,
       filetypes = { "php", "cucumber" },
+      init_options = {
+        ["language_server_worse_reflection.inlay_hints.enable"] = true,
+        -- ["language_server_worse_reflection.inlay_hints.types"] = true,
+        -- ["language_server_worse_reflection.inlay_hints.params"] = true,
+      },
     }
   end,
   ["pyright"] = default,

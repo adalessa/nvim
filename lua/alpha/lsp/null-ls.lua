@@ -26,9 +26,9 @@ null_ls.setup {
     },
     null_ls.builtins.diagnostics.phpcs.with {
       method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
-      -- condition = function(utils)
-      --   return utils.root_has_file "phpcs.xml"
-      -- end,
+      condition = function(utils)
+        return utils.root_has_file "phpcs.xml"
+      end,
     },
     null_ls.builtins.formatting.pint,
   },
