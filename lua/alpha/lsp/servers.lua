@@ -150,5 +150,5 @@ return {
       },
     }
   end,
-  ["vuels"] = default,
+  ["volar"] = default,
 }
