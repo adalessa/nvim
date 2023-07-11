@@ -85,6 +85,24 @@ return {
           find = "more lines",
         },
       },
+      {
+        view = "mini",
+        filter = {
+          find = "laravel.sail.up",
+        },
+      },
+      {
+        view = "mini",
+        filter = {
+          find = "laravel.sail.down",
+        },
+      },
+      {
+        view = "mini",
+        filter = {
+          find = "Pattern not found",
+        },
+      },
     },
   },
 }
