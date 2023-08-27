@@ -25,7 +25,7 @@ return function(client, bufnr)
   telescope_mapper("gr", "lsp_references", { buffer = true, desc = "LSP References of symbol on cursor" })
   telescope_mapper("<leader>pv", "find_symbol", { buffer = true, desc = "LSP find symbol on the project" })
   telescope_mapper("<leader>pd", "lsp_document_symbols", { buffer = true, desc = "LSP document symbols" })
-  telescope_mapper("<c-]>", "lsp_definitions", { buffer = true, desc = "LSP go to definition" })
+  telescope_mapper("gd", "lsp_definitions", { buffer = true, desc = "LSP go to definition" })
 
   vim.bo.omnifunc = "v:lua.vim.lsp.omnifunc"
 

@@ -1,9 +1,6 @@
-local mason = require "mason"
 local mason_lspconfig = require "mason-lspconfig"
 local servers = require "alpha.lsp.servers"
 local lspconfig = require "lspconfig"
-
-mason.setup()
 
 local mason_servers = {}
 
