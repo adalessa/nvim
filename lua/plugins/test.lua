@@ -4,63 +4,49 @@ return {
   dependencies = {
     "anuvyklack/hydra.nvim",
   },
+  init = function()
+    vim.g["test#strategy"] = "harpoon"
+    vim.g["test#neovim#term_position"] = "vert"
+    vim.g["test#harpoon_term"] = 1
+    vim.g["test#preserve_screen"] = 0
+    vim.g["test#harpoon#gototerminal"] = 0
+    vim.g["test#php#pest#executable"] = "./vendor/bin/sail test"
+
+    local function dockerComposeTransform(cmd)
+      local uid = vim.fn.system("id -u"):gsub("%s*$", "")
+      local gid = vim.fn.system("id -g"):gsub("%s*$", "")
+      return string.format("docker compose exec -u %s:%s php-fpm %s", uid, gid, cmd)
+    end
+
+    vim.g["test#php#behat#executable"] = "bin/behat --colors"
+    vim.g["test#custom_transformations"] = { docker = dockerComposeTransform }
+  end,
   config = function()
-    local hydra = require "hydra"
+    local behat_paths = {
+      "tests/Functional/Context/**/*.php",
+      "tests/Behat/Context/*.php",
+      "tests/Behat/**/*.php",
+      "src/Behat/**/*.php",
+    }
 
-    vim.cmd [[
-    let test#php#pest#executable = './vendor/bin/sail test'
-    let test#strategy = 'harpoon'
-    let test#neovim#term_position = 'vert'
-    let g:test#preserve_screen = 0
-    let g:test#harpoon_term = 1
-    let g:test#harpoon#gototerminal= 0
-]]
+    for _, path in ipairs(behat_paths) do
+      if vim.fn.glob(path) ~= "" then
+        vim.g["test#php#behat#bootstrap_directory"] = path
+        vim.g["test#transformation"] = "docker"
 
-    local hint = [[
- Vim Tests
- _n_: Near test  _f_: Current file   _s_: Test Suit ^
- _l_: Test Last  _g_: Visit
- _w_: Watch last Test  _p_: stop watch
- ^ ^                                          _<Esc>_ ^
-]]
-    local auto_cmd_id = nil
-    local stopAutoCommand = function()
-      if auto_cmd_id ~= nil then
-        vim.api.nvim_del_autocmd(auto_cmd_id)
-        auto_cmd_id = nil
+        -- many of my projects have variables necessaries so this is required
+        local env_vars = vim.fn.system "make vars"
+        for _, env_var in ipairs(vim.split(env_vars, "\n")) do
+          if env_var ~= "" then
+            env_var = env_var:gsub("^export ", "")
+            local key, value = unpack(vim.split(env_var, "="))
+            vim.fn.setenv(key, value)
+          end
+        end
+        break
       end
     end
-    local startAutoCommand = function()
-      stopAutoCommand()
-      auto_cmd_id = vim.api.nvim_create_autocmd({"BufWritePost"}, {
-        pattern = {"*.php", "*.feature", "*.yaml"},
-        command  = "TestLast",
-      })
-    end
 
-    hydra {
-      name = "vimtest",
-      hint = hint,
-      mode = "n",
-      config = {
-        color = "teal",
-        invoke_on_body = true,
-        hint = {
-          border = "rounded",
-          position = "bottom",
-        },
-      },
-      body = "<leader>t",
-      heads = {
-        { "n", ":TestNearest<CR>" },
-        { "f", ":TestFile<CR>" },
-        { "s", ":TestSuit<CR>" },
-        { "l", ":TestLast<CR>" },
-        { "g", ":TestVisit<CR>" },
-        { "w", startAutoCommand },
-        { "p", stopAutoCommand },
-        { "<Esc>", nil, { exit = true } },
-      },
-    }
+    require "alpha.test_menu"
   end,
 }
