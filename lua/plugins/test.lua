@@ -47,6 +47,8 @@ return {
       end
     end
 
+    require "alpha.test_strategy"
+
     require "alpha.test_menu"
   end,
 }
