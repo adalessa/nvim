@@ -23,6 +23,11 @@ return {
     require("laravel").setup({
       route_info = {
         position = "top",
+      },
+      environment = {
+        environments = {
+          ["ao"] = require("laravel.environment.docker_compose").setup({container_name = "panel-webserver"}),
+        }
       }
     })
     require("telescope").load_extension "laravel"
