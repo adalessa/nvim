@@ -3,6 +3,7 @@ return {
   dependencies = {
     "MunifTanjim/nui.nvim",
   },
+  event = "VeryLazy",
   opts = {
     lsp = {
       -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
@@ -107,6 +108,14 @@ return {
         filter = {
           find = "Pattern not found",
         },
+      },
+      {
+        view = "mini",
+        filter = {
+          event = "msg_show",
+          kind = "",
+          find = "change;"
+        }
       },
     },
   },
