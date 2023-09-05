@@ -1,7 +1,7 @@
 local telescope_mapper = require "alpha.telescope.mappings"
 
 local filetype_attach = setmetatable({
-  php = function(client, bufnr)
+  php = function(_, bufnr)
     vim.api.nvim_buf_create_user_command(bufnr, "LspPhpactorReindex", function()
       vim.lsp.buf_notify(bufnr, "phpactor/index/reindex", {})
     end, {})

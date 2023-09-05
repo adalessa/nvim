@@ -18,18 +18,28 @@ return {
       desc = "Laravel Application Routes",
     },
   },
-  config = function()
+  init = function()
     vim.g.laravel_log_level = "debug"
-    require("laravel").setup({
+  end,
+  config = function()
+    local uid = vim.system({ "id", "-u" }, { text = true }):wait().stdout or "1000"
+    local gid = vim.system({ "id", "-g" }, { text = true }):wait().stdout or "1000"
+
+    local user_arg = string.format("%s:%s", vim.trim(uid), vim.trim(gid))
+
+    require("laravel").setup {
       route_info = {
         position = "top",
       },
       environment = {
         environments = {
-          ["ao"] = require("laravel.environment.docker_compose").setup({container_name = "panel-webserver"}),
-        }
-      }
-    })
+          ["ao"] = require("laravel.environment.docker_compose").setup {
+            container_name = "panel-webserver",
+            cmd = { "docker", "compose", "exec", "-u", user_arg, "-it", "panel-webserver" },
+          },
+        },
+      },
+    }
     require("telescope").load_extension "laravel"
   end,
 }

@@ -76,7 +76,13 @@ return {
       },
     }
   end,
-  ["marksman"] = default,
+  ["omnisharp"] = function()
+    return {
+      cmd = {"OmniSharp"},
+      on_attach = lsp_attach,
+      flags = lsp_flags,
+    }
+  end,
   ["nil_ls"] = default,
   ["phpactor"] = function()
     return {

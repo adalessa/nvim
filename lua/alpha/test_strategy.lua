@@ -51,7 +51,7 @@ local function myStrategy(cmd)
         vim.notify("Test run successfully", vim.log.levels.INFO, { title = "Test" })
         return
       end
-      local result = j:stderr_result()
+      local result = j:stderr_result() or j:stdout_result()
       -- join result in a single string
       result = table.concat(result, "\n")
       -- escape / characters
