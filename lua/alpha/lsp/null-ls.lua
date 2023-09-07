@@ -16,14 +16,14 @@ null_ls.setup {
     -- php_actions.getter_setter,
     -- php_actions.file_creator,
 
-    null_ls.builtins.diagnostics.phpstan.with {
-      to_temp_file = false,
-      method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
-      -- command = "./bin/phpstan",
-      -- condition = function ()
-      --   return vim.fn.findfile("bin/phpstan") ~= ""
-      -- end
-    },
+    -- null_ls.builtins.diagnostics.phpstan.with {
+    --   to_temp_file = false,
+    --   method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
+    --   -- command = "./bin/phpstan",
+    --   -- condition = function ()
+    --   --   return vim.fn.findfile("bin/phpstan") ~= ""
+    --   -- end
+    -- },
     null_ls.builtins.diagnostics.phpcs.with {
       method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
       condition = function(utils)

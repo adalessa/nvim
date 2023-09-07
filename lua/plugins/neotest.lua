@@ -1,6 +1,7 @@
 return {
   "nvim-neotest/neotest",
-  enabled = false,
+  enabled = true,
+  keys = { { "<c-t>", desc = "Open Test menu" } },
   dependencies = {
     "nvim-lua/plenary.nvim",
     "nvim-treesitter/nvim-treesitter",
@@ -18,11 +19,12 @@ return {
         require "neotest-go",
         require "neotest-rust",
         require "neotest-plenary",
-        require "neotest-vim-test" {
-          ignore_file_types = { "go", "lua", "rust", "php" },
-        },
+        -- require "neotest-vim-test" {
+        --   ignore_file_types = { "go", "lua", "rust", "php" },
+        -- },
         -- require("laravel.neotest"),
       },
+      library = { plugins = { "neotest" }, types = true },
     }
 
     local hydra = require "hydra"

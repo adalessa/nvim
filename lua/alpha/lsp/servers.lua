@@ -12,6 +12,18 @@ local default = function()
 end
 
 return {
+  -- ["cucumber_language_server"] = function()
+  --   return {
+  --     on_attach = lsp_attach,
+  --     flags = lsp_flags,
+  --     settings = {
+  --       cucumber = {
+  --         features = { "tests/Behat/features/*.feature" },
+  --         glue = { "tests/Behat/*.php" },
+  --       },
+  --     },
+  --   }
+  -- end,
   ["emmet_ls"] = function()
     local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
@@ -78,7 +90,7 @@ return {
   end,
   ["omnisharp"] = function()
     return {
-      cmd = {"OmniSharp"},
+      cmd = { "OmniSharp" },
       on_attach = lsp_attach,
       flags = lsp_flags,
     }
@@ -88,7 +100,7 @@ return {
     return {
       on_attach = lsp_attach,
       flags = lsp_flags,
-      filetypes = { "php", "cucumber" },
+      filetypes = { "php" },
       init_options = {
         ["language_server_worse_reflection.inlay_hints.enable"] = true,
         ["language_server_worse_reflection.inlay_hints.params"] = true,
