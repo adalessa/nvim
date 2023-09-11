@@ -12,18 +12,6 @@ local default = function()
 end
 
 return {
-  -- ["cucumber_language_server"] = function()
-  --   return {
-  --     on_attach = lsp_attach,
-  --     flags = lsp_flags,
-  --     settings = {
-  --       cucumber = {
-  --         features = { "tests/Behat/features/*.feature" },
-  --         glue = { "tests/Behat/*.php" },
-  --       },
-  --     },
-  --   }
-  -- end,
   ["emmet_ls"] = function()
     local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
@@ -108,6 +96,7 @@ return {
         ["language_server_configuration.auto_config"] = false,
         ["code_transform.import_globals"] = true,
         ["language_server_phpstan.enabled"] = true,
+        ["language_server_phpstan.level"] = 7,
         ["language_server_phpstan.bin"] = "phpstan",
       },
       handlers = {

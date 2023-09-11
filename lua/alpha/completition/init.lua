@@ -40,7 +40,7 @@ cmp.setup {
     { name = "nvim_lsp" },
     { name = "path" },
     { name = "luasnip" },
-    { name = "copilot", group_index = 2 },
+    { name = "copilot" },
     {
       name = "buffer",
       keyword_length = 4,
@@ -95,7 +95,7 @@ cmp.setup {
   },
 }
 
-vim.api.nvim_set_hl(0, "CmpItemKindCopilot", {fg ="#6CC644"})
+vim.api.nvim_set_hl(0, "CmpItemKindCopilot", { fg = "#6CC644" })
 
 -- Set configuration for specific filetype.
 cmp.setup.filetype("gitcommit", {
