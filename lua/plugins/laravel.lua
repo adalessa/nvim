@@ -5,7 +5,7 @@ return {
     "nvim-telescope/telescope.nvim",
     "MunifTanjim/nui.nvim",
   },
-  cmd = { "Sail", "Artisan", "Composer", "Npm", "Laravel", "LaravelInfo" },
+  cmd = { "Sail", "Artisan", "Composer", "Npm", "Laravel", "LaravelInfo", "DockerCompose" },
   keys = {
     { "<leader>la", ":Laravel artisan<cr>", desc = "Laravel Application Commands" },
     { "<leader>lr", ":Laravel routes<cr>", desc = "Laravel Application Routes" },
