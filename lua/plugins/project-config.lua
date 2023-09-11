@@ -1,5 +1,5 @@
 return {
   "windwp/nvim-projectconfig",
-  disable = true,
+  enabled = false,
   config = true,
 }
