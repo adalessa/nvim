@@ -137,10 +137,6 @@ function M.refactor()
   return require("telescope").extensions.refactoring.refactors()
 end
 
-function M.file_browser_relative()
-  return M.file_browser { path = "%:p:h" }
-end
-
 function M.gateway()
   return require("alpha.php.gateway").graphql_definitions {
     layout_config = {
@@ -151,6 +147,10 @@ function M.gateway()
       },
     },
   }
+end
+
+function M.file_browser_relative()
+  return M.file_browser { path = "%:p:h" }
 end
 
 function M.file_browser(opts)

@@ -56,6 +56,7 @@ local filetype_attach = setmetatable({
     return function() end
   end,
 })
+
 return function(client, bufnr)
   local filetype = vim.api.nvim_buf_get_option(0, "filetype")
   -- keymaps for lsp
