@@ -1,64 +1,6 @@
 local telescope_mapper = require "alpha.telescope.mappings"
 
-local filetype_attach = setmetatable({
-  php = function(_, bufnr)
-    vim.api.nvim_buf_create_user_command(bufnr, "LspPhpactorReindex", function()
-      vim.lsp.buf_notify(bufnr, "phpactor/index/reindex", {})
-    end, {})
-
-    vim.api.nvim_buf_create_user_command(bufnr, 'LspPhpactorStatus', function()
-      local results, _ = vim.lsp.buf_request_sync(bufnr, "phpactor/status", {["return"]=true})
-
-      local content = ''
-
-      for _, res in pairs(results or {}) do
-        if res ~= nil and res["result"] ~= nil then
-          content = content .. res["result"]
-        end
-      end
-
-
-      local Popup = require("nui.popup")
-      local event = require("nui.utils.autocmd").event
-
-      local popup = Popup({
-        enter = true,
-        focusable = true,
-        border = {
-          style = "rounded",
-        },
-        position = "50%",
-        size = {
-          width = "80%",
-          height = "60%",
-        },
-      })
-
-      -- mount/open the component
-      popup:mount()
-
-      -- unmount component when cursor leaves buffer
-      popup:on(event.BufLeave, function()
-        popup:unmount()
-      end)
-      local out = {};
-      for match in string.gmatch(content, "[^\n]+") do
-        table.insert(out, match);
-      end
-
-      vim.api.nvim_buf_set_option(popup.bufnr, "filetype", "markdown")
-      vim.api.nvim_buf_set_lines(popup.bufnr, 0, 1, false, out)
-
-    end, {})
-  end,
-}, {
-  __index = function()
-    return function() end
-  end,
-})
-
 return function(client, bufnr)
-  local filetype = vim.api.nvim_buf_get_option(0, "filetype")
   -- keymaps for lsp
   vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = 0, desc = "LSP Help information of symbol under the cursor" })
   vim.keymap.set("n", "<leader>vrn", vim.lsp.buf.rename, { buffer = 0, desc = "LSP Rename symbol under cursor" })
@@ -84,7 +26,4 @@ return function(client, bufnr)
   if client.server_capabilities.inlayHintProvider then
     vim.lsp.inlay_hint(bufnr, true)
   end
-
-  -- Attach any filetype specific options to the client
-  filetype_attach[filetype](client, bufnr)
 end
