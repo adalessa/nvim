@@ -1,5 +1,8 @@
 return {
-  "jwalton512/vim-blade",
+  {
+    "jwalton512/vim-blade",
+    enabled = false,
+  },
   {
     "tpope/vim-dispatch",
     cmd = { "Make", "Dispatch" },
