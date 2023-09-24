@@ -1,7 +1,11 @@
 local lsp_attach = require "alpha.lsp.attach"
-local lsp_flags = require("alpha.lsp.flags")
+local lsp_flags = require "alpha.lsp.flags"
 
 return function(ops)
+  if ops.neodev == true then
+    require("neodev").setup()
+  end
+
   return vim.tbl_extend("force", {
     on_attach = lsp_attach,
     flags = lsp_flags,
@@ -22,6 +26,9 @@ return function(ops)
         },
         hint = {
           enable = true,
+        },
+        completion = {
+          callSnippet = "Replace",
         },
       },
     },

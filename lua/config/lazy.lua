@@ -15,6 +15,9 @@ require("lazy").setup {
   spec = {
     { import = "plugins" },
   },
+  default = {
+    lazy = true,
+  },
   checker = { enabled = true, notify = false },
   dev = {
     path = "~/code/plugins",

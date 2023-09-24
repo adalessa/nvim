@@ -37,6 +37,9 @@ return {
       table.insert(servers, string.format("%s <%s>", server, options.enable))
     end
 
+    -- TODO: create an auto command that on write of the configuration, calls again the setup and restart the server if it's up.
+    -- can get the client by name of the file
+
     vim.api.nvim_create_user_command("AlphaLSP", function()
       vim.ui.select(servers, { prompt = "LSP Servers" }, function(server)
         if server == nil then

@@ -10,6 +10,7 @@ return {
         },
       },
     },
+    "folke/neodev.nvim",
     "williamboman/mason-lspconfig.nvim",
     "WhoIsSethDaniel/mason-tool-installer.nvim",
   },

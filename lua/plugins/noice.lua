@@ -80,42 +80,32 @@ return {
       {
         view = "mini",
         filter = {
-          event = "msg_show",
-          find = "lines yanked",
+          any = {
+            {
+              event = "msg_show",
+              find = "lines yanked",
+            },
+            {
+              event = "msg_show",
+              find = "more lines",
+            },
+            {
+              event = "msg_show",
+              find = "direnv:",
+            },
+            {
+              find = "laravel.sail.",
+            },
+            {
+              find = "Pattern not found",
+            },
+            {
+              event = "msg_show",
+              kind = "",
+              find = "change;",
+            },
+          },
         },
-      },
-      {
-        view = "mini",
-        filter = {
-          event = "msg_show",
-          find = "more lines",
-        },
-      },
-      {
-        view = "mini",
-        filter = {
-          find = "laravel.sail.up",
-        },
-      },
-      {
-        view = "mini",
-        filter = {
-          find = "laravel.sail.down",
-        },
-      },
-      {
-        view = "mini",
-        filter = {
-          find = "Pattern not found",
-        },
-      },
-      {
-        view = "mini",
-        filter = {
-          event = "msg_show",
-          kind = "",
-          find = "change;"
-        }
       },
     },
   },

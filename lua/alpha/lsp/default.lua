@@ -8,7 +8,7 @@ return {
     gopls = { enable = true },
     html = { enable = true },
     jsonls = { enable = true },
-    lua_ls = { enable = true },
+    lua_ls = { enable = true, neodev = true },
     nil_ls = { enable = true },
     phpactor = {enable = true },
     rust_analyzer = { enable = true },
